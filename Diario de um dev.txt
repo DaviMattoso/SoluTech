@@ -1,0 +1,631 @@
+Diário de um Dev — SoluTech
+
+---------------------------------------------------------------------------------------------------------------------
+Dia 1
+
+E VAMOS PARA MAIS UM DIARIO DE UM DEV
+Esse projeto é um comeco de algo muito grande, to trabalhando com 5 craneos que mano... bagulho doido, isso é um projeto de uma empresa que cria solucoes para pessoas e empresas, tudo isso com base em tecnologia e infomacao, foda pra krl
+Como manjo mais de web fiquei com o site e tambem pra ver sobre o sistema do primeiro projeto, mas isso é historia pra outro diario.
+A proxima reu é domingo e queria ter pelo menos uma base pra mostrar o site da empresa e oque da pra fazer referente ao sistema, tamo vendo isso ai ainda
+Como sempre cheguei MOIDO do job e minhas costas tao querendo sair do corpo já, mas o bagulho é doido e minha cadeira confortavel XD
+
+Comecei pela estrutura geral da página. Mantive o HTML dividido em seções para facilitar a organização e a navegação entre as partes do site. O Header ficou responsável pela navegação principal, depois vieram o Hero, Soluções, Pessoas e Empresas, Sobre Nós, Contato e, por último, o Footer. Também deixei os IDs das seções para conseguir navegar pela página através dos links do menu. optei nao cirar paginas e mais paginas externas dentro do projeto para cada sessão, entao vai ficar tudo na pagina principal, ou pelo menos até agora vai. No HTML, por exemplo, o Header ficou estruturado dessa forma:
+
+<header class="header">
+    <div class="container nav">
+
+
+        <a href="#inicio" class="logo">
+            <div class="logo-icon">
+                <img src="img/logo.png" alt="Logo SoluTech">
+            </div>
+
+
+            <h2>SoluTech</h2>
+        </a>
+
+
+        <nav class="nav-menu">
+            <a href="#inicio" class="active">Início</a>
+            <a href="#solucoes">Soluções</a>
+            <a href="#sobre">Sobre Nós</a>
+            <a href="#clientes">Clientes</a>
+            <a href="#contato">Contato</a>
+        </nav>
+
+
+        <a href="#contato" class="btn contato-btn">
+            Fale Conosco
+        </a>
+
+
+    </div>
+</header>
+
+No CSS comecei organizando as cores principais em variáveis. Isso acabou ajudando bastante durante o desenvolvimento, porque praticamente toda a identidade visual passou a depender dessas variáveis. O azul principal da empresa ficou como #1268ff, enquanto o azul escuro utilizado como fundo ficou em #061426 e o texto principal em #101a2b.
+
+:root {
+    --blue: #1268ff;
+    --blue-dark: #0055e6;
+    --dark: #061426;
+    --dark-secondary: #091b31;
+    --text: #101a2b;
+    --text-light: #586477;
+    --white: #ffffff;
+    --background: #f8f9fc;
+    --border: #e6eaf0;
+    --container-width: 900px;
+    --radius: 10px;
+    --transition: 0.3s ease;
+    --shadow: 0 8px 25px rgba(10, 30, 60, 0.08);
+}
+
+Depois fui trabalhar no Header. Queria que ele tivesse uma aparência mais tecnológica e profissional, então deixei ele fixo no topo, com fundo escuro e um pouco de transparência. Também usei backdrop-filter para criar aquele efeito de vidro quando a página passa por baixo do Header.
+
+.header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 75px;
+    z-index: 1000;
+
+
+    background: rgba(3, 16, 31, 0.92);
+    backdrop-filter: blur(12px);
+}
+
+Também ajustei a logo para trabalhar com a imagem real da SoluTech em vez daquele símbolo que inicialmente estava sendo feito somente com CSS.
+
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 9px;
+    color: white;
+    flex-shrink: 0;
+}
+
+
+.logo-icon {
+    width: 32px;
+    height: 32px;
+
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+
+    flex-shrink: 0;
+}
+
+
+.logo-icon img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
+Depois veio o Hero, que acabou sendo uma das partes que mais exigiu ajustes. A ideia inicial era ter a imagem de um lado e o texto do outro, mas depois achei muito mais interessante fazer a imagem ocupar toda a área e colocar o conteúdo por cima dela. Isso deixou a imagem muito mais presente e deu uma aparência mais próxima de um site profissional de tecnologia.
+
+No HTML, o Hero ficou basicamente com o conteúdo e a imagem separados dentro da mesma seção:
+
+<section class="hero" id="inicio">
+
+
+    <div class="container hero-container">
+
+
+        <div class="hero-content">
+
+
+            <span class="subtitle">
+                SOLUÇÕES INTELIGENTES
+            </span>
+
+
+            <h1>
+                Soluções que<br>
+                transformam<br>
+                <span>vidas e negócios.</span>
+            </h1>
+
+
+            <p>
+                Tecnologia, consultoria e inovação para
+                simplificar desafios e gerar resultados reais.
+            </p>
+
+
+            <div class="hero-buttons">
+
+
+                <a href="#solucoes" class="btn">
+                    Nossas Soluções →
+                </a>
+
+
+                <a href="#contato" class="btn-outline">
+                    Fale com um especialista
+                </a>
+
+
+            </div>
+
+
+        </div>
+
+
+        <div class="hero-image">
+            <img src="img/Banner2.png">
+        </div>
+
+
+    </div>
+
+
+</section>
+
+No CSS coloquei a imagem ocupando toda a seção com position: absolute, object-fit: cover e object-position: center top. O center top foi importante porque a parte superior da imagem estava sendo cortada e eu queria manter visíveis os elementos que estavam naquela região.
+
+.hero-image {
+    position: absolute;
+    inset: 0;
+
+
+    width: 100%;
+    height: 100%;
+
+
+    overflow: hidden;
+    z-index: 1;
+}
+
+
+.hero-image img {
+    width: 100%;
+    height: 100%;
+
+
+    object-fit: cover;
+    object-position: center top;
+}
+
+Como o texto precisava ficar legível sobre a imagem, criei uma camada de degradê escura. Ela começa bem mais forte do lado esquerdo, onde está o conteúdo, e vai ficando transparente em direção à direita.
+
+.hero-image::after {
+    content: "";
+
+
+    position: absolute;
+    inset: 0;
+
+
+    background:
+        linear-gradient(
+            90deg,
+            rgba(3, 12, 24, 0.94) 0%,
+            rgba(3, 12, 24, 0.78) 24%,
+            rgba(3, 12, 24, 0.40) 48%,
+            rgba(3, 12, 24, 0.10) 75%,
+            rgba(3, 12, 24, 0.02) 100%
+        );
+
+
+    z-index: 2;
+}
+
+Também precisei trabalhar nos espaçamentos do conteúdo. Os botões estavam muito próximos do texto e um do outro, então aumentei o espaço entre eles e deixei os próprios botões um pouco maiores.
+
+.hero-buttons {
+    display: flex;
+    gap: 18px;
+    margin-bottom: 35px;
+}
+
+
+.hero-buttons .btn,
+.hero-buttons .btn-outline {
+    min-height: 46px;
+    padding-left: 22px;
+    padding-right: 22px;
+}
+
+Depois passei para a seção de soluções. Aqui a ideia foi apresentar quatro áreas que fazem sentido para a SoluTech neste primeiro momento: Tecnologia, Consultoria, Inteligência Artificial e Inteligência de Dados. (Eu quero trocar esses icones mas nao pensei em nada melhor ainda)
+
+<div class="cards-grid">
+
+
+    <article class="card">
+        <div class="card-icon">💻</div>
+        <h3>Tecnologia</h3>
+        <p>
+            Desenvolvimento de sistemas e automação
+            para otimizar processos e aumentar sua
+            produtividade.
+        </p>
+        <a href="#contato">Saiba mais →</a>
+    </article>
+
+
+    <article class="card">
+        <div class="card-icon">🧠</div>
+        <h3>Consultoria</h3>
+        <p>
+            Consultoria especializada para ajudar
+            você ou sua empresa a tomar decisões
+            estratégicas com segurança.
+        </p>
+        <a href="#contato">Saiba mais →</a>
+    </article>
+
+
+    <article class="card">
+        <div class="card-icon">🤖</div>
+        <h3>Inteligência Artificial</h3>
+        <p>
+            Soluções com IA para automatizar tarefas,
+            economizar tempo e transformar desafios
+            em realidade.
+        </p>
+        <a href="#contato">Saiba mais →</a>
+    </article>
+
+
+    <article class="card">
+        <div class="card-icon">📊</div>
+        <h3>Inteligência de Dados</h3>
+        <p>
+            Transformamos dados em insights valiosos
+            para impulsionar resultados e oportunidades.
+        </p>
+        <a href="#contato">Saiba mais →</a>
+    </article>
+
+
+</div>
+
+Uma das mudanças que mais gostei foi o comportamento dos cards. Em vez de fazer aquele hover padrão onde o card simplesmente sobe alguns pixels, decidi fazer o card inteiro mudar para o azul escuro da SoluTech. Quando o mouse entra, o conteúdo desaparece e o botão "Saiba mais →" aparece centralizado.
+
+.card:hover {
+    background: var(--dark);
+    border-color: var(--dark);
+
+
+    box-shadow:
+        0 15px 35px
+        rgba(6, 20, 38, 0.25);
+}
+
+
+.card:hover .card-icon,
+.card:hover h3,
+.card:hover p {
+    opacity: 0;
+}
+
+
+.card:hover a {
+    position: absolute;
+
+
+    top: 50%;
+    left: 50%;
+
+
+    transform: translate(-50%, -50%);
+
+
+    display: inline-flex;
+
+
+    align-items: center;
+    justify-content: center;
+
+
+    gap: 7px;
+
+
+    padding: 12px 22px;
+
+
+    color: white;
+
+
+    border: 1px solid rgba(255, 255, 255, 0.6);
+    border-radius: 6px;
+
+
+    background: transparent;
+}
+
+Depois comecei a trabalhar nos cards de Pessoas Físicas e Empresas. A ideia era mostrar que a SoluTech pode trabalhar tanto com necessidades individuais quanto com necessidades de negócios. No card de pessoas coloquei coisas mais práticas, como sistemas para negócios, automação, organização e suporte tecnológico. Para empresas, deixei uma abordagem mais voltada para sistemas, consultoria, segurança e análise de dados.
+
+<ul>
+    <li>Sistemas para negócios</li>
+    <li>Automação de processos</li>
+    <li>Organização e gestão</li>
+    <li>Suporte tecnológico</li>
+</ul>
+
+E para empresas:
+
+<ul>
+    <li>Sistemas para empresas</li>
+    <li>Consultoria estratégica</li>
+    <li>Segurança da informação</li>
+    <li>Análise de dados</li>
+</ul>
+
+Também ajustei as imagens desses cards para preencherem corretamente o espaço sem deformação:
+
+.audience-img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+Depois veio a seção Sobre Nós. Quis evitar aquele texto corporativo genérico e deixar a SoluTech com uma proposta mais humana. A ideia principal ficou em torno de tecnologia próxima, soluções que realmente façam sentido e atendimento humano.
+
+<h2>
+    Tecnologia próxima, soluções que fazem sentido.
+</h2>
+
+
+<p>
+    A SoluTech conecta pessoas e empresas a soluções digitais
+    simples, seguras e pensadas para a rotina de cada cliente.
+</p>
+
+
+<p>
+    Unimos tecnologia, estratégia e atendimento humano para
+    transformar desafios em resultados práticos.
+</p>
+
+Também coloquei dois valores dentro dessa seção:
+
+<div class="about-values">
+
+
+    <div>
+        <strong>Escuta de verdade</strong>
+        <span>
+            Entendemos o seu contexto antes de propor uma solução.
+        </span>
+    </div>
+
+
+    <div>
+        <strong>Parceria contínua</strong>
+        <span>
+            Estamos ao seu lado em cada etapa do projeto.
+        </span>
+    </div>
+
+
+</div>
+
+Depois comecei a construir a parte de contato. Essa seção precisava ser mais completa porque não queria deixar somente um formulário. Coloquei informações de endereço, telefone e e-mail junto com a área para o usuário enviar uma mensagem.
+
+<section class="contact" id="contato">
+
+
+    <div class="container contact-container">
+
+
+        <div class="contact-content">
+
+
+            <span class="contact-subtitle">
+                ENTRE EM CONTATO
+            </span>
+
+
+            <h2>
+                Vamos conversar sobre sua próxima ideia?
+            </h2>
+
+
+            <p class="contact-description">
+                Tem alguma dúvida, projeto ou desafio?
+                Entre em contato com a nossa equipe.
+                Estamos prontos para encontrar a
+                melhor solução para você.
+            </p>
+
+
+            <div class="contact-info">
+                ...
+            </div>
+
+
+            <form class="contact-form">
+                <input type="text" placeholder="Seu nome" required>
+                <input type="email" placeholder="Seu e-mail" required>
+                <input type="text" placeholder="Assunto" required>
+
+
+                <textarea
+                    placeholder="Digite sua mensagem..."
+                    rows="5"
+                    required>
+                </textarea>
+
+
+                <button type="submit" class="btn">
+                    Enviar mensagem →
+                </button>
+            </form>
+
+
+        </div>
+
+
+    </div>
+
+
+</section>
+
+A estrutura do contato foi feita em duas colunas no desktop, deixando o conteúdo do formulário de um lado e uma área maior do outro.
+
+Foi nessa parte que surgiu a ideia do mascote da SoluTech. Em vez de colocar novamente fotos de membros da equipe, achei que seria mais interessante colocar um personagem representando a empresa e convidando o usuário para conversar.
+
+No HTML, a imagem ficou dentro de um bloco próprio:
+
+<div class="contact-mascot">
+    <img
+        src="img/Mascote ct.png"
+        alt="Assistente SoluTech"
+    >
+</div>
+
+Depois ajustei o CSS para a imagem não ficar esticada. Inicialmente ela estava ocupando toda a altura do container e parecia uma imagem quadrada. Troquei para height: auto, mantive object-fit: contain e coloquei bordas arredondadas.
+
+.contact-mascot {
+    position: relative;
+
+
+    width: 100%;
+    height: 600px;
+
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+
+    overflow: hidden;
+}
+
+
+.contact-mascot img {
+    width: 100%;
+    max-width: 520px;
+
+
+    height: auto;
+
+
+    object-fit: contain;
+    object-position: center;
+
+
+    border-radius: 40px;
+
+
+    display: block;
+
+
+    transition: transform 0.4s ease;
+}
+
+
+.contact-mascot:hover img {
+    transform: scale(1.02);
+}
+
+Esse pequeno efeito de escala acabou deixando a imagem mais viva sem exagerar na animação.
+
+Depois fui para a parte de responsividade. Eu já tinha deixado a estrutura preparada para 1024px e 600px, mas precisei ajustar cada seção para não quebrar quando a largura diminuísse. No tablet, os quatro cards de soluções passam para duas colunas, enquanto no celular passam para uma coluna.
+
+@media (max-width: 1024px) {
+
+
+    .cards-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+
+    .card {
+        min-height: 195px;
+    }
+
+
+}
+
+No celular, a estrutura muda novamente:
+
+@media (max-width: 600px) {
+
+
+    .cards-grid {
+        grid-template-columns: 1fr;
+        gap: 12px;
+    }
+
+
+    .audience-grid {
+        grid-template-columns: 1fr;
+    }
+
+
+    .about-container {
+        grid-template-columns: 1fr;
+    }
+
+
+    .contact-container {
+        grid-template-columns: 1fr;
+        gap: 35px;
+    }
+
+
+}
+
+Também comecei a estrutura do menu mobile. O menu já possui o comportamento de ficar escondido e aparecer quando recebe a classe .open, mas ainda falta terminar a parte do botão que vai controlar isso pelo JavaScript.
+
+.nav-menu {
+    position: absolute;
+    top: 58px;
+    left: 0;
+
+
+    width: 100%;
+
+
+    display: flex;
+    flex-direction: column;
+
+
+    background: #061426;
+
+
+    opacity: 0;
+    visibility: hidden;
+
+
+    transform: translateY(-10px);
+
+
+    transition: var(--transition);
+}
+
+
+.nav-menu.open {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+}
+
+No final da sessão também deixei o Footer organizado com as áreas de Soluções, Empresa, Suporte e Contato, além dos links de redes sociais e copyright.
+
+Depois de todas essas alterações, a página já começou a parecer muito mais com uma empresa de verdade e menos com uma estrutura inicial de teste. Ainda existem algumas partes que são apenas visuais, principalmente os botões e o formulário, mas a identidade da SoluTech está praticamente definida.
+
+O mais interessante dessa sessão foi que várias coisas foram surgindo enquanto eu desenvolvia. O Hero mudou de estrutura, os cards ganharam um hover diferente, a seção de contato ganhou o mascote e a própria proposta da empresa foi ficando mais clara conforme eu montava o conteúdo. No final, foram aproximadamente 4 horas de desenvolvimento, testes e ajustes, e agora a base visual está pronta para começar a receber as funcionalidades.
+
+Próxima sessão
+
+A próxima etapa já deve sair um pouco da parte puramente visual e começar a colocar funcionalidades no projeto.
+
+A primeira ideia é criar o chatbot da SoluTech, fazendo com que o botão "Fale Conosco" do Header possa abrir o atendimento e colocando também um botão flutuante do assistente no canto da tela. A ideia é que o mascote apresentado na seção de contato não seja apenas uma imagem bonita, mas esteja relacionado ao próprio assistente IA.
+
+Também quero criar o favicon oficial da SoluTech, usando a identidade visual da empresa para que o site tenha sua própria identificação na aba do navegador.
+
+Por último, falta finalizar o menu mobile. O CSS já possui a estrutura para o menu aparecer através da classe .open, então a próxima etapa será criar o botão no Header e fazer o JavaScript controlar a abertura e fechamento das opções de navegação.
+
+Mas por hj é só criancas, amanha eu tenho que estar em migracoes de 10h se eu nao quiser ficar ilegal XD
+
+bjsss
+
+---------------------------------------------------------------------------------------------------------------------

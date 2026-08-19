@@ -1,0 +1,1119 @@
+/* =========================================================
+   STYLE.CSS
+   Estrutura:
+   1. Variáveis e reset
+   2. Elementos gerais
+   3. Header
+   4. Hero
+   5. Soluções
+   6. Pessoas e empresas
+   7. Sobre nos e contato
+   8. Footer
+   9. Responsividade — 1024px
+   10. Responsividade — 600px
+========================================================= */
+/* =========================================================
+ VARIÁVEIS E RESET
+========================================================= */
+:root {
+    --blue: #1268ff;
+    --blue-dark: #0055e6;
+    --dark: #061426;
+    --dark-secondary: #091b31;
+    --text: #101a2b;
+    --text-light: #586477;
+    --white: #ffffff;
+    --background: #f8f9fc;
+    --border: #e6eaf0;
+    --container-width: 900px;
+    --radius: 10px;
+    --transition: 0.3s ease;
+    --shadow: 0 8px 25px rgba(10, 30, 60, 0.08);
+}
+/* Reset básico para evitar diferenças entre navegadores */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 75px;
+}
+body {
+    font-family: "Inter", sans-serif;
+    color: var(--text);
+    background: var(--white);
+    line-height: 1.6;
+    overflow-x: hidden;
+}
+img {
+    width: 100%;
+    display: block;
+}
+a {
+    color: inherit;
+    text-decoration: none;
+}
+ul {
+    list-style: none;
+}
+.container {
+    width: min(
+        var(--container-width),
+        calc(100% - 64px)
+    );
+    margin: 0 auto;
+}
+/* =========================================================
+ ELEMENTOS GERAIS
+========================================================= */
+/* Botão principal utilizado em várias partes do site */
+.btn {
+    min-height: 40px;
+    padding: 0 17px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    border-radius: 6px;
+    background: var(--blue);
+    color: white;
+    font-size: 11px;
+    font-weight: 700;
+    transition: var(--transition);
+}
+.btn:hover {
+    background: var(--blue-dark);
+    transform: translateY(-2px);
+}
+/* Botão transparente utilizado no Hero */
+.btn-outline {
+    min-height: 40px;
+    padding: 0 17px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid rgba(255, 255, 255, 0.55);
+    border-radius: 6px;
+    color: white;
+    font-size: 11px;
+    font-weight: 600;
+    transition: var(--transition);
+}
+.btn-outline:hover {
+    background: rgba(255, 255, 255, 0.08);
+    border-color: white;
+    transform: translateY(-2px);
+}
+/* =========================================================
+ HEADER
+========================================================= */
+.header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 75px;
+    z-index: 1000;
+    background: rgba(3, 16, 31, 0.92);
+    backdrop-filter: blur(12px);
+}
+.nav {
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 25px;
+}
+/* Logo */
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 9px;
+    color: white;
+    flex-shrink: 0;
+}
+.logo h2 {
+    font-size: 20px;
+    letter-spacing: -0.8px;
+}
+/* Ícone da logo */
+.logo-icon {
+    width: 32px;
+    height: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+.logo-icon img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    display: block;
+}
+/* Menu */
+.nav-menu {
+    display: flex;
+    align-items: center;
+    gap: 28px;
+}
+.nav-menu a {
+    position: relative;
+    padding: 28px 0;
+    color: #f0f4fa;
+    font-size: 11px;
+    font-weight: 500;
+    transition: var(--transition);
+}
+.nav-menu a:hover {
+    color: #2788ff;
+}
+/*
+   O link ativo recebe a pequena linha azul
+   que aparece abaixo de "Início".
+*/
+.nav-menu a.active {
+    color: #2788ff;
+}
+.nav-menu a.active::after {
+    content: "";
+    position: absolute;
+    bottom: 14px;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: var(--blue);
+}
+/* Botão do Header */
+.contato-btn {
+    min-height: 35px;
+}
+/* =========================================================
+ HERO
+========================================================= */
+.hero {
+    position: relative;
+    min-height: 620px;
+    padding-top: 75px;
+    overflow: hidden;
+    background: #000;
+    color: white;
+}
+/* Container do Hero */
+.hero-container {
+    position: relative;
+    z-index: 2;
+    min-height: 545px;
+    display: block;
+}
+.hero-image {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    z-index: 1;
+}
+/* Imagem */
+.hero-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    /*
+       Mantém a parte superior da imagem visível.
+       Isso evita cortar as luzes e os elementos
+       que aparecem na parte de cima.
+    */
+    object-position: center top;
+    opacity: 1;
+    filter: none;
+}
+.hero-image::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background:
+        linear-gradient(
+            90deg,
+            rgba(3, 12, 24, 0.94) 0%,
+            rgba(3, 12, 24, 0.78) 24%,
+            rgba(3, 12, 24, 0.40) 48%,
+            rgba(3, 12, 24, 0.10) 75%,
+            rgba(3, 12, 24, 0.02) 100%
+        );
+    z-index: 2;
+}
+.hero-content {
+    position: relative;
+    z-index: 5;
+    width: 52%;
+    /*
+       Mais espaço entre o header
+       e o conteúdo.
+    */
+    padding-top: 65px;
+}
+/* Pequeno título */
+.subtitle {
+    display: block;
+    margin-bottom: 18px;
+    color: var(--blue);
+    font-size: 10px;
+    font-weight: 800;
+    letter-spacing: 1px;
+}
+/* Título principal */
+.hero h1 {
+    margin-bottom: 24px;
+    font-size: clamp(
+        36px,
+        4.3vw,
+        48px
+    );
+    line-height: 1.05;
+    letter-spacing: -2px;
+}
+.hero h1 span {
+    color: var(--blue);
+}
+/* Texto */
+.hero-content > p {
+    max-width: 440px;
+    margin-bottom: 30px;
+    color: #dce4ef;
+    font-size: 13px;
+    line-height: 1.6;
+}
+.hero-buttons {
+    display: flex;
+    gap: 18px;
+    margin-bottom: 35px;
+}
+.hero-buttons .btn,
+.hero-buttons .btn-outline {
+    min-height: 46px;
+    padding-left: 22px;
+    padding-right: 22px;
+}
+.hero::after {
+    content: "";
+    position: absolute;
+    z-index: 4;
+    width: 600px;
+    height: 80px;
+    right: -70px;
+    bottom: 30px;
+    border-top: 7px solid var(--blue);
+    border-radius: 50%;
+    transform: rotate(-9deg);
+}
+/* =========================================================
+ SOLUÇÕES
+========================================================= */
+.solutions {
+    padding: 65px 0 30px;
+    background: white;
+}
+.section-title {
+    max-width: 570px;
+    margin: 0 auto 32px;
+    text-align: center;
+}
+.section-title > span {
+    display: block;
+    margin-bottom: 9px;
+    color: var(--blue);
+    font-size: 10px;
+    font-weight: 800;
+    letter-spacing: 1px;
+}
+.section-title h2 {
+    margin-bottom: 8px;
+    font-size: 29px;
+    line-height: 1.2;
+    letter-spacing: -1px;
+}
+.section-title p {
+    color: var(--text-light);
+    font-size: 13px;
+}
+/* Grid dos quatro cards */
+.cards-grid {
+    display: grid;
+    grid-template-columns:
+        repeat(4, 1fr);
+    gap: 17px;
+}
+.card {
+    position: relative;
+    min-height: 210px;
+    padding: 19px;
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    background: white;
+    box-shadow: var(--shadow);
+    transition: var(--transition);
+    overflow: hidden;
+}
+/* Ícone, título e descrição */
+.card-icon {
+    margin-bottom: 13px;
+    color: var(--blue);
+    font-size: 30px;
+    line-height: 1;
+}
+.card h3 {
+    margin-bottom: 7px;
+    font-size: 14px;
+}
+.card p {
+    color: #3f4b5d;
+    font-size: 10.5px;
+    line-height: 1.55;
+}
+.card-icon,
+.card h3,
+.card p {
+    transition: var(--transition);
+}
+/* =========================================================
+ BOTÃO
+========================================================= */
+.card a {
+    display: none;
+}
+/* =========================================================
+ HOVER
+========================================================= */
+.card:hover {
+    background: var(--dark);
+    border-color: var(--dark);
+    box-shadow:
+        0 15px 35px
+        rgba(6, 20, 38, 0.25);
+}
+/* Esconde o conteúdo */
+.card:hover .card-icon,
+.card:hover h3,
+.card:hover p {
+    opacity: 0;
+}
+/* =========================================================
+ BOTÃO NO HOVER
+========================================================= */
+.card:hover a {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 7px;
+    margin: 0;
+    padding: 12px 22px;
+    color: white;
+    font-size: 10.5px;
+    font-weight: 700;
+    white-space: nowrap;
+    border: 1px solid rgba(255, 255, 255, 0.6);
+    border-radius: 6px;
+    background: transparent;
+    transition: var(--transition);
+}
+/* Hover do próprio botão */
+.card:hover a:hover {
+    background: white;
+    color: var(--dark);
+}
+/* =========================================================
+ PESSOAS E EMPRESAS
+========================================================= */
+.audience {
+    padding: 25px 0 30px;
+}
+.audience-grid {
+    display: grid;
+    grid-template-columns:
+        repeat(2, 1fr);
+    gap: 17px;
+}
+.audience-card {
+    min-height: 280px;
+    overflow: hidden;
+    display: grid;
+    grid-template-columns: 54% 46%;
+    border-radius: var(--radius);
+    background: #edf5ff;
+}
+.audience-text {
+    position: relative;
+    z-index: 2;
+    padding: 27px 18px 20px 22px;
+}
+.audience-text h2 {
+    margin-bottom: 9px;
+    font-size: 20px;
+    line-height: 1.2;
+    letter-spacing: -0.6px;
+}
+.audience-text p {
+    max-width: 220px;
+    margin-bottom: 12px;
+    font-size: 10px;
+    line-height: 1.5;
+}
+.audience-text ul {
+    display: grid;
+    gap: 5px;
+    margin-bottom: 17px;
+}
+.audience-text li {
+    position: relative;
+    padding-left: 16px;
+    font-size: 9.5px;
+}
+.audience-text li::before {
+    content: "✓";
+    position: absolute;
+    left: 0;
+    color: var(--blue);
+    font-weight: 800;
+}
+.audience-text .btn {
+    min-height: 33px;
+    font-size: 9px;
+}
+.audience-img {
+    min-height: 280px;
+    overflow: hidden;
+}
+.audience-img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+/* =========================================================
+ SOBRE NÓS
+========================================================= */
+.about {
+    padding: 80px 0;
+    background: #f6f9fd;
+}
+.about-container {
+    display: grid;
+    grid-template-columns: 1.1fr 0.9fr;
+    gap: 70px;
+    align-items: center;
+}
+.about-eyebrow,
+.about-invitation > span {
+    display: block;
+    margin-bottom: 12px;
+    color: var(--blue);
+    font-size: 11px;
+    font-weight: 800;
+    letter-spacing: 1.2px;
+}
+.about-content h2 {
+    max-width: 520px;
+    margin-bottom: 20px;
+    color: var(--dark);
+    font-size: 36px;
+    line-height: 1.12;
+    letter-spacing: -1.4px;
+}
+.about-content > p {
+    max-width: 540px;
+    margin-bottom: 12px;
+    color: var(--text-light);
+    font-size: 13px;
+    line-height: 1.7;
+}
+.about-values {
+    margin-top: 28px;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 14px;
+}
+.about-values > div {
+    padding: 16px;
+    border-left: 3px solid var(--blue);
+    border-radius: 0 var(--radius) var(--radius) 0;
+    background: var(--white);
+}
+.about-values strong,
+.about-values span {
+    display: block;
+}
+.about-values strong {
+    margin-bottom: 5px;
+    color: var(--dark);
+    font-size: 12px;
+}
+.about-values span {
+    color: var(--text-light);
+    font-size: 10.5px;
+    line-height: 1.55;
+}
+.about-invitation {
+    padding: 38px;
+    border-radius: var(--radius);
+    background: #03101f;
+    color: var(--white);
+    box-shadow: 0 18px 40px rgba(6, 20, 38, 0.18);
+}
+.about-invitation > span {
+    color: #8db9ff;
+}
+.about-invitation h3 {
+    margin-bottom: 15px;
+    font-size: 25px;
+    line-height: 1.2;
+}
+.about-invitation p {
+    margin-bottom: 25px;
+    color: #c4d0df;
+    font-size: 12px;
+    line-height: 1.65;
+}
+/* =========================================================
+ CONTATO
+========================================================= */
+.contact {
+    position: relative;
+    padding: 80px 0;
+    background: var(--white);
+    overflow: hidden;
+}
+.contact-container {
+    min-height: 650px;
+    display: grid;
+    grid-template-columns: 1fr 0.9fr;
+    gap: 70px;
+    align-items: center;
+}
+.contact-content { position: relative; z-index: 5; }
+.contact-subtitle {
+    display: block;
+    margin-bottom: 12px;
+    color: var(--blue);
+    font-size: 11px;
+    font-weight: 800;
+    letter-spacing: 1.2px;
+}
+.contact-content h2 {
+    max-width: 500px;
+    margin-bottom: 18px;
+    color: var(--dark);
+    font-size: 38px;
+    line-height: 1.08;
+    letter-spacing: -1.5px;
+}
+.contact-description {
+    max-width: 500px;
+    margin-bottom: 30px;
+    color: var(--text-light);
+    font-size: 13px;
+    line-height: 1.7;
+}
+.contact-info {
+    display: grid;
+    gap: 15px;
+    margin-bottom: 32px;
+}
+.contact-info-item {
+    display: flex;
+    align-items: center;
+    gap: 13px;
+}
+.contact-info-icon {
+    width: 38px;
+    height: 38px;
+    flex-shrink: 0;
+    display: grid;
+    place-items: center;
+    border-radius: 50%;
+    background: #101a2b;
+    color: white;
+}
+.contact-info-icon svg {
+    width: 18px;
+    height: 18px;
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 2;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+}
+.contact-info-icon svg circle {
+    fill: currentColor;
+    stroke: none;
+}
+.contact-info-item strong {
+    display: block;
+    margin-bottom: 2px;
+    color: var(--dark);
+    font-size: 11px;
+}
+.contact-info-item p { color: var(--text-light); font-size: 10px; }
+.contact-form { max-width: 500px; display: grid; gap: 12px; }
+.contact-form input,
+.contact-form textarea {
+    width: 100%;
+    padding: 13px 14px;
+    border: none;
+    border-bottom: 1px solid #dce2ea;
+    outline: none;
+    background: transparent;
+    color: var(--dark);
+    font-family: inherit;
+    font-size: 11px;
+    transition: var(--transition);
+}
+.contact-form textarea { min-height: 100px; resize: vertical; }
+.contact-form input::placeholder,
+.contact-form textarea::placeholder { color: #8a95a5; }
+.contact-form input:focus,
+.contact-form textarea:focus { border-color: var(--blue); }
+.contact-form .btn {
+    width: fit-content;
+    min-height: 42px;
+    margin-top: 8px;
+    padding: 0 22px;
+    border: none;
+    cursor: pointer;
+}
+.contact-form .btn:hover {
+    background: #03101f;
+}
+.contact-mascot {
+    position: relative;
+    width: 100%;
+    height: 600px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+}
+/* Imagem do mascote */
+.contact-mascot img {
+    width: 100%;
+    max-width: 520px;
+    height: auto;
+    object-fit: contain;
+    object-position: center;
+    border-radius: 40px;
+    display: block;
+    transition: transform 0.4s ease;
+}
+/* Pequeno movimento ao passar o mouse */
+.contact-mascot:hover img {
+    transform: scale(1.02);
+}
+/* =========================================================
+ FOOTER
+========================================================= */
+.footer {
+    padding-top: 30px;
+    background: #061629;
+    color: #d8e0ea;
+}
+.footer-grid {
+    display: grid;
+    grid-template-columns:
+        1.7fr 1fr 1fr 1.15fr 1.55fr;
+    gap: 25px;
+}
+.footer-brand .logo {
+    margin-bottom: 12px;
+}
+.footer-brand p {
+    max-width: 205px;
+    color: #aeb9c8;
+    font-size: 10px;
+    line-height: 1.55;
+}
+.footer-grid h3 {
+    margin-bottom: 12px;
+    color: white;
+    font-size: 11px;
+}
+.footer-grid a,
+.footer-grid div > p {
+    display: block;
+    margin-bottom: 7px;
+    color: #c1cad5;
+    font-size: 9.5px;
+}
+.footer-grid a:hover {
+    color: var(--blue);
+}
+.footer-social {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 16px;
+}
+.footer-social a {
+    width: 30px;
+    height: 30px;
+    margin-bottom: 0;
+    display: grid;
+    place-items: center;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 6px;
+    background: rgba(255, 255, 255, 0.06);
+    color: white;
+    transition: var(--transition);
+}
+.footer-social a:hover {
+    border-color: var(--blue);
+    background: var(--blue);
+    color: white;
+    transform: translateY(-2px);
+}
+.footer-social svg {
+    width: 15px;
+    height: 15px;
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 1.8;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+}
+.copyright {
+    margin-top: 20px;
+    padding: 14px;
+    border-top: 1px solid
+        rgba(255, 255, 255, 0.08);
+    text-align: center;
+    color: #8f9bab;
+    font-size: 9px;
+}
+/* =========================================================
+   9. RESPONSIVIDADE — 1024px
+========================================================= */
+@media (max-width: 1024px) {
+    :root {
+        --container-width: 88%;
+    }
+    .nav-menu {
+        gap: 18px;
+    }
+    .nav-menu a {
+        font-size: 10px;
+    }
+    /* HERO */
+    .hero {
+        min-height: 580px;
+    }
+    .hero-container {
+        display: block;
+        min-height: 505px;
+    }
+    .hero-content {
+        width: 58%;
+        padding-top: 55px;
+    }
+    .hero h1 {
+        font-size: 40px;
+    }
+    .hero-content > p {
+        font-size: 12px;
+        max-width: 380px;
+    }
+    .cards-grid {
+        grid-template-columns:
+            repeat(2, 1fr);
+    }
+    .card {
+        min-height: 195px;
+    }
+    .audience-card {
+        min-height: 270px;
+    }
+    .audience-text {
+        padding:
+            23px 15px 18px 18px;
+    }
+    /* SOBRE NÓS */
+    .about-container {
+        gap: 40px;
+    }
+    .about-content h2 {
+        font-size: 32px;
+    }
+    .about-invitation {
+        padding: 30px;
+    }
+    /* CONTATO */
+    .contact-container {
+        grid-template-columns: 1fr 0.8fr;
+        gap: 40px;
+    }
+    .contact-mascot {
+        height: auto;
+        min-height: 420px;
+        margin-top: 10px;
+    }
+    .contact-mascot img {
+        width: 100%;
+        max-width: 500px;
+        height: auto;
+    }
+    .team-decoration {
+        width: 290px;
+        height: 290px;
+    }
+    .team-photo {
+        width: 90px;
+        height: 90px;
+    }
+    .team-member-1 { top: 5px; left: 50%; transform: translateX(-50%); }
+    .team-member-2 { top: 105px; right: 0; }
+    .team-member-3 { right: 0; bottom: 105px; }
+    .team-member-4 { bottom: 5px; left: 50%; transform: translateX(-50%); }
+    .team-member-5 { bottom: 105px; left: 0; }
+    .team-member-6 { top: 105px; left: 0; }
+    .footer-grid {
+        grid-template-columns:
+            1.5fr 1fr 1fr;
+    }
+    .footer-grid > div:last-child {
+        grid-column: 1 / -1;
+    }
+}
+/* =========================================================
+   10. RESPONSIVIDADE — 600px
+========================================================= */
+@media (max-width: 600px) {
+    .container {
+        width: calc(100% - 32px);
+    }
+    /* -------------------------
+       HEADER MOBILE
+    ------------------------- */
+    .header {
+        height: 64px;
+    }
+    .nav {
+        position: relative;
+    }
+    .nav-menu {
+        position: absolute;
+        top: 58px;
+        left: 0;
+        width: 100%;
+        padding: 10px 15px;
+        display: flex;
+        flex-direction: column;
+        align-items: stretch;
+        gap: 0;
+        background: #061426;
+        border-radius: 8px;
+        opacity: 0;
+        visibility: hidden;
+        transform: translateY(-10px);
+        transition: var(--transition);
+    }
+    .nav-menu.open {
+        opacity: 1;
+        visibility: visible;
+        transform: translateY(0);
+    }
+    .nav-menu a {
+        padding: 12px 5px;
+        border-bottom:
+            1px solid
+            rgba(255,255,255,0.08);
+    }
+    .contato-btn {
+        display: none;
+    }
+    /* -------------------------
+       HERO MOBILE
+    ------------------------- */
+    .hero {
+        padding-top: 64px;
+        min-height: 650px;
+    }
+    .hero-container {
+        display: block;
+        min-height: 586px;
+    }
+    .hero-content {
+        width: 100%;
+        padding:
+            55px 0 40px;
+    }
+    .subtitle {
+        margin-bottom: 15px;
+    }
+    .hero h1 {
+        margin-bottom: 22px;
+        font-size: 38px;
+        letter-spacing: -1.8px;
+    }
+    .hero-content > p {
+        max-width: 330px;
+        margin-bottom: 28px;
+    }
+    .hero-buttons {
+        flex-direction: column;
+        max-width: 290px;
+        gap: 12px;
+    }
+    .hero-buttons .btn,
+    .hero-buttons .btn-outline {
+        width: 100%;
+    }
+    .hero-image {
+        position: absolute;
+        inset: 0;
+        width: 100%;
+        height: 100%;
+        margin: 0;
+        min-height: 650px;
+    }
+    .hero-image img {
+        object-position: center top;
+    }
+    .hero-image::after {
+        background:
+            linear-gradient(
+                180deg,
+                rgba(3, 12, 24, 0.90) 0%,
+                rgba(3, 12, 24, 0.72) 38%,
+                rgba(3, 12, 24, 0.35) 70%,
+                rgba(3, 12, 24, 0.15) 100%
+            );
+    }
+    .hero::after {
+        width: 430px;
+        right: -120px;
+        bottom: 240px;
+    }
+    /* -------------------------
+       SOLUÇÕES
+    ------------------------- */
+    .solutions {
+        padding-top: 55px;
+    }
+    .section-title h2 {
+        font-size: 27px;
+    }
+    .section-title p {
+        font-size: 12px;
+    }
+    .cards-grid {
+        grid-template-columns: 1fr;
+        gap: 12px;
+    }
+    .card {
+        min-height: 185px;
+    }
+    /* -------------------------
+       PESSOAS / EMPRESAS
+    ------------------------- */
+    .audience-grid {
+        grid-template-columns: 1fr;
+        gap: 14px;
+    }
+    .audience-card {
+        min-height: 315px;
+        grid-template-columns: 55% 45%;
+    }
+    .audience-text {
+        padding:
+            23px 10px 18px 17px;
+    }
+    .audience-text h2 {
+        font-size: 18px;
+    }
+    .audience-text p {
+        font-size: 9.5px;
+    }
+    .audience-img {
+        min-height: 315px;
+    }
+    /* SOBRE NÓS */
+    .about {
+        padding: 55px 0;
+    }
+    .about-container {
+        grid-template-columns: 1fr;
+        gap: 25px;
+    }
+    .about-content h2 {
+        font-size: 29px;
+        letter-spacing: -1px;
+    }
+    .about-content > p {
+        font-size: 12px;
+    }
+    .about-values {
+        grid-template-columns: 1fr;
+        gap: 10px;
+    }
+    .about-invitation {
+        padding: 27px 22px;
+    }
+    .about-invitation h3 {
+        font-size: 22px;
+    }
+    /* CONTATO */
+    .contact {
+        padding: 55px 0;
+    }
+    .contact-container {
+        min-height: 0;
+        grid-template-columns: 1fr;
+        gap: 35px;
+    }
+    .contact-content h2 {
+        font-size: 30px;
+        letter-spacing: -1px;
+    }
+    .contact-description {
+        margin-bottom: 25px;
+        font-size: 12px;
+    }
+    .contact-info {
+        gap: 12px;
+        margin-bottom: 25px;
+    }
+    .contact-form .btn {
+        width: 100%;
+    }
+    .contact-team {
+        height: 390px;
+    }
+    .team-decoration {
+        width: 230px;
+        height: 230px;
+    }
+    .team-decoration::before {
+        inset: 24px;
+    }
+    .team-photo {
+        width: 70px;
+        height: 70px;
+        padding: 4px;
+    }
+    .team-center {
+        width: 94px;
+        height: 94px;
+    }
+    .team-center strong {
+        font-size: 14px;
+    }
+    .team-member-1 { top: 0; left: 50%; transform: translateX(-50%); }
+    .team-member-2 { top: 72px; right: 0; }
+    .team-member-3 { right: 0; bottom: 72px; }
+    .team-member-4 { bottom: 0; left: 50%; transform: translateX(-50%); }
+    .team-member-5 { bottom: 72px; left: 0; }
+    .team-member-6 { top: 72px; left: 0; }
+}
