@@ -175,7 +175,7 @@ ul {
    que aparece abaixo de "Início".
 */
 .nav-menu a.active {
-    color: #2788ff;
+    color: #f0f4fa;
 }
 .nav-menu a.active::after {
     content: "";
@@ -186,9 +186,61 @@ ul {
     height: 2px;
     background: var(--blue);
 }
-/* Botão do Header */
+/* Botão do Jarvs no Header */
 .contato-btn {
-    min-height: 35px;
+    min-height: 40px;
+    padding: 0 18px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border: none;
+    outline: none;
+    border-radius: 7px;
+    background: #0b1d32;
+    color: white;
+    font-family: inherit;
+    font-size: 11px;
+    font-weight: 700;
+    cursor: pointer;
+    box-shadow: none;
+    transition: var(--transition);
+}
+
+.contato-btn:hover {
+    background: #102944;
+    transform: translateY(-2px);
+}
+
+.contato-btn:focus,
+.contato-btn:focus-visible {
+    outline: none;
+    border: none;
+}
+
+/* Botão do menu mobile */
+.menu-toggle {
+    display: none; /* Display: none, então não aparece no computador */
+    width: 40px;
+    height: 40px;
+
+    align-items: center;
+    justify-content: center;
+
+    border: none;
+    border-radius: 6px;
+
+    background: transparent;
+    color: white;
+
+    font-size: 25px;
+
+    cursor: pointer;
+
+    transition: var(--transition);
+}
+
+.menu-toggle:hover {
+    background: rgba(255, 255, 255, 0.08);
 }
 /* =========================================================
  HERO
@@ -793,8 +845,261 @@ ul {
     color: #8f9bab;
     font-size: 9px;
 }
+
 /* =========================================================
-   9. RESPONSIVIDADE — 1024px
+   JARVS - ASSISTENTE IA
+========================================================= */
+
+    /* BOTÃO FLUTUANTE */
+    .jarvs-button {
+        position: fixed;
+
+        right: 25px;
+        bottom: 25px;
+
+        width: 58px;
+        height: 58px;
+
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        border: none;
+        border-radius: 50%;
+
+        background: #ffffff;
+
+        box-shadow:
+            0 10px 30px rgba(6, 20, 38, 0.25);
+
+        cursor: pointer;
+
+        z-index: 2000;
+        transition: var(--transition);
+    }
+
+    .jarvs-button img {
+        width: 34px;
+        height: 34px;
+
+        object-fit: contain;
+    }
+
+    .jarvs-button:hover {
+        transform: translateY(-3px) scale(1.04);
+        box-shadow: 0 14px 35px rgba(6, 20, 38, 0.35);
+    }
+
+    /* CHAT */
+    .jarvs-chat {
+        position: fixed;
+
+        right: 25px;
+        bottom: 95px;
+
+        width: 360px;
+        height: 500px;
+
+        display: flex;
+        flex-direction: column;
+
+        background: white;
+
+        border: 1px solid var(--border);
+        border-radius: 16px;
+
+        box-shadow: 0 20px 60px rgba(6, 20, 38, 0.20);
+
+        overflow: hidden;
+
+        z-index: 1999;
+
+        opacity: 0;
+        visibility: hidden;
+
+        transform:
+            translateY(15px)
+            scale(0.96);
+
+        transition:
+            opacity 0.25s ease,
+            transform 0.25s ease,
+            visibility 0.25s ease;
+    }
+
+    /* CHAT ABERTO */
+    .jarvs-chat.open {
+        opacity: 1;
+        visibility: visible;
+
+        transform:
+            translateY(0)
+            scale(1);
+    }
+
+    /* CABEÇALHO */
+    .jarvs-header {
+        min-height: 70px;
+
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+
+        padding: 12px 15px;
+
+        background: var(--dark);
+
+        color: white;
+    }
+
+    .jarvs-header-info {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+    }
+
+    .jarvs-avatar {
+        width: 42px;
+        height: 42px;
+
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        border-radius: 50%;
+        background: rgb(248, 248, 248);
+    }
+
+    .jarvs-avatar img {
+        width: 28px;
+        height: 28px;
+
+        object-fit: contain;
+    }
+
+    .jarvs-header-info strong {
+        display: block;
+
+        font-size: 13px;
+    }
+
+    .jarvs-header-info span {
+        display: block;
+        margin-top: 2px;
+        color: #9eacc0;
+        font-size: 9px;
+    }
+
+
+    /* BOTÃO FECHAR */
+    .jarvs-close {
+        width: 32px;
+        height: 32px;
+
+        border: none;
+        border-radius: 6px;
+
+        background: transparent;
+
+        color: white;
+        font-size: 23px;
+
+        cursor: pointer;
+        transition: var(--transition);
+    }
+
+    .jarvs-close:hover {
+        background: rgba(255,255,255,0.08);
+    }
+
+    /* ÁREA DE MENSAGENS */
+    .jarvs-messages {
+        flex: 1;
+        padding: 18px;
+        overflow-y: auto;
+        background: #f8f9fc;
+    }
+
+
+    /* MENSAGEM */
+    .jarvs-message {
+        max-width: 82%;
+        margin-bottom: 12px;
+        padding: 11px 13px;
+        border-radius: 12px;
+
+        font-size: 11px;
+        line-height: 1.55;
+    }
+
+    .jarvs-message p + p {
+        margin-top: 8px;
+    }
+
+    /* MENSAGEM DO BOT */
+    .jarvs-message.bot {
+        background: white;
+        color: var(--text);
+        border:
+            1px solid var(--border);
+
+        border-bottom-left-radius: 4px;
+    }
+
+    /* MENSAGEM DO USUÁRIO */
+    .jarvs-message.user {
+        margin-left: auto;
+        background: var(--blue);
+        color: white;
+        border-bottom-right-radius: 4px;
+    }
+
+    /* FORMULÁRIO */
+    .jarvs-form {
+        display: flex;
+        padding: 10px;
+        gap: 8px;
+        border-top:
+            1px solid var(--border);
+        background: white;
+    }
+
+    .jarvs-form input {
+        flex: 1;
+        min-width: 0;
+        padding: 11px 12px;
+        border: 1px solid var(--border);
+        border-radius: 8px;
+        outline: none;
+        font-family: inherit;
+        font-size: 11px;
+    }
+
+    .jarvs-form input:focus {
+        border-color: var(--blue);
+    }
+
+    .jarvs-form button {
+        width: 40px;
+
+        border: none;
+        border-radius: 8px;
+
+        background: var(--blue);
+
+        color: white;
+        font-size: 17px;
+
+        cursor: pointer;
+        transition: var(--transition);
+    }
+
+    .jarvs-form button:hover {
+        background: var(--blue-dark);
+    }
+
+/* =========================================================
+ RESPONSIVIDADE — 1024px
 ========================================================= */
 @media (max-width: 1024px) {
     :root {
@@ -887,7 +1192,7 @@ ul {
     }
 }
 /* =========================================================
-   10. RESPONSIVIDADE — 600px
+ RESPONSIVIDADE — 600px
 ========================================================= */
 @media (max-width: 600px) {
     .container {
@@ -933,6 +1238,11 @@ ul {
     .contato-btn {
         display: none;
     }
+
+    .menu-toggle { /* Flex pro mobile (btn de menu)*/
+    display: flex;
+    }
+    
     /* -------------------------
        HERO MOBILE
     ------------------------- */

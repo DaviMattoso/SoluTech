@@ -10,6 +10,9 @@
         href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
         rel="stylesheet"
     >
+
+    <link rel="icon" href="img/logo.png" type="image/x-icon">
+
     <!-- Arquivo CSS -->
     <link rel="stylesheet" href="style.css">
     <title>SoluTech | Soluções Inteligentes</title>
@@ -28,18 +31,40 @@
                 </div>
                 <h2>SoluTech</h2>
             </a>
+
             <!-- MENU -->
             <nav class="nav-menu">
-                <a href="#inicio" class="active">Início</a>
-                <a href="#solucoes">Soluções</a>
-                <a href="#sobre">Sobre Nós</a>
-                <a href="#clientes">Clientes</a>
-                <a href="#contato">Contato</a>
+                <a href="#inicio" class="active">
+                    Início
+                </a>
+                <a href="#solucoes">
+                    Soluções
+                </a>
+                <a href="#sobre">
+                    Sobre Nós
+                </a>
+                <a href="#clientes">
+                    Clientes
+                </a>
+                <a href="#contato">
+                    Contato
+                </a>
             </nav>
-            <!-- BOTÃO DO HEADER -->
-            <a href="#contato" class="btn contato-btn">
-                Fale Conosco
-            </a>
+
+            <!-- BOTÃO DESKTOP -->
+            <button
+                class="btn contato-btn"
+                id="header-jarvs">Falar com o Jarvs
+            </button>
+
+            <!-- BOTÃO MOBILE -->
+            <button
+                class="menu-toggle"
+                aria-label="Abrir menu"
+                aria-expanded="false"
+            >
+                ☰
+            </button>
         </div>
     </header>
     <!-- =====================================================
@@ -303,6 +328,90 @@
         ================================================== -->
         <section id="clientes"></section>
     </main>
+
+    <!-- =================================================
+     JARVS - ASSISTENTE IA
+    ================================================== -->
+            <!-- BOTÃO FLUTUANTE -->
+            <button
+                class="jarvs-button"
+                id="jarvs-button"
+                aria-label="Abrir conversa com Jarvs"
+            >
+                <img
+                    src="img/jarvs.png"
+                    alt=""
+                >
+            </button>
+            <!-- CHAT -->
+            <div
+                class="jarvs-chat"
+                id="jarvs-chat"
+                aria-hidden="true"
+            >
+                <!-- CABEÇALHO -->
+                <div class="jarvs-header">
+                    <div class="jarvs-header-info">
+                        <div class="jarvs-avatar">
+                            <img
+                                src="img/jarvs.png"
+                                alt="Jarvs"
+                            >
+                        </div>
+                        <div>
+                            <strong>Jarvs</strong>
+                            <span>Assistente SoluTech</span>
+                        </div>
+                    </div>
+
+                    <button
+                        class="jarvs-close"
+                        id="jarvs-close"
+                        aria-label="Fechar conversa"
+                    >
+                        ×
+                    </button>
+                </div>
+
+                <!-- MENSAGENS -->
+                <div
+                    class="jarvs-messages"
+                    id="jarvs-messages"
+                >
+                    <div class="jarvs-message bot">
+                        <p>
+                            Hello world 🤖! Eu sou o Jarvs,
+                            assistente virtual da SoluTech.
+                        </p>
+                        <p>
+                            Posso te ajudar a entender nossas
+                            soluções ou encontrar o melhor
+                            caminho para o seu projeto.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- DIGITAÇÃO -->
+                <form
+                    class="jarvs-form"
+                    id="jarvs-form"
+                >
+                    <input
+                        type="text"
+                        id="jarvs-input"
+                        placeholder="Digite sua mensagem..."
+                        autocomplete="off"
+                    >
+
+                    <button
+                        type="submit"
+                        aria-label="Enviar mensagem"
+                    >
+                        →
+                    </button>
+                </form>
+            </div>
+
     <!-- =====================================================
          FOOTER
     ====================================================== -->

@@ -629,3 +629,847 @@ Mas por hj é só criancas, amanha eu tenho que estar em migracoes de 10h se eu 
 bjsss
 
 ---------------------------------------------------------------------------------------------------------------------
+
+Dia 2 
+
+Depois de terminar o favicon e o menu mobile (e eu não vou nem falar sobre isso porque isso é feijão com arroz), comecei uma das partes que eu mais queria fazer na SoluTech: o chatbot com Inteligência Artificial.
+Até esse momento eu estava trabalhando praticamente só com HTML, CSS e JavaScript e sabia o que queria visualmente, mas não fazia ideia de como colocar uma IA de verdade dentro de um site. Então essa etapa acabou sendo mais de aprendizado do que simplesmente escrever código.
+A primeira ideia foi fazer o botão "Falar com o Jarvs" no Header abrir uma janela de conversa no canto inferior direito. Também coloquei um segundo botão circular, sempre visível no canto da tela, usando o ícone do Jarvs. Assim, mesmo quando o usuário estiver mais abaixo na página, ele ainda consegue acessar o assistente.
+
+A estrutura ficou com dois caminhos diferentes para chegar ao mesmo lugar:
+Falar com o Jarvs
+        ↓
+    abre o chat
+        ↑
+        │
+Botão flutuante 
+
+No HTML criei a estrutura do botão flutuante e da janela do chat:
+
+<button
+    class="jarvs-button"
+    id="jarvs-button"
+    aria-label="Abrir conversa com Jarvs"
+>
+    <img
+        src="img/jarvs-icon.png"
+        alt=""
+    >
+</button>
+
+
+
+
+<div
+    class="jarvs-chat"
+    id="jarvs-chat"
+    aria-hidden="true"
+>
+
+
+    <div class="jarvs-header">
+
+
+        <div class="jarvs-header-info">
+
+
+            <div class="jarvs-avatar">
+                <img
+                    src="img/jarvs-icon.png"
+                    alt="Jarvs"
+                >
+            </div>
+
+
+            <div>
+                <strong>Jarvs</strong>
+                <span>Assistente SoluTech</span>
+            </div>
+
+
+        </div>
+
+
+
+Depois trabalhei no CSS para fazer o chat ficar como uma pequena janela fixa no canto da tela. Também coloquei uma animação para ele aparecer suavemente quando fosse aberto.
+
+.jarvs-chat {
+    position: fixed;
+
+
+    right: 25px;
+    bottom: 95px;
+
+
+    width: 360px;
+    height: 500px;
+
+
+    display: flex;
+    flex-direction: column;
+
+
+    background: white;
+
+
+    border: 1px solid var(--border);
+    border-radius: 16px;
+
+
+    box-shadow:
+        0 20px 60px
+        rgba(6, 20, 38, 0.20);
+
+
+    overflow: hidden;
+
+
+    z-index: 1999;
+
+
+    opacity: 0;
+    visibility: hidden;
+
+
+    transform:
+        translateY(15px)
+        scale(0.96);
+
+
+    transition:
+        opacity 0.25s ease,
+        transform 0.25s ease;
+}
+
+
+
+
+.jarvs-chat.open {
+    opacity: 1;
+    visibility: visible;
+
+
+    transform:
+        translateY(0)
+        scale(1);
+}
+
+Também fiz o botão circular seguindo a identidade visual da SoluTech:
+
+.jarvs-button {
+    position: fixed;
+
+
+    right: 25px;
+    bottom: 25px;
+
+
+    width: 58px;
+    height: 58px;
+
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+
+    border: none;
+    border-radius: 50%;
+
+
+    background: var(--dark);
+
+
+    box-shadow:
+        0 10px 30px
+        rgba(6, 20, 38, 0.25);
+
+
+    cursor: pointer;
+
+
+    z-index: 2000;
+
+
+    transition: var(--transition);
+}
+
+
+
+
+.jarvs-button:hover {
+    transform: translateY(-3px) scale(1.04);
+}
+
+Depois chegou a parte do JavaScript. Foi aqui que comecei a entender melhor como uma interação simples do site funciona por trás. Peguei os elementos pelo id, criei funções para abrir e fechar o chat e usei classList.add() e classList.remove() para controlar a classe .open.
+
+const jarvsChat =
+    document.querySelector("#jarvs-chat");
+
+
+const jarvsButton =
+    document.querySelector("#jarvs-button");
+
+
+const jarvsClose =
+    document.querySelector("#jarvs-close");
+
+
+
+
+function abrirJarvs() {
+
+
+    jarvsChat.classList.add("open");
+
+
+}
+
+
+
+
+function fecharJarvs() {
+
+
+    jarvsChat.classList.remove("open");
+
+
+}
+
+
+
+
+jarvsButton.addEventListener(
+    "click",
+    abrirJarvs
+);
+
+
+
+
+jarvsClose.addEventListener(
+    "click",
+    fecharJarvs
+);
+
+Também liguei o botão "Falar com o Jarvs" do Header à mesma função. Dessa forma não existem dois chats diferentes. Tanto o botão do Header quanto o botão flutuante controlam exatamente a mesma janela.
+
+Até aqui foi a parte mais tranquila. O que realmente começou a ficar novo para mim foi entender como colocar uma IA de verdade atrás dessa interface.
+
+Eu descobri que não seria correto simplesmente colocar uma API Key da OpenAI dentro do meu script.js. Como esse código fica disponível no navegador, qualquer pessoa poderia visualizar a chave. A solução seria colocar um backend entre o site e a API. A chave ficaria protegida no servidor e o navegador conversaria apenas com o meu próprio endpoint.
+
+A arquitetura que comecei a entender ficou assim:
+
+Site
+  ↓
+JavaScript
+  ↓
+/api/chat
+  ↓
+Backend Node.js
+  ↓
+OpenAI API
+  ↓
+Resposta
+  ↓
+Jarvs
+
+Isso mudou um pouco minha visão do projeto porque percebi que o chatbot não era simplesmente mais uma funcionalidade de JavaScript. Ele envolveria frontend, backend, API, variáveis de ambiente e segurança.
+
+A estrutura que comecei a montar ficou assim:
+
+APPs&CIA/
+│
+├── site.html
+├── style.css
+├── script.js
+│
+├── img/
+│
+└── server/
+    ├── server.js
+    ├── package.json
+    ├── package-lock.json
+    ├── .env
+    └── node_modules/
+
+O .env seria utilizado para armazenar a chave da API sem colocá-la diretamente no código.
+
+Primeiro problema: eu nem tinha o Node.js configurado
+
+A primeira coisa que precisei fazer foi instalar o Node.js, porque até aquele momento eu estava acostumado a trabalhar somente com o JavaScript rodando no navegador.
+
+A ideia do Node.js foi uma das primeiras coisas que precisei entender.
+
+No navegador, meu JavaScript funciona mais ou menos assim:
+
+HTML
+ ↓
+JavaScript
+ ↓
+Navegador
+
+Com o Node.js eu conseguiria executar JavaScript fora do navegador e criar o backend:
+
+JavaScript
+ ↓
+Node.js
+ ↓
+Servidor
+
+Instalei a versão LTS do Node.js e fui testar no terminal:
+
+node -v
+
+E apareceu:
+
+v24.19.0
+
+Até aí perfeito.
+
+Depois tentei:
+
+npm -v
+
+e apareceu um erro dizendo que o PowerShell não podia executar o npm.ps1 porque a execução de scripts estava desabilitada no sistema.
+
+Foi a primeira vez nessa etapa que eu pensei: pronto, agr fudeu
+
+O importante foi perceber que o Node estava instalado. O problema não era o Node.
+
+O comando:
+
+node -v
+
+funcionava.
+
+O problema estava na forma como o PowerShell estava tentando executar o npm.
+
+Em vez de ficar alterando configurações do Windows sem entender direito o que estava acontecendo, usamos:
+
+npm.cmd -v
+
+E funcionou.
+
+Apareceu:
+
+11.17.0
+
+Então eu aprendi uma coisa importante: às vezes o erro não significa que a ferramenta está instalada errada. Pode ser simplesmente o ambiente em que estamos tentando executar aquela ferramenta.
+
+Criando o projeto Node
+
+Depois fui para a pasta server e comecei a criar o backend.
+
+Primeiro:
+
+npm init -y
+
+A ideia desse comando é criar o package.json, que funciona como uma espécie de arquivo de configuração do projeto Node. Ele registra informações do projeto e, principalmente, as dependências que ele utiliza.
+
+Depois tentei instalar as ferramentas que precisaria:
+
+npm.cmd install express openai dotenv
+
+E apareceu outro erro:
+
+npm ERR! JSON.parse
+npm ERR! Unexpected end of JSON input
+npm ERR! package.json must be actual JSON
+
+Nesse momento eu descobri que o problema estava no meu package.json. Ele estava vazio ou incompleto.
+
+Ou seja, o npm estava funcionando, mas não conseguia entender o arquivo que deveria descrever o projeto.
+
+Corrigi o package.json e deixei ele assim:
+
+{
+  "name": "solutech-server",
+  "version": "1.0.0",
+  "description": "Backend do chatbot Jarvs da SoluTech",
+  "type": "module",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  }
+}
+
+Depois rodei novamente:
+
+npm.cmd install express openai dotenv
+
+Dessa vez funcionou:
+
+added 70 packages
+audited 71 packages
+found 0 vulnerabilities
+
+Esse foi outro aprendizado importante: o npm não estava com problema. Ele estava simplesmente tentando ler um package.json que não era um JSON válido.
+
+O que são essas três dependências?
+
+Nesse ponto eu também comecei a entender melhor o que estava instalando.
+
+O Express seria utilizado para criar o servidor e receber as requisições do site.
+
+O pacote openai seria o SDK que permitiria ao backend conversar com a API da OpenAI.
+
+E o dotenv seria utilizado para carregar informações do arquivo .env para dentro do servidor.
+
+Então ficou mais ou menos:
+
+Express
+→ servidor
+
+
+OpenAI
+→ comunicação com a IA
+
+
+dotenv
+→ leitura das variáveis do .env
+Criando o .env
+
+Depois criei:
+
+server/
+└── .env
+
+E coloquei:
+
+OPENAI_API_KEY=minha_chave_aqui
+
+A chave não ficaria dentro do server.js.
+
+Também coloquei o .env no .gitignore:
+
+node_modules/
+.env
+
+Isso é extremamente importante porque o projeto provavelmente vai para o GitHub e eu não quero que minha chave da API fique exposta no repositório.
+
+Criando o cérebro do backend
+
+Depois criei o server.js.
+
+Foi aqui que comecei a entender de verdade o conceito de backend.
+
+O servidor precisava receber uma mensagem do site, mandar essa mensagem para a IA e devolver a resposta.
+
+A estrutura principal ficou:
+
+app.post("/api/chat", async (req, res) => {
+
+
+    const { message } = req.body;
+
+
+    // envia para a OpenAI
+
+
+    // recebe a resposta
+
+
+    // devolve para o navegador
+
+
+});
+
+Eu também configurei o Express para receber JSON:
+
+app.use(express.json());
+
+E criei a conexão com a OpenAI:
+
+const openai = new OpenAI({
+    apiKey: process.env.OPENAI_API_KEY
+});
+
+Essa linha foi importante porque mostra exatamente a diferença entre colocar a chave diretamente no código e pegar a chave de uma variável de ambiente.
+
+Em vez de fazer algo como:
+
+apiKey: "minha-chave-secreta"
+
+eu fiz:
+
+apiKey: process.env.OPENAI_API_KEY
+
+Assim o código não sabe diretamente qual é a chave. Ele apenas recebe o valor que foi carregado do .env.
+
+O primeiro erro do servidor: Missing credentials
+
+Quando achei que estava tudo pronto, rodei:
+
+npm.cmd start
+
+e apareceu:
+
+OpenAIError: Missing credentials
+
+Na hora eu pensei que tinha configurado a OpenAI errado.
+
+Mas olhando algumas linhas acima apareceu:
+
+injected env (0) from .env
+
+O (0) era a pista.
+
+O dotenv tinha carregado zero variáveis.
+
+Então o problema não estava no server.js. O problema era que o .env não estava entregando a variável:
+
+OPENAI_API_KEY
+
+Corrigi o arquivo e deixei:
+
+OPENAI_API_KEY=minha_chave
+
+Depois reiniciei o servidor.
+
+Dessa vez apareceu:
+
+injected env (1) from .env
+SoluTech rodando em http://localhost:3000
+
+O (1) foi exatamente o que eu queria ver.
+
+Agora o backend conseguia enxergar minha chave.
+
+Finalmente o servidor estava funcionando... ou quase
+
+Depois disso apareceu outro detalhe.
+
+Eu tinha meu arquivo principal chamado:
+
+site.html
+
+e tentei acessar:
+
+http://localhost:3000
+
+O navegador respondeu:
+
+Cannot GET /
+
+Na hora pareceu que o servidor tinha quebrado.
+
+Mas não.
+
+O Express estava funcionando normalmente. Ele simplesmente não sabia qual arquivo deveria entregar quando eu acessava a raiz /.
+
+Como meu arquivo não se chamava index.html, precisei criar uma rota específica:
+
+app.get("/", (req, res) => {
+
+
+    res.sendFile(
+        path.join(__dirname, "..", "site.html")
+    );
+
+
+});
+
+Depois disso:
+
+http://localhost:3000
+
+passou a abrir o site normalmente.
+
+Esse erro foi legal porque me fez entender melhor uma coisa que antes eu não pensava: quando digitamos uma URL no navegador, estamos fazendo uma requisição para uma rota do servidor. O / é uma rota. Se o servidor não souber o que entregar naquela rota, ele pode responder com um erro como Cannot GET /.
+
+Outro erro que quase me fez achar que tinha quebrado tudo
+
+Depois de abrir um novo terminal para trabalhar, tentei rodar:
+
+npm.cmd start
+
+e apareceu:
+
+ENOENT
+Could not read package.json
+
+O erro mostrava:
+
+G:\APPs&CIA\package.json
+
+Enquanto meu package.json estava em:
+
+G:\APPs&CIA\server\package.json
+
+Ou seja, eu estava simplesmente na pasta errada.
+
+Meu terminal estava em:
+
+PS G:\APPs&CIA>
+
+quando deveria estar em:
+
+PS G:\APPs&CIA\server>
+
+A solução seria:
+
+cd server
+
+Mas nesse caso eu nem precisava iniciar outro servidor, porque já tinha um rodando.
+
+Isso também foi um aprendizado: o terminal tem um diretório atual e muitos comandos dependem de onde estamos naquele momento.
+
+O problema do Live Server
+
+Depois veio outro detalhe que demorou um pouco para eu perceber.
+
+Eu estava acostumado a abrir o site pelo Live Server do VS Code, que estava usando:
+
+localhost:5500
+
+Mas agora o backend estava rodando em:
+
+localhost:3000
+
+Isso fez uma diferença enorme.
+
+Meu script.js fazia:
+
+fetch("/api/chat")
+
+Quando o site estava aberto pelo Live Server, essa requisição ia para o servidor do Live Server.
+
+Mas o /api/chat existia no meu servidor Node.
+
+Então eu precisava acessar o site por:
+
+http://localhost:3000
+
+e não pelo:
+
+http://localhost:5500
+
+Depois que percebi isso, tudo fez sentido.
+
+A arquitetura correta passou a ser:
+
+Navegador
+    ↓
+localhost:3000
+    ↓
+Node + Express
+    ↓
+site.html
+script.js
+style.css
+    ↓
+/api/chat
+    ↓
+OpenAI
+
+Enquanto o Live Server era apenas uma ferramenta que eu vinha usando para visualizar o frontend.
+
+Conectando o JavaScript com o backend
+
+Depois que o servidor estava funcionando, chegou a parte de realmente conectar o chat.
+
+No script.js, peguei também:
+
+const jarvsForm =
+    document.querySelector("#jarvs-form");
+
+
+const jarvsInput =
+    document.querySelector("#jarvs-input");
+
+
+const jarvsMessages =
+    document.querySelector("#jarvs-messages");
+
+Criei uma função para adicionar mensagens ao chat:
+
+function adicionarMensagem(
+    mensagem,
+    tipo
+) {
+
+
+    const div =
+        document.createElement("div");
+
+
+    div.classList.add(
+        "jarvs-message",
+        tipo
+    );
+
+
+    const p =
+        document.createElement("p");
+
+
+    p.textContent = mensagem;
+
+
+    div.appendChild(p);
+
+
+    jarvsMessages.appendChild(div);
+
+
+}
+
+Depois coloquei um submit no formulário:
+
+jarvsForm.addEventListener(
+    "submit",
+    async (event) => {
+
+
+        event.preventDefault();
+
+
+        const mensagem =
+            jarvsInput.value.trim();
+
+
+        if (!mensagem) {
+            return;
+        }
+
+
+        adicionarMensagem(
+            mensagem,
+            "user"
+        );
+
+
+        // ...
+    }
+);
+
+A parte realmente nova foi o fetch():
+
+const response =
+    await fetch("/api/chat", {
+
+
+        method: "POST",
+
+
+        headers: {
+            "Content-Type":
+                "application/json"
+        },
+
+
+        body: JSON.stringify({
+            message: mensagem
+        })
+
+
+    });
+
+Aqui eu finalmente entendi o que significa fazer uma requisição para uma API.
+
+O JavaScript pega o que o usuário escreveu:
+
+Olá Jarvs
+
+transforma em JSON:
+
+{
+    "message": "Olá Jarvs"
+}
+
+e manda para:
+
+/api/chat
+
+O Node recebe essa mensagem, manda para a OpenAI e depois devolve:
+
+{
+    "reply": "Olá! Sou o Jarvs..."
+}
+
+O JavaScript pega essa resposta:
+
+const data =
+    await response.json();
+
+e coloca no chat:
+
+adicionarMensagem(
+    data.reply,
+    "bot"
+);
+
+Nesse momento eu comecei a enxergar o chatbot de uma maneira totalmente diferente.
+
+Não existe uma "IA dentro do HTML".
+
+Existe uma cadeia de comunicação.
+
+USUÁRIO
+   ↓
+HTML
+   ↓
+JavaScript
+   ↓
+HTTP / fetch
+   ↓
+BACKEND
+   ↓
+API
+   ↓
+MODELO DE IA
+   ↓
+BACKEND
+   ↓
+JavaScript
+   ↓
+HTML
+   ↓
+USUÁRIO
+E então veio o último erro: 429 insufficient_quota
+
+Depois de toda essa configuração, finalmente fiz o teste.
+
+Abri:
+
+http://localhost:3000
+
+Abri o Jarvs e mandei:
+
+Olá Jarvs, quem é você?
+
+A mensagem apareceu normalmente no chat.
+
+Mas o Jarvs respondeu:
+
+Desculpe, não consegui responder agora.
+Tente novamente em alguns instantes.
+
+Nesse momento eu já sabia que alguma coisa tinha funcionado, porque a mensagem tinha saído do frontend e chegado até o backend.
+
+Então fui olhar o terminal do Node.
+
+E encontrei:
+
+RateLimitError: 429
+You exceeded your current quota
+
+e principalmente:
+
+code: 'insufficient_quota'
+
+Foi aí que veio a conclusão mais engraçada de todas:
+
+o Jarvs estava funcionando, mas estava sem dinheiro para pensar. 😂
+
+O código tinha conseguido chegar até a API da OpenAI.
+Tudo isso estava funcionando.
+
+O problema era simplesmente a quota disponível para aquela API.
+
+Isso também me ensinou uma diferença importante entre uma API e o próprio ChatGPT. Eu estava usando a API da OpenAI através de uma chave, e o uso da API possui sua própria configuração de faturamento e quota. Então ter acesso ao ChatGPT não significa automaticamente que o projeto terá créditos disponíveis para chamadas de API.
+
+Em resumo, criamos o chat mas nao tenho dinheiro pra fazer ele funcionar XD
+
+Bom, por hj é só. gostei de ter aprendido mais sobre ia e como funciona uma API, acho que ja tenho uma boa base pra apresentar domingo 
