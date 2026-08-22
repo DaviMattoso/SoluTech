@@ -1473,3 +1473,161 @@ Isso também me ensinou uma diferença importante entre uma API e o próprio Cha
 Em resumo, criamos o chat mas nao tenho dinheiro pra fazer ele funcionar XD
 
 Bom, por hj é só. gostei de ter aprendido mais sobre ia e como funciona uma API, acho que ja tenho uma boa base pra apresentar domingo 
+
+---------------------------------------------------------------------------------------------------------------------
+
+Dia 3
+
+Hoje agt vai amarrar umas pontas soltas, tipo a linha do header no desk e nomobile, ela nao acompanha a navegacao e ta muito torta no mobile, depois disso faltaria criar o formulario de contato
+E acho que com isso da pra ter uma boa base para reuniao de domingo
+
+Vamos ao primeiro proble
+O que vamos fazer? vamos deixar o JavaScript observar as seções da página.
+
+A lógica será:
+Usuário está no Início
+        ↓
+Início fica ativo
+Usuário vai para Soluções
+        ↓
+Soluções fica ativo
+Usuário vai para Sobre Nós
+        ↓
+Sobre Nós fica ativo
+Usuário vai para Contato
+        ↓
+Contato fica ativo
+
+No HTML temos, por exemplo:
+<section class="hero" id="inicio">
+<section class="solutions" id="solucoes">
+<section class="about" id="sobre">
+<section class="contact" id="contato">
+
+Esses IDs são justamente os mesmos usados pelos links do menu.
+
+Depois criamos no js:
+const observer = new IntersectionObserver(...)
+O IntersectionObserver permite observar quando um elemento entra em determinada região da tela.
+
+Então, quando #sobre entra nessa região:
+const id = entry.target.getAttribute("id");
+
+o JavaScript descobre:
+id = "sobre"
+
+Depois percorremos os links:
+menuLinks.forEach(link => {
+
+Primeiro removemos active de todos:
+link.classList.remove("active");
+
+E colocamos no link correspondente:
+if (link.getAttribute("href") === `#${id}`) {
+    link.classList.add("active");
+}
+
+Então:
+#sobre encontra:
+<a href="#sobre">
+    Sobre Nós
+</a>
+e coloca: class="active" automaticamente.
+
+e gg, a qustao de acompanhar a nav ja ta
+só faltaria criar a section de clientes pra completar 
+
+Agora passando pro estilo no mobile... procurando um pouco o problema deu pra ver que no desktop  a linha azul estava sendo criada com um ::after diretamente no <a>:
+
+.nav-menu a.active::after {
+    content: "";
+    position: absolute;
+    bottom: 14px;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: var(--blue);
+}
+
+Como o ::after pertencia ao elemento <a>, ele ocupava toda a largura disponível daquele link. No menu mobile isso ficava ainda mais evidente, porque os links ocupavam praticamente toda a largura do menu.
+
+Ao mesmo tempo, eu não queria simplesmente diminuir a largura da linha com um width fixo, porque isso criaria outro problema. Por exemplo, uma linha de 32px poderia funcionar para "Início", mas ficaria pequena para "Sobre Nós" ou qualquer texto maior.
+
+A solução foi separar visualmente as duas responsabilidades:
+o <a> continua ocupando toda a largura do menu;
+a linha cinza continua sendo o border-bottom do <a>;
+o texto passa para dentro de um <span>;
+a linha azul passa a pertencer ao <span>, fazendo com que ela tenha exatamente a largura do texto.
+
+Então alterei a estrutura do HTML.
+Antes:
+<a href="#inicio" class="active">
+    Início
+</a>
+Depois:
+<a href="#inicio" class="active">
+    <span>Início</span>
+</a>
+
+Fiz a mesma alteração nas outras opções do menu:
+<a href="#solucoes">
+    <span>Soluções</span>
+</a>
+<a href="#sobre">
+    <span>Sobre Nós</span>
+</a>
+<a href="#clientes">
+    <span>Clientes</span>
+</a>
+<a href="#contato">
+    <span>Contato</span>
+</a>
+
+Depois alterei o CSS para que a linha azul fosse criada no span:
+.nav-menu a.active span {
+    position: relative;
+}
+.nav-menu a.active span::after {
+    content: "";
+    position: absolute;
+
+    left: 0;
+    right: 0;
+    bottom: -8px;
+
+    height: 2px;
+
+    background: var(--blue);
+}
+
+Também removi a regra antiga que tentava controlar a linha azul diretamente pelo <a> e removi a exceção que existia no mobile com:
+width: 32px;
+Isso foi importante porque uma largura fixa não seria uma solução realmente responsiva.
+
+A linha cinza, por outro lado, continuou no <a>:
+.nav-menu a {
+    padding: 12px 5px;
+
+    border-bottom:
+        1px solid
+        rgba(255,255,255,0.08);
+}
+
+Dessa forma, o comportamento final ficou exatamente como eu queria:
+Início
+━━━━━
+────────────────────────────
+Soluções
+────────────────────────────
+Sobre Nós
+━━━━━━━━━
+────────────────────────────
+Clientes
+────────────────────────────
+Contato
+────────────────────────────
+
+A linha cinza continua ocupando 100% da largura da opção, enquanto a linha azul ocupa somente o tamanho do texto
+
+O visuao por hoje fica assim, e eu acho que vou fazer o formulario amanha porque eu ainda tenho que ver sobre as funcionalidades do sist pra mobile e web.... 
+de 8 a 7:30 e sao 1 da manha ja... pqp KAKAKAKAK

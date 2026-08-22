@@ -1,7 +1,6 @@
 /* ==========================================
    MENU MOBILE
 ========================================== */
-
 const menuToggle = document.querySelector(".menu-toggle");
 
 const navMenu = document.querySelector(".nav-menu");
@@ -41,11 +40,48 @@ menuLinks.forEach(link => {
 
 });
 
+// =====================================================
+// Nav ativa (header)
+// =====================================================
+const sections = document.querySelectorAll("main section[id]");
+
+const observer = new IntersectionObserver( //O IntersectionObserver permite observar quando um elemento entra em determinada região da tela
+    (entries) => {
+
+        entries.forEach(entry => {
+
+            if (entry.isIntersecting) {
+
+                const id = entry.target.getAttribute("id"); // Essa parte pega as seções que possuem id
+
+                menuLinks.forEach(link => {
+
+                    link.classList.remove("active");
+
+                    if (link.getAttribute("href") === `#${id}`) {
+                        link.classList.add("active");
+                    }
+
+                });
+
+            }
+
+        });
+
+    },
+    {
+        rootMargin: "-25% 0px -65% 0px"
+    }
+);
+
+sections.forEach(section => {
+    observer.observe(section);
+});
+
 
 /* ==========================================
    ELEMENTOS DO JARVS
 ========================================== */
-
 const jarvsChat =
     document.querySelector("#jarvs-chat");
 
@@ -62,7 +98,6 @@ const headerJarvs =
 /* ==========================================
    ELEMENTOS DA CONVERSA
 ========================================== */
-
 const jarvsForm =
     document.querySelector("#jarvs-form");
 
@@ -76,7 +111,6 @@ const jarvsMessages =
 /* ==========================================
    ABRIR JARVS
 ========================================== */
-
 function abrirJarvs() {
 
     jarvsChat.classList.add("open");
@@ -94,7 +128,6 @@ function abrirJarvs() {
 /* ==========================================
    FECHAR JARVS
 ========================================== */
-
 function fecharJarvs() {
 
     jarvsChat.classList.remove("open");
@@ -110,7 +143,6 @@ function fecharJarvs() {
 /* ==========================================
    BOTÕES DO JARVS
 ========================================== */
-
 jarvsButton.addEventListener(
     "click",
     abrirJarvs
@@ -132,7 +164,6 @@ jarvsClose.addEventListener(
 /* ==========================================
    ADICIONAR MENSAGEM NA TELA
 ========================================== */
-
 function adicionarMensagem(
     mensagem,
     tipo
@@ -169,7 +200,6 @@ function adicionarMensagem(
 /* ==========================================
    ENVIAR MENSAGEM
 ========================================== */
-
 jarvsForm.addEventListener(
     "submit",
     async (event) => {
@@ -212,7 +242,6 @@ jarvsForm.addEventListener(
             /* ==========================================
                ENVIA PARA O BACKEND
             ========================================== */
-
             const response =
                 await fetch("/api/chat", { //"Ei, servidor Node, tenho uma mensagem para o Jarvs."
 
@@ -232,7 +261,6 @@ jarvsForm.addEventListener(
 
             /* Verifica se o servidor respondeu
                corretamente */
-
             if (!response.ok) {
 
                 throw new Error(
@@ -251,7 +279,6 @@ jarvsForm.addEventListener(
             /* ==========================================
                MOSTRA RESPOSTA DO JARVS
             ========================================== */
-
             adicionarMensagem(
                 data.reply,
                 "bot"
@@ -275,7 +302,6 @@ jarvsForm.addEventListener(
         } finally {
 
             /* Libera o campo novamente */
-
             jarvsInput.disabled = false;
 
             jarvsInput.focus();

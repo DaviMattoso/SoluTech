@@ -177,15 +177,20 @@ ul {
 .nav-menu a.active {
     color: #f0f4fa;
 }
-.nav-menu a.active::after {
+.nav-menu a.active span {
+    position: relative;
+}
+
+.nav-menu a.active span::after {
     content: "";
     position: absolute;
-    bottom: 14px;
     left: 0;
     right: 0;
+    bottom: -8px;
     height: 2px;
     background: var(--blue);
 }
+
 /* Botão do Jarvs no Header */
 .contato-btn {
     min-height: 40px;
@@ -1235,6 +1240,7 @@ ul {
             1px solid
             rgba(255,255,255,0.08);
     }
+
     .contato-btn {
         display: none;
     }
