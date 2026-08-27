@@ -303,15 +303,48 @@
                             <div><strong>E-mail</strong><p>contato@solutech.com.br</p></div>
                         </div>
                     </div>
-                    <form class="contact-form">
-                        <input type="text" placeholder="Seu nome" required>
-                        <input type="email" placeholder="Seu e-mail" required>
-                        <input type="text" placeholder="Assunto" required>
-                        <textarea placeholder="Digite sua mensagem..." rows="5" required></textarea>
-                        <button type="submit" class="btn">Enviar mensagem →</button>
-                    </form>
+
+                    <form class="contact-form" id="contact-form">
+                    <input
+                        type="hidden"
+                        name="access_key"
+                        value="8c6ff5fa-a165-4b97-853d-3c1e10e2207f"
+                    >
+                    <input
+                        type="text"
+                        name="name"
+                        placeholder="Seu nome"
+                        required
+                    >
+                    <input
+                        type="email"
+                        name="email"
+                        placeholder="Seu e-mail"
+                        required
+                    >
+                    <input
+                        type="text"
+                        name="subject"
+                        placeholder="Assunto"
+                        required
+                    >
+                    <textarea
+                        name="message"
+                        placeholder="Digite sua mensagem..."
+                        rows="5"
+                        required
+                    >
+                    </textarea>
+                    <button
+                        type="submit"
+                        class="btn"
+                    >
+                        Enviar mensagem →
+                    </button>
+                </form>
                 </div>
-                <!-- MASCOTE / ASSISTENTE -->
+
+                <!-- ASSISTENTE -->
                 <div class="contact-mascot">
                     <img
                         src="img/banner_contact.png"

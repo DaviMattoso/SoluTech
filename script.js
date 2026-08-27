@@ -310,3 +310,142 @@ jarvsForm.addEventListener(
 
     }
 );
+
+/* ==========================================
+   FORMULÁRIO DE CONTATO
+========================================== */
+
+// Aqui buscamos no HTML o formulário que possui o id="contact-form".
+// O document.querySelector() permite selecionar um elemento da página
+// usando um seletor CSS.
+const contactForm =
+    document.querySelector("#contact-form");
+
+
+// Aqui criamos um "ouvinte" para o evento de envio do formulário.
+// O evento "submit" acontece quando o usuário clica no botão
+// "Enviar mensagem" ou envia o formulário de outra maneira.
+contactForm.addEventListener(
+    "submit",
+    async (event) => {
+
+
+        // Normalmente, quando um formulário HTML é enviado,
+        // o navegador recarrega a página.
+        //
+        // O preventDefault() impede esse comportamento.
+        // Assim podemos controlar o envio através do JavaScript.
+        event.preventDefault();
+
+
+        // FormData pega automaticamente os valores dos campos
+        // que possuem o atributo "name" dentro do formulário.
+        //
+        // Por exemplo:
+        // name="name"    → nome do visitante
+        // name="email"   → e-mail
+        // name="subject" → assunto
+        // name="message" → mensagem
+        const formData =
+            new FormData(contactForm);
+
+
+        // O try é usado para tentar executar o envio.
+        // Caso aconteça algum erro durante a comunicação,
+        // o código poderá ser tratado pelo catch mais abaixo.
+        try {
+
+
+            // fetch() faz uma requisição para o Web3Forms.
+            //
+            // Estamos enviando os dados do nosso formulário
+            // para o endereço da API do Web3Forms.
+            //
+            // O "await" faz o JavaScript esperar a resposta
+            // antes de continuar.
+            const response =
+                await fetch(
+                    "https://api.web3forms.com/submit",
+                    {
+
+                        // POST significa que estamos enviando
+                        // informações para o servidor.
+                        method: "POST",
+
+
+                        // Aqui enviamos o FormData que criamos
+                        // anteriormente.
+                        body: formData
+
+                    }
+                );
+
+
+            // O Web3Forms devolve uma resposta.
+            //
+            // Essa resposta vem em formato JSON.
+            // O response.json() transforma essa resposta
+            // em um objeto que podemos utilizar no JavaScript.
+            const data =
+                await response.json();
+
+
+            // O Web3Forms informa através de "success"
+            // se o envio foi realizado corretamente.
+            //
+            // Se success for true, entramos aqui.
+            if (data.success) {
+
+
+                // Mostra uma mensagem para o visitante
+                // informando que o formulário foi enviado.
+                alert(
+                    "Mensagem enviada com sucesso! A equipe SoluTech entrará em contato em breve."
+                );
+
+
+                // Depois do envio, limpa todos os campos
+                // do formulário.
+                //
+                // Assim o formulário volta a ficar vazio.
+                contactForm.reset();
+
+
+            } else {
+
+
+                // Se o Web3Forms informar que o envio
+                // não foi realizado corretamente,
+                // mostramos uma mensagem de erro.
+                alert(
+                    "Não foi possível enviar sua mensagem. Tente novamente."
+                );
+
+            }
+
+
+        } catch (error) {
+
+
+            // Se acontecer algum erro na comunicação,
+            // o código chega aqui.
+            //
+            // O console.error() mostra o erro no
+            // console do navegador, facilitando a identificação
+            // do problema durante o desenvolvimento.
+            console.error(
+                "Erro ao enviar formulário:",
+                error
+            );
+
+
+            // Enquanto para nós o erro aparece no console,
+            // o visitante recebe uma mensagem mais simples.
+            alert(
+                "Ocorreu um erro ao enviar sua mensagem."
+            );
+
+        }
+
+    }
+);
