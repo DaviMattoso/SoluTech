@@ -730,7 +730,8 @@ ul {
     font-size: 11px;
     transition: var(--transition);
 }
-.contact-form textarea { min-height: 100px; resize: vertical; }
+
+.contact-form textarea { min-height: 100px; padding: 13px 14px; resize: vertical; }
 .contact-form input::placeholder,
 .contact-form textarea::placeholder { color: #8a95a5; }
 .contact-form input:focus,
