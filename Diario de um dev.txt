@@ -1850,3 +1850,299 @@ Oque precisariamos agora pra deixar isso 100% seria criar o email da empresa e v
 Bom, por hoje é so criancas, nos vemos na proxima reuniaooo <3
 
 ---------------------------------------------------------------------------------------------------------------------
+
+Dia 5
+
+Salve salve rapeize, hj o negocio foi LONGO KAKAKAKAKK
+
+Eu achei que o visual do site ja tava praticamente pronto, mas fui olhar com mais calma e percebi que algumas sessoes ainda pareciam de outro site. O Hero tava com uma identidade mais forte, mas quando descia a pagina tinha card com emoji, bloco muito simples e texto corporativo jogado na tela. Nao tava necessariamente feio, mas tambem nao tava com a cara que eu queria pra SoluTech.
+
+Entao hoje foi basicamente o dia de pegar o site inteiro e fazer ele conversar com ele mesmo.
+
+A ideia principal foi manter uma alternancia entre azul escuro e branco em cada sessao, usar o azul da SoluTech como destaque e parar de depender de icone e card generico pra explicar tudo. Eu queria que o site parecesse uma empresa de tecnologia de verdade e nao aqueles template pronto que troca a logo, coloca uns emoji e chama de projeto KAKAKAKK
+
+Comecei pela parte de Sobre Nos.
+
+Antes ela tinha um titulo, dois paragrafos, dois valores e um card chamando o usuario pra conversar. Funcionava, mas era uma sessao muito comum. Como agora ja temos a missao e a visao da empresa, resolvi fazer essa parte inteira girar em torno disso.
+
+Uma coisa importante foi que os textos da missao e da visao nao podiam ser alterados. Entao mantive exatamente:
+
+Missao:
+
+Transformar necessidades em solucoes de software inovadoras, utilizando a tecnologia para resolver qualquer desafio de nossos clientes. Buscamos a excelencia tecnica atraves de relacionamentos eticos, transparentes e humanizados com nossos parceiros, fornecedores e colaboradores.
+
+Visao:
+
+Ser a empresa lider de mercado em desenvolvimento de software, reconhecida internacionalmente como referencia absoluta em qualidade de entrega e excelencia nas relacoes humanas ate 2031.
+
+Em vez de deixar isso como dois textos enormes um embaixo do outro, criei uma ideia de bussola estrategica. A missao representa o presente, aquilo que move a empresa agora, e a visao representa o horizonte que queremos alcancar.
+
+No HTML a estrutura passou a ter dois articles:
+
+<article class="purpose-card purpose-card--mission">
+    ...
+    <span class="purpose-card__label">NOSSO PRESENTE</span>
+    <h3>Missao</h3>
+    <p>...</p>
+</article>
+
+<article class="purpose-card purpose-card--vision">
+    ...
+    <span class="purpose-card__label">NOSSO HORIZONTE</span>
+    <h3>Visao</h3>
+    <p>...</p>
+</article>
+
+Entre os dois coloquei uma rota visual com ponto, linha e seta. No desktop ela vai da esquerda pra direita e no celular ela vira uma linha vertical. Isso foi legal porque nao ficou so bonito, a propria direcao ajuda a contar a historia:
+
+MISSAO
+   ↓
+O QUE FAZEMOS AGORA
+   ↓
+CAMINHO DA EMPRESA
+   ↓
+VISAO
+   ↓
+ONDE QUEREMOS CHEGAR EM 2031
+
+Tambem coloquei o 2031 bem grande e com pouca opacidade dentro do card da visao. O fundo ficou azul bem escuro, com grade bem fraca, brilho azul e hover levantando os blocos. Essa foi a primeira sessao que realmente definiu o padrao visual que eu queria seguir no resto do site.
+
+Depois fui para Nossas Solucoes.
+
+Essa parte tinha quatro cards com os icones:
+
+💻
+🧠
+🤖
+📊
+
+O problema e que isso passava MUITO aquela aparencia de site feito por IA. Mesmo a SoluTech trabalhando com Inteligencia Artificial, eu nao queria que todas as solucoes parecessem simplesmente quatro respostas geradas por chatbot dentro de card KAKAKAKK
+
+Entao tirei completamente os emojis e abandonei o modelo de card tradicional.
+
+As solucoes viraram faixas editoriais numeradas:
+
+01 / 04 — Tecnologia
+02 / 04 — Consultoria
+03 / 04 — Inteligencia Artificial
+04 / 04 — Inteligencia de Dados
+
+Cada faixa recebeu um pequeno desenho abstrato feito somente com CSS. Tecnologia tem uma referencia de codigo, Consultoria mostra uma trajetoria, IA mostra um fluxo conectado e Dados tem um grafico. Assim ainda existe uma ajuda visual, mas ela nao depende de emoji nem de uma biblioteca de icones genericos.
+
+Tambem mantive os textos originais das solucoes e deixei o link "Explorar solucao" sempre visivel. Isso foi outra melhoria porque antes o conteudo do card desaparecia inteiro no hover e so depois aparecia o botao. Agora o hover adiciona um degradê azul, desloca a faixa e aumenta um pouco o desenho, mas a informacao continua la.
+
+No fundo dessa sessao coloquei a palavra SOLUTECH gigante e quase transparente. Ficou foda, mas apareceu um problema: o H estava cortado no limite direito da pagina.
+
+O CSS estava assim:
+
+.solutions::after {
+    content: "SOLUTECH";
+    right: -22px;
+}
+
+Esse right negativo empurrava o texto para fora da tela. A solucao foi trazer a palavra pra dentro:
+
+.solutions::after {
+    right: 42px;
+}
+
+No celular deixei 18px porque temos menos espaco. Foi uma mudanca pequena, mas era aquele tipo de detalhe que depois que voce percebe nao consegue mais desver.
+
+Depois passei para a sessao de Pessoas Fisicas e Empresas.
+
+Aqui eu queria manter o fundo branco porque percebi que a alternancia tava ficando muito boa:
+
+Hero escuro
+   ↓
+Solucoes azul escuro
+   ↓
+Pessoas e Empresas branco
+   ↓
+Sobre Nos azul escuro
+   ↓
+Contato branco
+
+Tambem mantive as imagens card1.png e card2.png, porque elas ja combinavam com a proposta. O que mudou foi todo o tratamento em volta.
+
+Criei um cabecalho novo com:
+
+SOLUCOES PARA CADA JORNADA
+
+Tecnologia que entende
+quem esta do outro lado.
+
+Depois numerei os dois publicos como "01 — PESSOAS" e "02 — EMPRESAS". Os cards ficaram maiores, com mais respiro, borda suave, sombra e zoom na imagem quando passa o mouse. Tambem coloquei as etiquetas "FEITO PARA VOCE" e "FEITO PARA CRESCER" em cima das fotos.
+
+Os checks da lista foram trocados por pequenos circulos azuis. Parece besteira, mas deixou a linguagem mais parecida com o resto do projeto. Antes cada sessao tinha um tipo de detalhe diferente, agora a cor, as linhas e os movimentos comecaram a seguir o mesmo raciocinio.
+
+Ai chegou a parte de Contato.
+
+Primeiro troquei a imagem antiga pela nova:
+
+img/banner_contato.png
+
+Eu tinha adicionado essa arte na pasta e queria usar ela porque ja tem o robo da SoluTech, os canais de contato e a frase chamando o cliente pra comecar uma jornada.
+
+Na primeira tentativa eu coloquei praticamente tudo dentro de box: informacoes de contato em mini cards, formulario dentro de painel branco, imagem com moldura, borda interna e sombra. Tecnicamente ficou organizado, mas visualmente ficou preso demais. Era box dentro de box dentro de box e isso fugiu da leveza que o contato tinha antes.
+
+Entao voltei e refinei sem transformar tudo em card.
+
+O formulario voltou a ficar aberto, com os campos usando somente border-bottom:
+
+.contact-form input,
+.contact-form textarea {
+    border: 0;
+    border-bottom: 1px solid #ced6e1;
+    border-radius: 0;
+    background: transparent;
+}
+
+As informacoes de endereco, telefone e e-mail tambem sairam dos cards. Em vez disso usei uma linha em cima, outra embaixo e deixei os tres itens soltos entre elas. Ficou muito mais limpo.
+
+Ainda nessa sessao coloquei a palavra CONTATO gigante no fundo, quase transparente. A ideia foi a mesma do SOLUTECH na sessao anterior, mas dessa vez o texto fica por tras do titulo e ajuda a preencher o espaco branco.
+
+Depois apareceram mais tres ajustes:
+
+1. Tinha um circulo decorativo enorme atras do banner e ele tava chamando mais atencao que a propria imagem.
+
+2. A imagem estava pequena.
+
+3. As fontes estavam tao pequenas que so ficavam confortaveis com o navegador em 140% de zoom.
+
+Tirei completamente o circulo usando:
+
+.contact-mascot::before {
+    content: none;
+}
+
+Depois aumentei a coluna da imagem e deixei o banner com 112% da largura. Tambem aumentei a descricao, informacoes, placeholders, botao e indicador de equipe disponivel. O objetivo era o site ficar legivel em 100% e nao depender do zoom do navegador.
+
+Por ultimo movi o CONTATO um pouco mais pra direita com left: 7vw. Ele ainda fica atras do conteudo, mas agora nao nasce cortado na borda da tela.
+
+Quando achei que tinha terminado a parte visual, fui revisar o responsivo inteiro de 1024px e 600px.
+
+E foi ai que apareceu um erro real no HTML.
+
+No Hero tinha uma div sendo fechada duas vezes. A estrutura estava mais ou menos assim:
+
+<div class="container hero-container">
+    <div class="hero-content">
+        ...
+    </div>
+</div>
+
+<div class="hero-image">
+    ...
+</div>
+
+</div>
+
+O navegador e muito tolerante e tentava corrigir isso sozinho, por isso o site ainda abria. Mas quando passei o arquivo por uma validacao de estrutura apareceu:
+
+Unexpected closing tag "div"
+
+Corrigi a div extra e deixei o conteudo e a imagem organizados dentro do hero-container.
+
+Na responsividade de 600px fiz algumas correcoes importantes.
+
+Os cards de Pessoas e Empresas ainda tentavam manter texto e imagem lado a lado em uma tela muito estreita. Isso deixava o texto espremido e podia fazer os botoes escaparem. Agora eles viram uma coluna:
+
+.audience-card {
+    grid-template-columns: 1fr;
+}
+
+A imagem fica embaixo com altura propria.
+
+O rodape tambem herdava tres colunas do breakpoint de 1024px, o que era muita coisa para celular. Mudei para duas colunas e fiz a marca e o contato ocuparem toda a largura.
+
+Outro problema era o chat do Jarvs. Ele tinha width: 360px e right: 25px. Em um celular de 320px isso obviamente podia sair da tela. Agora no mobile ele usa:
+
+.jarvs-chat {
+    right: 16px;
+    width: calc(100% - 32px);
+    height: min(500px, calc(100dvh - 110px));
+}
+
+Assim ele respeita tanto a largura quanto a altura disponivel.
+
+O contato tambem passa para uma coluna em 600px, o formulario deixa de usar duas colunas e o banner volta para 100% da largura. Em 1024px mantive duas colunas, mas redistribui o espaco para a imagem nao esmagar o formulario.
+
+Depois disso resolvi fazer uma coisa que eu tava adiando: padronizar o HTML e o CSS inteiro.
+
+O codigo tinha partes escritas com uma propriedade por linha e outras partes inteiras em uma linha so. Tambem tinha indentacao diferente, comentario fora do lugar e bloco que foi sendo sobrescrito conforme eu mudava o visual.
+
+Passei os dois arquivos por uma formatacao completa seguindo o padrao:
+
+.classe {
+    propriedade: valor;
+    propriedade: valor;
+    propriedade: valor;
+}
+
+No HTML mantive cada nivel com quatro espacos, elementos filhos organizados dentro dos pais e atributos grandes quebrados quando necessario. Nao era pra mudar nada visualmente, era so deixar o codigo inteiro seguindo a mesma escrita.
+
+Validei o resultado e o CSS terminou com a mesma quantidade de chaves abrindo e fechando:
+
+340 {
+340 }
+
+Ou seja, nenhum bloco ficou aberto ou fechado errado.
+
+MAS COMO NADA TERMINA SEM MAIS UM ERRO KAKAKAKAKK
+
+Depois da formatacao apareceu um espaco preto enorme dos dois lados do Hero no desktop e uma pequena faixa no mobile.
+
+O motivo foi justamente a correcao da estrutura HTML.
+
+Antes, por causa da div no lugar errado, a hero-image acabava ficando fora do container. Mesmo estando estruturalmente errado, isso fazia a imagem ocupar a largura inteira da tela.
+
+Quando corrigi o HTML, a imagem passou a ficar dentro do .container, que tem largura maxima de 900px. Como o fundo do Hero e preto, tudo que sobrava dos lados aparecia como duas faixas pretas.
+
+A primeira ideia poderia ser jogar a imagem pra fora do container de novo, mas isso seria voltar para um HTML errado. Entao mantive a estrutura certa e resolvi pelo CSS.
+
+.hero-image {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 50%;
+    width: 100vw;
+    transform: translateX(-50%);
+}
+
+A logica ficou assim:
+
+left: 50%
+    ↓
+coloca o inicio do elemento no centro do container
+    ↓
+translateX(-50%)
+    ↓
+puxa metade da propria largura de volta
+    ↓
+width: 100vw
+    ↓
+imagem ocupa a tela inteira
+
+Com isso o conteudo continua alinhado no container de 900px, mas a imagem ignora visualmente esse limite e cobre a viewport inteira. Fiz a mesma garantia dentro do breakpoint de 600px e as faixas pretas sumiram sem precisar quebrar o HTML novamente.
+
+No final de hoje praticamente todas as sessoes principais foram refeitas ou refinadas:
+
+Sobre Nos ganhou Missao e Visao.
+Solucoes perdeu os emojis e ganhou faixas editoriais.
+Pessoas e Empresas ganhou uma identidade propria mantendo as imagens.
+Contato recebeu o banner novo e ficou mais limpo.
+O responsivo foi revisado em 1024px e 600px.
+O chat e o rodape foram corrigidos no mobile.
+O HTML teve um erro estrutural resolvido.
+HTML e CSS foram padronizados por inteiro.
+E o Hero voltou a ocupar a tela toda sem espaco preto.
+
+Foi um daqueles dias que comecou com "vou so mudar a parte de Sobre Nos" e terminou com o site inteiro refeito KAKAKAKAKK
+
+Mas valeu muito a pena. Agora eu sinto que a SoluTech tem uma identidade visual de verdade. Nao parece mais um monte de sessao montada em dias diferentes. As cores, os textos grandes no fundo, as linhas, os hovers, os espacamentos e a alternancia entre branco e azul escuro fazem parte do mesmo site.
+
+Por hoje e so criancas, minhas costas ja entraram com pedido de demissao e eu provavelmente vou sonhar com display grid.
+
+bjssss <3
+
+---------------------------------------------------------------------------------------------------------------------
