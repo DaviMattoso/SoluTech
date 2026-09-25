@@ -1,7 +1,7 @@
 {
   "name": "solutech-server",
   "version": "1.0.0",
-  "description": "Backend do chatbot Jarvs da SoluTech",
+  "description": "Servidor seguro do site SoluTech",
   "type": "module",
   "main": "server.js",
   "scripts": {
@@ -10,6 +10,6 @@
   "dependencies": {
     "dotenv": "^17.4.2",
     "express": "^5.2.1",
-    "openai": "^7.5.0"
+    "helmet": "^8.3.0"
   }
 }

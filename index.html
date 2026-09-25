@@ -3,6 +3,11 @@
     <head>
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <!-- ALTERAR: revise título, descrição e domínio antes da publicação final. -->
+        <meta
+            name="description"
+            content="A SoluTech cria sistemas, automações, soluções de inteligência artificial e inteligência de dados para pessoas e empresas."
+        />
         <!-- Fonte -->
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -15,7 +20,7 @@
 
         <!-- Arquivo CSS -->
         <link rel="stylesheet" href="style.css" />
-        <title>SoluTech | Soluções Inteligentes</title>
+        <title>SoluTech | Soluções inteligentes</title>
     </head>
     <body>
         <!-- =====================================================
@@ -24,10 +29,15 @@
     ====================================================== -->
         <header class="header">
             <div class="container nav">
-                <!-- LOGO -->
+                <!-- ALTERAR: substitua a marca e o arquivo de logo se a identidade visual mudar. -->
                 <a href="#inicio" class="logo">
                     <div class="logo-icon">
-                        <img src="img/logo.png" alt="Logo SoluTech" />
+                        <img
+                            src="img/logo.png"
+                            alt="Logo SoluTech"
+                            width="256"
+                            height="256"
+                        />
                     </div>
                     <h2>SoluTech</h2>
                 </a>
@@ -43,18 +53,18 @@
                     <a href="#sobre">
                         <span>Sobre Nós</span>
                     </a>
+                    <!--
                     <a href="#clientes">
                         <span>Clientes</span>
                     </a>
+                    -->
                     <a href="#contato">
                         <span>Contato</span>
                     </a>
                 </nav>
 
                 <!-- BOTÃO DESKTOP -->
-                <button class="btn contato-btn" id="header-jarvs">
-                    Falar com o Jarvs
-                </button>
+                <a class="btn header-cta" href="#contato">Fale conosco</a>
 
                 <!-- BOTÃO MOBILE -->
                 <button
@@ -99,133 +109,237 @@
                     </div>
                     <!-- LADO DIREITO / IMAGEM -->
                     <div class="hero-image">
-                        <img src="img/Banner2.png" />
+                        <img
+                            src="img/banner-hero.jpg"
+                            alt="Ambiente digital conectado representando as soluções da SoluTech"
+                            width="1440"
+                            height="811"
+                            fetchpriority="high"
+                        />
                     </div>
                 </div>
             </section>
 
             <!-- =================================================
-             SEÇÃO DE SOLUÇÕES
+             SOLUÇÕES — jornada linear com demonstrações interativas
         ================================================== -->
             <section class="solutions" id="solucoes">
                 <div class="container">
-                    <!-- TÍTULO -->
                     <div class="section-title">
-                        <span>O QUE FAZEMOS</span>
-                        <h2>Nossas Soluções</h2>
+                        <span>CONHEÇA NOSSAS SOLUÇÕES</span>
+                        <h2>Tecnologia aplicada<br />a necessidades reais.</h2>
                         <p>
-                            Oferecemos um portfólio completo de soluções para
-                            atender às necessidades de pessoas e empresas.
+                            Apoiamos pessoas, profissionais e organizações com
+                            soluções claras, seguras e adequadas a cada objetivo.
+                            Explore os desafios abaixo e veja como atuamos na prática.
                         </p>
                     </div>
 
+                    <nav class="solution-track" aria-label="Etapas das soluções">
+                        <a href="#solucao-tecnologia"><b>01</b><span>Tecnologia</span></a>
+                        <a href="#solucao-consultoria"><b>02</b><span>Consultoria</span></a>
+                        <a href="#solucao-ia"><b>03</b><span>IA</span></a>
+                        <a href="#solucao-dados"><b>04</b><span>Dados</span></a>
+                    </nav>
+
                     <div class="solutions-showcase">
-                        <article class="solution-item">
-                            <span class="solution-index">01</span>
+                        <article class="solution-lab" id="solucao-tecnologia">
                             <div class="solution-copy">
-                                <span class="solution-type"
-                                    >CONSTRUÇÃO DIGITAL</span
-                                >
-                                <h3>Tecnologia</h3>
+                                <div class="solution-kicker">
+                                    <span class="solution-index">01</span>
+                                    <span class="solution-type">SOLUÇÕES DIGITAIS</span>
+                                </div>
+                                <h3>Organize um processo digital</h3>
                                 <p>
-                                    Desenvolvimento de sistemas e automação para
-                                    otimizar processos e aumentar sua
-                                    produtividade.
+                                    Desenvolvemos sistemas e automações que tornam
+                                    atividades do dia a dia mais simples, rápidas e
+                                    confiáveis, seja para uso pessoal, profissional
+                                    ou empresarial.
+                                </p>
+                                <div class="solution-example">
+                                    <strong>Exemplo prático</strong>
+                                    <span>Um cadastro digital bem estruturado recebe a solicitação, confere os dados e confirma o envio sem perder informações.</span>
+                                </div>
+                                <a class="solution-cta" href="#contato">Conhecer uma solução para minha necessidade <span>→</span></a>
+                            </div>
+
+                            <div class="mini-game" data-game="workflow">
+                                <div class="mini-game__top">
+                                    <div>
+                                        <span class="mini-game__label">DESAFIO DE LÓGICA</span>
+                                        <strong>Organize as etapas de um atendimento digital</strong>
+                                    </div>
+                                    <span class="mini-game__score" data-game-score>0/3</span>
+                                </div>
+                                <p class="game-instruction">
+                                    Selecione as ações na ordem em que devem acontecer.
+                                </p>
+                                <ol class="flow-order" aria-label="Ordem selecionada">
+                                    <li data-flow-slot="0"><b>1</b><span>Aguardando a primeira etapa</span></li>
+                                    <li data-flow-slot="1"><b>2</b><span>Aguardando a segunda etapa</span></li>
+                                    <li data-flow-slot="2"><b>3</b><span>Aguardando a terceira etapa</span></li>
+                                </ol>
+                                <div class="choice-game flow-options" role="group" aria-label="Etapas disponíveis">
+                                    <button type="button" data-flow-step="confirm">Confirmar o recebimento</button>
+                                    <button type="button" data-flow-step="receive">Receber a solicitação</button>
+                                    <button type="button" data-flow-step="validate">Conferir os dados</button>
+                                </div>
+                                <p class="mini-game__feedback" data-game-feedback aria-live="polite">
+                                    Comece pela primeira ação realizada pelo sistema.
                                 </p>
                             </div>
-                            <div
-                                class="solution-preview solution-preview--code"
-                                aria-hidden="true"
-                            >
-                                <i></i><i></i><i></i><span></span>
-                            </div>
-                            <a
-                                href="#contato"
-                                aria-label="Saiba mais sobre Tecnologia"
-                                ><span>Explorar solução</span> ↗</a
-                            >
-                            <!-- Agregar link para a pagina referente -->
                         </article>
 
-                        <article class="solution-item">
-                            <span class="solution-index">02</span>
+                        <article class="solution-lab solution-lab--reverse" id="solucao-consultoria">
                             <div class="solution-copy">
-                                <span class="solution-type"
-                                    >DIREÇÃO E ESTRATÉGIA</span
-                                >
-                                <h3>Consultoria</h3>
+                                <div class="solution-kicker">
+                                    <span class="solution-index">02</span>
+                                    <span class="solution-type">DIREÇÃO E ESTRATÉGIA</span>
+                                </div>
+                                <h3>Defina prioridades com segurança</h3>
                                 <p>
-                                    Consultoria especializada para ajudar você
-                                    ou sua empresa a tomar decisões estratégicas
-                                    com segurança.
+                                    Analisamos o cenário, identificamos prioridades
+                                    e construímos um plano viável. Assim, pessoas e
+                                    empresas podem investir tempo e recursos com
+                                    mais confiança.
+                                </p>
+                                <div class="solution-example">
+                                    <strong>Exemplo prático</strong>
+                                    <span>Antes de adotar uma nova ferramenta, é importante descobrir onde os atrasos realmente acontecem e como medir a melhoria.</span>
+                                </div>
+                                <a class="solution-cta" href="#contato">Planejar uma solução <span>→</span></a>
+                            </div>
+
+                            <div class="mini-game" data-game="strategy">
+                                <div class="mini-game__top">
+                                    <div>
+                                        <span class="mini-game__label">SIMULAÇÃO DE PLANEJAMENTO</span>
+                                        <strong>Uma atividade apresenta atrasos frequentes. Como agir?</strong>
+                                    </div>
+                                    <span class="mini-game__score" data-game-score>0/2</span>
+                                </div>
+                                <div class="game-stage" data-strategy-stage="diagnosis">
+                                    <span class="game-question">1. Qual deve ser a primeira providência?</span>
+                                    <div class="choice-game" role="group" aria-label="Opções de planejamento">
+                                        <button type="button" data-strategy-option="tool">Adquirir uma ferramenta imediatamente</button>
+                                        <button type="button" data-strategy-option="map">Entender o processo e localizar a causa</button>
+                                        <button type="button" data-strategy-option="automate">Automatizar todas as atividades</button>
+                                    </div>
+                                </div>
+                                <div class="strategy-route" aria-hidden="true">
+                                    <span>Diagnóstico</span><i></i><span>Prioridade</span><i></i><span>Resultado</span>
+                                </div>
+                                <div class="game-stage game-stage--followup" data-strategy-stage="metric" hidden>
+                                    <span class="game-question">2. Qual medida ajuda a confirmar a melhoria?</span>
+                                    <div class="choice-game" role="group" aria-label="Medidas de resultado">
+                                        <button type="button" data-strategy-metric="appearance">A aparência da ferramenta</button>
+                                        <button type="button" data-strategy-metric="time">O tempo médio de conclusão</button>
+                                        <button type="button" data-strategy-metric="meetings">A quantidade de reuniões</button>
+                                    </div>
+                                </div>
+                                <p class="mini-game__feedback" data-game-feedback aria-live="polite">
+                                    Conclua as duas decisões para formar um plano objetivo.
                                 </p>
                             </div>
-                            <div
-                                class="solution-preview solution-preview--path"
-                                aria-hidden="true"
-                            >
-                                <i></i><i></i><i></i><span></span>
-                            </div>
-                            <a
-                                href="#contato"
-                                aria-label="Saiba mais sobre Consultoria"
-                                ><span>Explorar solução</span> ↗</a
-                            >
-                            <!-- Agregar link para a pagina referente -->
                         </article>
 
-                        <article class="solution-item">
-                            <span class="solution-index">03</span>
+                        <article class="solution-lab" id="solucao-ia">
                             <div class="solution-copy">
-                                <span class="solution-type"
-                                    >AUTOMAÇÃO INTELIGENTE</span
-                                >
-                                <h3>Inteligência Artificial</h3>
+                                <div class="solution-kicker">
+                                    <span class="solution-index">03</span>
+                                    <span class="solution-type">AUTOMAÇÃO INTELIGENTE</span>
+                                </div>
+                                <h3>Direcione solicitações com agilidade</h3>
                                 <p>
-                                    Soluções com IA para automatizar tarefas,
-                                    economizar tempo e transformar desafios em
-                                    realidade.
+                                    A inteligência artificial pode organizar
+                                    solicitações e encaminhá-las ao destino adequado.
+                                    Isso reduz o tempo de espera sem substituir a
+                                    atenção humana nas decisões importantes.
+                                </p>
+                                <div class="solution-example">
+                                    <strong>Exemplo prático</strong>
+                                    <span>Mensagens sobre pagamentos, dúvidas técnicas ou novos serviços podem ser separadas e encaminhadas em poucos segundos.</span>
+                                </div>
+                                <a class="solution-cta" href="#contato">Aplicar IA à minha rotina <span>→</span></a>
+                            </div>
+
+                            <div class="mini-game" data-game="ai-route">
+                                <div class="mini-game__top">
+                                    <div>
+                                        <span class="mini-game__label">TRIAGEM INTELIGENTE</span>
+                                        <strong>Encaminhe três solicitações ao destino adequado</strong>
+                                    </div>
+                                    <span class="mini-game__score" data-game-score>0/3</span>
+                                </div>
+                                <blockquote class="ticket-card">
+                                    <p data-ticket-message>“Minha cobrança veio duplicada este mês. Preciso de ajuda.”</p>
+                                    <span data-ticket-meta>Solicitação 1 de 3</span>
+                                </blockquote>
+                                <div class="choice-game choice-game--inline" role="group" aria-label="Setores disponíveis">
+                                    <button type="button" data-ai-route="sales">Vendas</button>
+                                    <button type="button" data-ai-route="support">Suporte técnico</button>
+                                    <button type="button" data-ai-route="finance">Financeiro</button>
+                                </div>
+                                <p class="mini-game__feedback" data-game-feedback aria-live="polite">
+                                    Leia a necessidade apresentada e escolha uma área.
                                 </p>
                             </div>
-                            <div
-                                class="solution-preview solution-preview--flow"
-                                aria-hidden="true"
-                            >
-                                <i></i><i></i><i></i><span></span>
-                            </div>
-                            <a
-                                href="#contato"
-                                aria-label="Saiba mais sobre Inteligência Artificial"
-                                ><span>Explorar solução</span> ↗</a
-                            >
-                            <!-- Agregar link para a pagina referente -->
                         </article>
 
-                        <article class="solution-item">
-                            <span class="solution-index">04</span>
+                        <article class="solution-lab solution-lab--reverse" id="solucao-dados">
                             <div class="solution-copy">
-                                <span class="solution-type"
-                                    >DECISÕES ORIENTADAS</span
-                                >
-                                <h3>Inteligência de Dados</h3>
+                                <div class="solution-kicker">
+                                    <span class="solution-index">04</span>
+                                    <span class="solution-type">DECISÕES ORIENTADAS</span>
+                                </div>
+                                <h3>Transforme informações em decisões</h3>
                                 <p>
-                                    Transformamos dados em insights valiosos
-                                    para impulsionar resultados e oportunidades.
+                                    Reunimos informações dispersas e as apresentamos
+                                    de forma clara. Com isso, uma pessoa ou organização
+                                    pode identificar tendências, acompanhar resultados
+                                    e decidir com mais segurança.
+                                </p>
+                                <div class="solution-example">
+                                    <strong>Exemplo prático</strong>
+                                    <span>Um histórico mensal pode revelar o melhor período e orientar a próxima ação, sem exigir conhecimento em análise de dados.</span>
+                                </div>
+                                <a class="solution-cta" href="#contato">Organizar minhas informações <span>→</span></a>
+                            </div>
+
+                            <div class="mini-game" data-game="data">
+                                <div class="mini-game__top">
+                                    <div>
+                                        <span class="mini-game__label">LEITURA E DECISÃO</span>
+                                        <strong>Observe o gráfico e tome duas decisões</strong>
+                                    </div>
+                                    <span class="mini-game__score" data-game-score>0/2</span>
+                                </div>
+                                <span class="game-question">1. Qual mês apresentou o maior resultado?</span>
+                                <div class="bar-game" role="group" aria-label="Gráfico de vendas por mês">
+                                    <button type="button" style="--bar: 44%" data-data-option="false"><span>42</span><i></i><b>Jan</b></button>
+                                    <button type="button" style="--bar: 66%" data-data-option="false"><span>63</span><i></i><b>Fev</b></button>
+                                    <button type="button" style="--bar: 56%" data-data-option="false"><span>54</span><i></i><b>Mar</b></button>
+                                    <button type="button" style="--bar: 88%" data-data-option="true"><span>84</span><i></i><b>Abr</b></button>
+                                </div>
+                                <div class="game-stage game-stage--followup" data-data-stage="insight" hidden>
+                                    <span class="game-question">2. Qual é a decisão mais responsável?</span>
+                                    <div class="choice-game" role="group" aria-label="Decisões baseadas no gráfico">
+                                        <button type="button" data-data-insight="copy">Repetir tudo sem verificar o contexto</button>
+                                        <button type="button" data-data-insight="analyze">Analisar o que favoreceu abril e testar a estratégia</button>
+                                        <button type="button" data-data-insight="ignore">Ignorar o resultado e manter o plano atual</button>
+                                    </div>
+                                </div>
+                                <p class="mini-game__feedback" data-game-feedback aria-live="polite">
+                                    Comece identificando a maior barra do gráfico.
                                 </p>
                             </div>
-                            <div
-                                class="solution-preview solution-preview--data"
-                                aria-hidden="true"
-                            >
-                                <i></i><i></i><i></i><span></span>
-                            </div>
-                            <a
-                                href="#contato"
-                                aria-label="Saiba mais sobre Inteligência de Dados"
-                                ><span>Explorar solução</span> ↗</a
-                            >
-                            <!-- Agregar link para a pagina referente -->
                         </article>
+                    </div>
+
+                    <div class="solutions-finish">
+                        <span aria-hidden="true">✓</span>
+                        <p><strong>Tecnologia deve ser clara, útil e próxima.</strong> Apresente sua necessidade pessoal, profissional ou empresarial e construiremos o próximo passo.</p>
+                        <a class="btn" href="#contato">Apresentar minha necessidade →</a>
                     </div>
                 </div>
             </section>
@@ -271,11 +385,15 @@
                                     Quero saber mais →
                                 </a>
                             </div>
-                            <!-- IMAGEM -->
+                            <!-- ALTERAR: troque a imagem caso a empresa queira representar outro público. -->
                             <div class="audience-img">
                                 <img
-                                    src="img/card1.png"
+                                    src="img/card-pessoas.jpg"
                                     alt="Profissionais representando soluções para pessoas"
+                                    width="720"
+                                    height="1080"
+                                    loading="lazy"
+                                    decoding="async"
                                 />
                                 <span class="audience-img-label"
                                     >FEITO PARA VOCÊ</span
@@ -302,11 +420,15 @@
                                     Fale com um especialista →
                                 </a>
                             </div>
-                            <!-- IMAGEM -->
+                            <!-- ALTERAR: troque a imagem caso a empresa queira representar outro público. -->
                             <div class="audience-img">
                                 <img
-                                    src="img/card2.png"
+                                    src="img/card-empresas.jpg"
                                     alt="Edifícios representando soluções empresariais"
+                                    width="720"
+                                    height="1080"
+                                    loading="lazy"
+                                    decoding="async"
                                 />
                                 <span class="audience-img-label"
                                     >FEITO PARA CRESCER</span
@@ -322,6 +444,7 @@
         ================================================== -->
             <section class="about" id="sobre">
                 <div class="container about-container">
+                    <!-- ALTERAR: revise missão, visão e ano-meta conforme o planejamento da empresa. -->
                     <header class="about-heading">
                         <span class="about-eyebrow">NOSSA ESSÊNCIA</span>
                         <h2>
@@ -432,6 +555,7 @@
                             contato com a nossa equipe. Estamos prontos para
                             encontrar a melhor solução para você.
                         </p>
+                        <!-- ALTERAR: endereço, telefone e e-mail oficiais da empresa. -->
                         <div class="contact-info">
                             <div class="contact-info-item">
                                 <div
@@ -489,7 +613,14 @@
                             </div>
                         </div>
 
-                        <form class="contact-form" id="contact-form">
+                        <form
+                            class="contact-form"
+                            id="contact-form"
+                            action="https://api.web3forms.com/submit"
+                            method="post"
+                            accept-charset="UTF-8"
+                        >
+                            <!-- ALTERAR: chave pública do formulário Web3Forms da conta oficial. -->
                             <input
                                 type="hidden"
                                 name="access_key"
@@ -499,113 +630,73 @@
                                 type="text"
                                 name="name"
                                 placeholder="Seu nome"
+                                autocomplete="name"
+                                maxlength="100"
                                 required
                             />
                             <input
                                 type="email"
                                 name="email"
                                 placeholder="Seu e-mail"
+                                autocomplete="email"
+                                maxlength="254"
                                 required
                             />
                             <input
                                 type="text"
                                 name="subject"
                                 placeholder="Assunto"
+                                maxlength="140"
                                 required
                             />
                             <textarea
                                 name="message"
                                 placeholder="Digite sua mensagem..."
                                 rows="5"
+                                maxlength="2000"
                                 required
                             ></textarea>
+                            <!--
+                                SEGURANÇA: hCaptcha validado pelo Web3Forms.
+                                No painel do Web3Forms, abra este formulário e
+                                ative hCaptcha como proteção obrigatória.
+                            -->
+                            <div class="captcha-field">
+                                <span class="captcha-field__label"
+                                    >Verificação de segurança</span
+                                >
+                                <div
+                                    class="h-captcha"
+                                    data-captcha="true"
+                                    data-lang="pt"
+                                ></div>
+                                <noscript>
+                                    <p class="captcha-warning">
+                                        Ative o JavaScript para realizar a
+                                        verificação de segurança.
+                                    </p>
+                                </noscript>
+                            </div>
                             <button type="submit" class="btn">
                                 Enviar mensagem →
                             </button>
+                            <p
+                                class="form-status"
+                                id="form-status"
+                                role="status"
+                                aria-live="polite"
+                            ></p>
                         </form>
-                    </div>
-
-                    <!-- ASSISTENTE -->
-                    <div class="contact-mascot">
-                        <img
-                            src="img/banner_contato.png"
-                            alt="Assistente virtual da SoluTech convidando para iniciar uma nova jornada"
-                        />
-                        <div class="contact-status">
-                            <i></i><span>Equipe disponível</span>
-                        </div>
                     </div>
                 </div>
             </section>
         </main>
 
         <!-- =================================================
-             SEÇÕES FUTURAS (clientes)
-             Esses IDs existem porque o menu já possui links
-             para Clientes e Blog.
+             SEÇÃO FUTURA (clientes)
+             Este ID existe porque o menu já possui o link Clientes.
         ================================================== -->
         <section id="clientes"></section>
-
-        <!-- =================================================
-     JARVS - ASSISTENTE IA
-    ================================================== -->
-        <!-- BOTÃO FLUTUANTE -->
-        <button
-            class="jarvs-button"
-            id="jarvs-button"
-            aria-label="Abrir conversa com Jarvs"
-        >
-            <img src="img/jarvs1.png" alt="" />
-        </button>
-        <!-- CHAT -->
-        <div class="jarvs-chat" id="jarvs-chat" aria-hidden="true">
-            <!-- CABEÇALHO -->
-            <div class="jarvs-header">
-                <div class="jarvs-header-info">
-                    <div class="jarvs-avatar">
-                        <img src="img/jarvs1.png" alt="Jarvs" />
-                    </div>
-                    <div>
-                        <strong>Jarvs</strong>
-                        <span>Assistente SoluTech</span>
-                    </div>
-                </div>
-
-                <button
-                    class="jarvs-close"
-                    id="jarvs-close"
-                    aria-label="Fechar conversa"
-                >
-                    ×
-                </button>
-            </div>
-
-            <!-- MENSAGENS -->
-            <div class="jarvs-messages" id="jarvs-messages">
-                <div class="jarvs-message bot">
-                    <p>
-                        Hello world 🤖! Eu sou o Jarvs, assistente virtual da
-                        SoluTech.
-                    </p>
-                    <p>
-                        Posso te ajudar a entender nossas soluções ou encontrar
-                        o melhor caminho para o seu projeto.
-                    </p>
-                </div>
-            </div>
-
-            <!-- DIGITAÇÃO -->
-            <form class="jarvs-form" id="jarvs-form">
-                <input
-                    type="text"
-                    id="jarvs-input"
-                    placeholder="Digite sua mensagem..."
-                    autocomplete="off"
-                />
-
-                <button type="submit" aria-label="Enviar mensagem">→</button>
-            </form>
-        </div>
 
         <!-- =====================================================
          FOOTER
@@ -614,10 +705,17 @@
             <div class="container footer-grid">
                 <!-- COLUNA PRINCIPAL -->
                 <div class="footer-brand">
+                    <!-- ALTERAR: substitua a marca e o nome caso a identidade visual mude. -->
                     <a href="#inicio" class="logo">
                         <div class="logo-icon">
-                            <span></span>
-                            <span></span>
+                            <img
+                                src="img/logo.png"
+                                alt=""
+                                width="256"
+                                height="256"
+                                loading="lazy"
+                                decoding="async"
+                            />
                         </div>
                         <h2>SoluTech</h2>
                     </a>
@@ -649,13 +747,13 @@
                     <a href="#">Política de Privacidade</a>
                     <a href="#">Termos de Uso</a>
                 </div>
-                <!-- CONTATO -->
+                <!-- ALTERAR: telefone, e-mail, endereço e links das redes sociais oficiais. -->
                 <div>
                     <h3>Contato</h3>
                     <p>(+55) xxxx-xxxx</p>
                     <p>contato@solutech.com.br</p>
-                    <!-- Endereço: xxxxxxxx, XX - Brasil -->
-                    <!-- Substitua o # de cada href pelo link correspondente. -->
+                    <!-- ALTERAR: adicione aqui o endereço oficial se ele também aparecer no rodapé. -->
+                    <!-- ALTERAR: substitua cada # pelo link oficial correspondente. -->
                     <nav class="footer-social" aria-label="Redes sociais">
                         <a href="#" aria-label="Facebook"
                             ><svg viewBox="0 0 24 24" aria-hidden="true">
@@ -710,12 +808,19 @@
                     </nav>
                 </div>
             </div>
-            <!-- COPYRIGHT -->
+            <!-- ALTERAR: razão social/nome da empresa e ano quando necessário. -->
             <div class="copyright">
                 <p>© 2026 SoluTech. Todos os direitos reservados.</p>
             </div>
         </footer>
-        <!-- JavaScript -->
+        <!-- SEGURANÇA: carrega o hCaptcha integrado ao Web3Forms. -->
+        <script
+            src="https://web3forms.com/client/script.js"
+            async
+            defer
+            referrerpolicy="no-referrer"
+        ></script>
+        <!-- JavaScript do site -->
         <script src="script.js"></script>
     </body>
 </html>

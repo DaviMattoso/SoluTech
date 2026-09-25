@@ -1,175 +1,119 @@
-import express from "express";
-import OpenAI from "openai";
 import dotenv from "dotenv";
+import express from "express";
+import helmet from "helmet";
 import path from "path";
 import { fileURLToPath } from "url";
-
-
-/* ==========================================
-   CONFIGURAÇÕES
-========================================== */
 
 dotenv.config();
 
 const app = express();
-
-const PORT = 3000;
-
-
-/* ==========================================
-   CONFIGURAÇÃO DOS CAMINHOS
-========================================== */
+const PORT = Number.parseInt(process.env.PORT ?? "3000", 10);
+const IS_PRODUCTION = process.env.NODE_ENV === "production";
 
 const __filename = fileURLToPath(import.meta.url);
-
 const __dirname = path.dirname(__filename);
+const publicRoot = path.resolve(__dirname, "..");
+const imageRoot = path.join(publicRoot, "img");
 
+/* =========================================================
+   CABEÇALHOS DE SEGURANÇA
 
-/* ==========================================
-   OPENAI
-========================================== */
-
-const openai = new OpenAI({
-    apiKey: process.env.OPENAI_API_KEY
-});
-
-
-/* ==========================================
-   MIDDLEWARE
-========================================== */
-
-app.use(express.json());
-
-
-/* ==========================================
-   SERVIR O SITE
-========================================== */
+   A CSP permite somente os recursos usados pelo site,
+   pelo formulário Web3Forms e pela verificação hCaptcha.
+========================================================= */
+app.disable("x-powered-by");
 
 app.use(
-    express.static(
-        path.join(__dirname, "..")
-    )
+    helmet({
+        crossOriginEmbedderPolicy: false,
+        contentSecurityPolicy: {
+            directives: {
+                defaultSrc: ["'self'"],
+                baseUri: ["'self'"],
+                objectSrc: ["'none'"],
+                frameAncestors: ["'none'"],
+                scriptSrc: [
+                    "'self'",
+                    "https://web3forms.com",
+                    "https://hcaptcha.com",
+                    "https://*.hcaptcha.com",
+                ],
+                styleSrc: [
+                    "'self'",
+                    "'unsafe-inline'",
+                    "https://fonts.googleapis.com",
+                    "https://hcaptcha.com",
+                    "https://*.hcaptcha.com",
+                ],
+                fontSrc: ["'self'", "https://fonts.gstatic.com", "data:"],
+                imgSrc: [
+                    "'self'",
+                    "data:",
+                    "https://hcaptcha.com",
+                    "https://*.hcaptcha.com",
+                ],
+                connectSrc: [
+                    "'self'",
+                    "https://api.web3forms.com",
+                    "https://hcaptcha.com",
+                    "https://*.hcaptcha.com",
+                ],
+                frameSrc: ["https://hcaptcha.com", "https://*.hcaptcha.com"],
+                formAction: ["'self'", "https://api.web3forms.com"],
+                upgradeInsecureRequests: IS_PRODUCTION ? [] : null,
+            },
+        },
+        referrerPolicy: { policy: "strict-origin-when-cross-origin" },
+    }),
 );
 
-app.get("/", (req, res) => {
-    res.sendFile(
-        path.join(__dirname, "..", "site.html")
+app.use((req, res, next) => {
+    res.setHeader(
+        "Permissions-Policy",
+        "camera=(), microphone=(), geolocation=(), payment=(), usb=()",
     );
+    next();
 });
 
+/* =========================================================
+   ARQUIVOS PÚBLICOS
 
-/* ==========================================
-   ROTA DO JARVS
-========================================== */
+   Esta lista fechada impede que .env, código do servidor,
+   anotações e arquivos de configuração sejam publicados.
+========================================================= */
+const sendPublicFile = (fileName) => (req, res, next) => {
+    res.sendFile(path.join(publicRoot, fileName), (error) => {
+        if (error) next(error);
+    });
+};
 
-app.post("/api/chat", async (req, res) => {
+app.get(["/", "/index.html"], sendPublicFile("index.html"));
+app.get("/style.css", sendPublicFile("style.css"));
+app.get("/script.js", sendPublicFile("script.js"));
+app.use(
+    "/img",
+    express.static(imageRoot, {
+        dotfiles: "deny",
+        fallthrough: false,
+        immutable: IS_PRODUCTION,
+        maxAge: IS_PRODUCTION ? "7d" : 0,
+    }),
+);
 
-    try {
-
-        const { message } = req.body;
-
-
-        /* Verifica se existe uma mensagem */
-
-        if (!message) {
-
-            return res.status(400).json({
-                error: "Mensagem não enviada."
-            });
-
-        }
-
-
-        /* ==========================================
-           ENVIA A MENSAGEM PARA A OPENAI
-        ========================================== */
-
-        const response = await openai.responses.create({
-
-            model: "gpt-5.6",
-
-            instructions: `
-Você é Jarvs, o assistente virtual da SoluTech.
-
-A SoluTech é uma empresa de tecnologia que oferece
-soluções digitais para pessoas e empresas.
-
-As principais áreas da SoluTech são:
-
-- Desenvolvimento de sistemas
-- Automação de processos
-- Consultoria
-- Inteligência Artificial
-- Inteligência de Dados
-- Soluções tecnológicas personalizadas
-
-Seu objetivo é conversar com os visitantes do site,
-entender suas necessidades e apresentar as soluções
-da SoluTech de maneira clara e natural.
-
-Fale sempre em português brasileiro.
-
-Seu comportamento deve ser:
-
-- profissional
-- amigável
-- direto
-- natural
-- prestativo
-
-Não invente preços, clientes, serviços ou informações
-que não foram fornecidas pela SoluTech.
-
-Quando o visitante apresentar um problema,
-procure entender a necessidade antes de sugerir
-uma solução.
-
-Quando perceber que o visitante deseja contratar,
-fazer um orçamento ou falar com uma pessoa da equipe,
-oriente-o para entrar em contato com a equipe da SoluTech.
-
-Você não é humano.
-
-Você é o assistente virtual da SoluTech.
-
-Seu nome é Jarvs.
-`,
-
-            input: message
-
-        });
-
-
-        /* ==========================================
-           DEVOLVE A RESPOSTA PARA O SITE
-        ========================================== */
-
-        res.json({
-            reply: response.output_text
-        });
-
-
-    } catch (error) {
-
-        console.error("Erro no Jarvs:", error);
-
-        res.status(500).json({
-            error: "Não foi possível obter uma resposta do Jarvs."
-        });
-
-    }
-
+app.use((req, res) => {
+    res.status(404).type("text/plain").send("Página não encontrada.");
 });
 
-
-/* ==========================================
-   INICIAR SERVIDOR
-========================================== */
-
-app.listen(PORT, () => {
-
-    console.log(
-        `SoluTech rodando em http://localhost:${PORT}`
-    );
-
+app.use((error, req, res, next) => {
+    if (res.headersSent) return next(error);
+    return res.status(404).type("text/plain").send("Arquivo não encontrado.");
 });
+
+const server = app.listen(PORT, () => {
+    console.log(`SoluTech rodando em http://localhost:${PORT}`);
+});
+
+/* Limites de tempo ajudam contra conexões lentas mantidas artificialmente. */
+server.requestTimeout = 20000;
+server.headersTimeout = 15000;
+server.keepAliveTimeout = 5000;
