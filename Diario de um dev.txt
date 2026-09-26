@@ -2147,7 +2147,7 @@ bjssss <3
 
 ---------------------------------------------------------------------------------------------------------------------
 
-Hospedando o site na target
+Hospedando o site na target.. Dia ..... DIA ? KKKKK que piada velha
 vei eu vou ter que criar um git pra empresa.... ai esse projeto vai ter que ir pra la eu acho mas tambem acho que nao, tipo eu faco partdo grupo de dev da empresa, vou deixar oque é projeto cmo (beta.proj.SoluTech) (detalhe, ontem eu mexi aqui no site e nem falei nada, tireio jarvs porque se nao ia dar mais trabalho na hospedagem porq causa do arquivo node, adicionei o captcha, varias fitas, em fim vai ficar sem diario ontem vei sorry)
 
 Hoje foi um daqueles dias que ensinam uma coisa que nenhum projeto rodando em localhost consegue ensinar direito: colocar um site na internet é uma etapa completamente diferente de simplesmente fazer ele funcionar no computador.
