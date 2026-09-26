@@ -2146,3 +2146,308 @@ Por hoje e so criancas, minhas costas ja entraram com pedido de demissao e eu pr
 bjssss <3
 
 ---------------------------------------------------------------------------------------------------------------------
+
+Hospedando o site na target
+vei eu vou ter que criar um git pra empresa.... ai esse projeto vai ter que ir pra la eu acho mas tambem acho que nao, tipo eu faco partdo grupo de dev da empresa, vou deixar oque é projeto cmo (beta.proj.SoluTech) (detalhe, ontem eu mexi aqui no site e nem falei nada, tireio jarvs porque se nao ia dar mais trabalho na hospedagem porq causa do arquivo node, adicionei o captcha, varias fitas, em fim vai ficar sem diario ontem vei sorry)
+
+Hoje foi um daqueles dias que ensinam uma coisa que nenhum projeto rodando em localhost consegue ensinar direito: colocar um site na internet é uma etapa completamente diferente de simplesmente fazer ele funcionar no computador.
+A missão parecia simples. O site institucional da SoluTech já estava funcionando normalmente no meu PC, com HTML, CSS e JavaScript organizados, responsividade funcionando, formulário configurado com Web3Forms, hCaptcha ativo e várias partes interativas dentro da seção de soluções.
+Localmente estava tudo certo.
+Então era só colocar os arquivos na hospedagem e pronto, certo?
+Bom... obviamente não.
+Quando publiquei o projeto na TargetHost, o site até abriu. O domínio estava funcionando, as imagens apareciam, o hCaptcha carregava e algumas partes do layout estavam normais.
+Só que a seção mais nova do site estava completamente quebrada.
+Os textos apareciam, mas os cards não tinham o mesmo formato. Os mini-jogos praticamente perderam o estilo, alguns botões estavam com aparência padrão do navegador e toda a estrutura que deveria ficar dividida em colunas simplesmente deixou de funcionar.
+O mais estranho era que no meu computador a página continuava perfeita.
+Foi basicamente o clássico:
+“Na minha máquina funciona.”
+
+E dessa vez eu descobri na prática o quanto essa frase pode ser perigosa.
+Primeiro diagnóstico: o HTML estava chegando, mas alguma coisa estava errada com o CSS
+O primeiro passo foi comparar a versão local com a versão publicada.
+Uma coisa ficou bem evidente: o conteúdo novo existia na hospedagem.
+Por exemplo, apareciam textos como:
+- Tecnologia aplicada a necessidades reais
+- Organize um processo digital
+- Defina prioridades com segurança
+- Direcione solicitações com agilidade
+Então o index.html novo estava claramente chegando ao servidor.
+Ao mesmo tempo, os componentes dessas seções não estavam com o visual correto.
+Isso levantou uma suspeita importante:
+a hospedagem poderia estar carregando o HTML novo junto com uma versão antiga do CSS.
+Também existia a possibilidade de o JavaScript estar passando pelo mesmo problema.
+Cache: o principal suspeito
+Como a TargetHost utiliza Apache/LiteSpeed, começamos a considerar que alguma camada de cache poderia estar mantendo versões anteriores de:
+style.css
+script.js
+
+Mesmo substituindo os arquivos na hospedagem, o navegador ou o próprio servidor ainda poderia entregar uma cópia antiga.
+Para evitar isso, adicionamos versionamento aos arquivos no index.html.
+O CSS passou de:
+<link rel="stylesheet" href="style.css" />
+
+para:
+<link rel="stylesheet" href="style.css?v=20260925-01" />
+
+E o JavaScript:
+<script src="script.js"></script>
+
+passou para:
+<script src="script.js?v=20260925-01"></script>
+
+Esse ?v=... não muda o arquivo fisicamente.
+Ele serve para mudar a URL que o navegador enxerga.
+Ou seja, se ele tinha armazenado:
+style.css
+
+agora precisava requisitar:
+style.css?v=20260925-01
+
+Como aquela URL ainda não estava no cache, o navegador deveria buscar novamente o arquivo no servidor.
+Foi uma forma simples de fazer cache busting.
+Ajustando o .htaccess
+Também alteramos temporariamente o .htaccess para impedir que HTML, CSS e JavaScript fossem armazenados em cache durante os testes.
+Foram adicionados headers como:
+Cache-Control "no-store, no-cache, must-revalidate, max-age=0"
+Pragma "no-cache"
+Expires "0"
+
+Ao mesmo tempo, era importante não destruir as configurações de segurança que já existiam.
+Então continuaram ativos:
+- redirecionamento obrigatório para HTTPS;
+- bloqueio das pastas internas server e docs;
+- bloqueio de arquivos que não deveriam ser públicos;
+- Content Security Policy;
+- X-Content-Type-Options;
+- X-Frame-Options;
+- Referrer-Policy;
+- Permissions-Policy.
+Também mantivemos dentro da CSP os serviços utilizados pelo site, principalmente:
+Google Fonts
+Web3Forms
+hCaptcha
+
+Ou seja, a ideia não era simplesmente sair desativando segurança até o site funcionar.
+A correção precisava resolver o problema sem desfazer o que já havia sido implementado.
+Criando um pacote apenas para produção
+Outra coisa que ficou bem mais clara durante esse processo foi que nem tudo que existe no repositório precisa ir para a hospedagem.
+Minha pasta de desenvolvimento possui várias coisas:
+.git/
+server/
+.gitattributes
+.gitignore
+Diario de um dev
+LICENSE
+
+Mas para a publicação atual do site, só precisávamos de:
+img/
+.htaccess
+index.html
+script.js
+style.css
+
+Então criei uma pasta separada somente com os arquivos utilizados em produção e transformei ela em um ZIP.
+Isso também ajuda bastante a evitar que arquivos desnecessários ou internos acabem publicados por acidente.
+Principalmente coisas como:
+.env
+.git
+
+que definitivamente não deveriam ficar publicamente acessíveis.
+O pequeno problema dentro do problema
+Depois de criar o ZIP, fiz o upload dele para:
+/home4/solutech/public_html
+
+e extraí os arquivos.
+Só que tinha um detalhe.
+O ZIP havia sido criado a partir de uma pasta chamada:
+Site.CodigoHosp
+
+Então o cPanel não colocou os arquivos diretamente na raiz.
+Ele criou:
+public_html/
+    Site.CodigoHosp/
+        index.html
+        style.css
+        script.js
+        .htaccess
+        img/
+
+O problema é que o domínio estava apontando para:
+public_html/
+
+e não para:
+public_html/Site.CodigoHosp/
+
+Ou seja, eu tinha enviado os arquivos corretos...
+para o lugar errado.
+Foi necessário mover:
+index.html
+style.css
+script.js
+.htaccess
+
+diretamente para a raiz de public_html.
+Também movemos a pasta:
+img/
+
+para o mesmo lugar.
+No final, a estrutura correta ficou:
+public_html/
+├── .well-known/
+├── cgi-bin/
+├── img/
+├── .htaccess
+├── index.html
+├── script.js
+└── style.css
+
+As pastas:
+.well-known
+cgi-bin
+
+foram mantidas porque pertencem à estrutura/configuração da hospedagem.
+Como confirmamos que o servidor realmente estava usando os arquivos novos
+Essa foi provavelmente a parte mais útil de todo o processo.
+Em vez de simplesmente atualizar a página e torcer para funcionar, abrimos os arquivos diretamente pelo domínio.
+Primeiro:
+https://solutechdigital.com.br/style.css?v=20260925-01
+
+E procuramos classes que pertenciam especificamente à versão nova do site:
+.solution-track
+
+.solution-lab
+
+As duas estavam lá.
+Isso provou que o servidor estava realmente entregando o CSS novo.
+Depois fizemos a mesma coisa com:
+https://solutechdigital.com.br/script.js?v=20260925-01
+
+e procuramos:
+workflowGame
+
+Também estava presente.
+Nesse momento já dava para eliminar uma dúvida importante.
+O servidor tinha:
+HTML novo
+CSS novo
+JavaScript novo
+
+Então finalmente abrimos o site novamente, usamos as ferramentas de desenvolvedor do navegador e fizemos um recarregamento completo sem utilizar o cache:
+F12
+Network
+Disable cache
+Ctrl + Shift + R
+
+E aí...
+o site carregou exatamente como estava no ambiente local.
+Layout correto.
+Cards corretos.
+Mini-jogos corretos.
+Espaçamentos corretos.
+CSS funcionando.
+JavaScript funcionando.
+Tudo no lugar.
+O que eu aprendi hoje
+Esse problema acabou sendo muito mais útil do que simplesmente fazer um upload que funcionasse de primeira.
+Aprendi principalmente que existem várias camadas entre:
+meu código
+↓
+arquivo enviado
+↓
+servidor
+↓
+cache
+↓
+navegador
+↓
+usuário
+
+E quando alguma coisa quebra em produção, não adianta simplesmente olhar para o código local e falar:
+“Mas aqui funciona.”
+
+É necessário descobrir qual versão do arquivo está realmente chegando ao navegador.
+Também aprendi algumas coisas que quero manter nos próximos projetos:
+1. Separar desenvolvimento de produção
+O repositório pode ter documentação, Git, backend, arquivos internos e várias outras coisas.
+A hospedagem não precisa receber tudo isso.
+2. Conferir sempre a raiz pública
+No meu caso:
+public_html
+
+é a pasta que realmente importa para o domínio.
+Um index.html perfeito dentro da pasta errada continua sendo um site que não vai funcionar.
+3. Cache pode fazer uma versão antiga parecer atual
+Alterar:
+style.css
+
+para:
+style.css?v=20260925-01
+
+foi uma solução simples, mas extremamente útil.
+4. Testar arquivos individualmente
+Abrir diretamente:
+/style.css
+/script.js
+
+e procurar código que eu sei que deveria existir foi muito mais confiável do que simplesmente ficar apertando F5 esperando alguma coisa mudar.
+5. Backup antes de mexer em produção
+Mesmo quando a alteração parece simples, produção não é o lugar para trabalhar sem possibilidade de voltar atrás.
+6. Hospedar também faz parte de desenvolver
+Até agora boa parte do meu foco estava em criar HTML, CSS e JavaScript.
+Hoje ficou muito claro que desenvolvimento web também envolve:
+domínio
+HTTPS
+servidor
+cPanel
+estrutura de diretórios
+cache
+headers
+segurança
+deploy
+debug em produção
+
+E sinceramente foi uma experiência bem diferente de simplesmente abrir o Live Server do VS Code.
+Resultado do dia
+No começo:
+localhost
+✅ funcionando perfeitamente
+
+hospedagem
+❌ layout quebrado
+❌ estilos inconsistentes
+❌ componentes novos sem aparência correta
+
+No final:
+localhost
+✅
+
+TargetHost
+✅
+
+HTTPS
+✅
+
+CSS atualizado
+✅
+
+JavaScript atualizado
+✅
+
+hCaptcha
+✅
+
+Web3Forms
+✅
+
+headers de segurança
+✅
+
+site publicado
+✅
+
+Depois de bastante tentativa, comparação de arquivos, cache, .htaccess, ZIP, cPanel e organização de pastas...
+a SoluTech finalmente estava funcionando na internet da mesma forma que funcionava na minha máquina.
+E acho que hoje eu entendi um pouco melhor uma das frases mais famosas da programação:
+"Se funciona só no meu computador, então ainda não terminou"
+
+A proxima etapa vai ser criar as redes uma por uma (criar uma identidade visual pra cada uma tambem), tambem comecando pelo git pra subir os projetos e associar ao meu)
