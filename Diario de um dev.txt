@@ -2451,3 +2451,63 @@ E acho que hoje eu entendi um pouco melhor uma das frases mais famosas da progra
 "Se funciona só no meu computador, então ainda não terminou"
 
 A proxima etapa vai ser criar as redes uma por uma (criar uma identidade visual pra cada uma tambem), tambem comecando pelo git pra subir os projetos e associar ao meu)
+
+===============================--------------------------------/////--------------------------------===============================
+
+Salve rapaziadaaaaaa, o site ta no ar man, é meu primeiro site no ar KAKAKAKAKK
+vei isso tem que ficar bom pra krl, agt vai trabalhar nele hj para resolver algumas coisas porque depois disso na ultima reuniao os caras falaarm sobre umas coisas pra melhorar, ai agt vai fazer isso e vai deixar ele FULLL pra so oque faltar 
+
+vamo la
+
+a listinha basicamente é: (eu anotava enquanto armava um, pega leve vai)
+1 Nav contat desaparece / fica so o fale conosco 
+2 Tirar dois botões do header 
+3 Conheca nossas soluções  (mais font-zise )
+
+4 Rápidas e confiáveis pa ao seu negocio (mudar a frase do organie um processo digital)
+5 Tamanho e cor da cor das respostas dentro dos quadros 
+6 Deixar mais explicito de alguma maneira que isso fique clara para o cliente 	
+7 Arrumar as barras dos gráficos
+8 A porra da setinha 
+9 Eamil vai ser comercial 
+10 Acresentar o telefone
+11 botoes das redes so email, linkedin e ig
+12 tirar o suporte do footer
+
+ai me ligam dizendo que vao fazer outra reuniao pra ver sobre o site... pqp.... eu so queria um domingo em paz 
+ja volto  depois de ver oque vai ser depois dessa porra, vao mudar tudo oque eu ja tava planejando fazer akakakakak se ligue 
+
+voltei e no fim peguei essa lista toda pra resolver de uma vez, sem recriar o site e sem sair quebrando oque ja tava funcionando.
+
+comecei pela navbar. tirei o Contato e deixei so Inicio, Solucoes, Sobre Nos e o botao Fale conosco. no mobile eu tive que deixar uma versao desse botao dentro do menu hamburguer, porque o botao normal some quando a tela fica pequena. testei ele abrindo, fechando e levando ate o formulario certinho.
+
+depois tirei os dois botoes do hero, o Nossas Solucoes e o Fale com um especialista. aproveitei e removi o CSS que so existia por causa deles pra nao deixar classe morta no projeto.
+
+o CONHECA NOSSAS SOLUCOES agora ta bem maior e com mais presenca. antes parecia uma etiquetinha perdida em cima do titulo, agora ele realmente chama atencao mas ainda nao briga com o Tecnologia aplicada a necessidades reais.
+
+na primeira solucao tambem troquei o texto pelo que foi pedido:
+"Desenvolvemos sistemas e automacoes que tornam atividades do dia a dia mais simples, rapidas e confiaveis para o seu negocio."
+
+ai fui pros quadrinhos interativos. aumentei as letras das perguntas, respostas, meses, valores e textos internos, deixei as opcoes quase brancas e com mais peso. os estados de certo e errado continuam verde e vermelho, mas agora da pra ler tudo sem ter que colar a cara na tela KAKAKAKAK
+
+tambem coloquei nos quatro uma faixa de INTERATIVO com um icone de cursor e o texto "Teste voce mesmo — selecione uma opcao abaixo.". ficou com cara de demonstracao de tecnologia mesmo e tem uma animacao bem leve. se a pessoa usa aquela configuracao de reduzir movimento no sistema, a animacao praticamente desliga.
+
+o grafico finalmente parou de fingir que 42, 63, 54 e 84 eram a mesma coisa. criei uma area propria pras barras e agora a altura usa de verdade o percentual de cada uma. ficou Jan menor, depois Mar, Fev e por ultimo Abr, do jeito certo. os valores tambem ficam visiveis e nao so quando passa o mouse.
+
+a porra da setinha entre Missao e Visao tambem foi resolvida . antes era ponto, linha e seta separados, agora é um conector so feito com CSS. no computador ele vai de Missao pra Visao na horizontal e no celular vira pra baixo sem desmontar.
+
+no footer tirei a coluna Suporte inteira e reorganizei as quatro colunas que sobraram. nas redes ficaram so LinkedIn, Instagram e E-mail, nessa ordem. os links continuam com # porque ainda falta colocar os oficiais quando eles forem definidos.
+
+no formulario coloquei o campo de celular do lado do assunto. ficou:
+
+Nome | E-mail
+Assunto | Celular
+
+e mensagem, captcha e botao continuam usando a linha toda. no celular fica tudo um embaixo do outro. nao precisei inventar mascara de telefone e o campo entra automaticamente no FormData que ja manda as coisas pro Web3Forms. o hCaptcha continuou funcionando normal.
+
+depois veio a parte que eu ja aprendi que nao da pra pular: testar essa porra.
+
+testei em 1440, 1024, 820, 600 e 360px. nao apareceu barra horizontal, o menu mobile funcionou, o formulario reorganizou certo, o footer nao ficou com buraco e os quatro mini-games chegaram ate o final com as pontuacoes 3/3, 2/2, 3/3 e 2/2.
+
+
+loucura que podia tipo ir colcoando aqiu onde que eu mechi e pa mas sei la vei eu a sei onde eu tenho que ir pra mudar bagulho de html e css tlgd, eu to aprendendo agr mais  back end msm, ai sim eu coloco pra me lembrar, aqui eu ja to melhorzinoh
