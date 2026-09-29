@@ -1,824 +1,497 @@
 <!doctype html>
-<html lang="pt-br">
+<html lang="pt-BR">
     <head>
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <!-- ALTERAR: revise título, descrição e domínio antes da publicação final. -->
         <meta
             name="description"
-            content="A SoluTech cria sistemas, automações, soluções de inteligência artificial e inteligência de dados para pessoas e empresas."
+            content="A SoluTech desenvolve software sob medida, aplicações de inteligência artificial, consultoria e soluções de dados para pessoas e empresas."
         />
-        <!-- Fonte -->
+        <meta name="theme-color" content="#08111f" />
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
         <link
             href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
             rel="stylesheet"
         />
-
-        <link rel="icon" href="img/logo.png" type="image/x-icon" />
-
-        <!-- Arquivo CSS -->
-        <link rel="stylesheet" href="style.css?v=20260927-01" />
-        <title>SoluTech | Soluções inteligentes</title>
+        <link rel="icon" href="img/logo.png" type="image/png" />
+        <link rel="stylesheet" href="style.css?v=20260928-01" />
+        <title>SoluTech | Tecnologia que resolve</title>
     </head>
     <body>
-        <!-- =====================================================
-         HEADER
-         Menu principal do site
-    ====================================================== -->
+        <a class="skip-link" href="#conteudo">Ir para o conteúdo</a>
+
         <header class="header">
             <div class="container nav">
-                <!-- ALTERAR: substitua a marca e o arquivo de logo se a identidade visual mudar. -->
-                <a href="#inicio" class="logo">
-                    <div class="logo-icon">
-                        <img
-                            src="img/logo.png"
-                            alt="Logo SoluTech"
-                            width="256"
-                            height="256"
-                        />
-                    </div>
-                    <h2>SoluTech</h2>
+                <a href="#inicio" class="logo" aria-label="SoluTech — início">
+                    <span class="logo-icon">
+                        <img src="img/logo.png" alt="" width="256" height="256" />
+                    </span>
+                    <span class="logo-name">SoluTech</span>
                 </a>
 
-                <!-- MENU -->
-                <nav class="nav-menu">
-                    <a href="#inicio" class="active">
-                        <span>Início</span>
-                    </a>
-                    <a href="#solucoes">
-                        <span>Soluções</span>
-                    </a>
-                    <a href="#sobre">
-                        <span>Sobre Nós</span>
-                    </a>
-                    <!--
-                    <a href="#clientes">
-                        <span>Clientes</span>
-                    </a>
-                    -->
-                    <a class="nav-menu__cta" href="#contato">
-                        <span>Fale conosco</span>
-                    </a>
+                <nav class="nav-menu" id="primary-navigation" aria-label="Navegação principal">
+                    <a href="#inicio" class="active"><span>Início</span></a>
+                    <a href="#solucoes"><span>Soluções</span></a>
+                    <a href="#sobre"><span>Sobre nós</span></a>
+                    <a href="#cases"><span>Cases</span></a>
+                    <a class="nav-menu__cta" href="#contato"><span>Fale conosco</span></a>
                 </nav>
 
-                <!-- BOTÃO DESKTOP -->
-                <a class="btn header-cta" href="#contato">Fale conosco</a>
-
-                <!-- BOTÃO MOBILE -->
-                <button
-                    class="menu-toggle"
-                    aria-label="Abrir menu"
-                    aria-expanded="false"
-                >
-                    ☰
-                </button>
+                <div class="nav-actions">
+                    <button
+                        class="theme-toggle"
+                        type="button"
+                        aria-label="Ativar tema escuro"
+                        aria-pressed="false"
+                        title="Alternar tema"
+                    >
+                        <svg class="theme-icon theme-icon--sun" viewBox="0 0 24 24" aria-hidden="true">
+                            <circle cx="12" cy="12" r="3.5" />
+                            <path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4" />
+                        </svg>
+                        <svg class="theme-icon theme-icon--moon" viewBox="0 0 24 24" aria-hidden="true">
+                            <path d="M20 15.3A8.4 8.4 0 0 1 8.7 4a8.5 8.5 0 1 0 11.3 11.3Z" />
+                        </svg>
+                    </button>
+                    <a class="btn header-cta" href="#contato">Fale conosco</a>
+                    <button
+                        class="menu-toggle"
+                        type="button"
+                        aria-label="Abrir menu"
+                        aria-expanded="false"
+                        aria-controls="primary-navigation"
+                    >
+                        <span></span><span></span><span></span>
+                    </button>
+                </div>
             </div>
         </header>
-        <!-- =====================================================
-         HERO
-    ====================================================== -->
-        <main>
-            <!-- =================================================
-             Conteudo principal
-        ================================================== -->
-            <section class="hero" id="inicio">
-                <div class="container hero-container">
-                    <!-- LADO ESQUERDO -->
-                    <div class="hero-content">
-                        <span class="subtitle"> INOVAÇÃO QUE RESOLVE </span>
-                        <h1>
-                            Soluções que<br />
-                            transformam<br />
-                            <span>vidas e negócios.</span>
-                        </h1>
-                        <p>
-                            Tecnologia, consultoria e inovação para simplificar
-                            desafios e gerar resultados reais.
-                        </p>
-                    </div>
-                    <!-- LADO DIREITO / IMAGEM -->
-                    <div class="hero-image">
+
+        <main id="conteudo">
+            <section class="hero" id="inicio" aria-labelledby="hero-title">
+                <div class="hero-media" aria-hidden="true">
+                    <picture>
+                        <source srcset="img/banner-hero.webp" type="image/webp" />
                         <img
                             src="img/banner-hero.jpg"
-                            alt="Ambiente digital conectado representando as soluções da SoluTech"
+                            alt=""
                             width="1440"
                             height="811"
                             fetchpriority="high"
+                            decoding="async"
                         />
-                    </div>
+                    </picture>
                 </div>
-            </section>
-
-            <!-- =================================================
-             SOLUÇÕES — jornada linear com demonstrações interativas
-        ================================================== -->
-            <section class="solutions" id="solucoes">
-                <div class="container">
-                    <div class="section-title">
-                        <span>CONHEÇA NOSSAS SOLUÇÕES</span>
-                        <h2>Tecnologia aplicada<br />a necessidades reais.</h2>
+                <div class="container hero-container">
+                    <div class="hero-content">
+                        <span class="eyebrow eyebrow--light">Inovação que resolve</span>
+                        <h1 id="hero-title">
+                            Soluções que transformam<br />
+                            <span>vidas e negócios.</span>
+                        </h1>
                         <p>
-                            Apoiamos pessoas, profissionais e organizações com
-                            soluções claras, seguras e adequadas a cada objetivo.
-                            Explore os desafios abaixo e veja como atuamos na prática.
+                            Tecnologia, consultoria e inovação para simplificar desafios e
+                            gerar resultados reais.
                         </p>
                     </div>
-
-                    <nav class="solution-track" aria-label="Etapas das soluções">
-                        <a href="#solucao-tecnologia"><b>01</b><span>Tecnologia</span></a>
-                        <a href="#solucao-consultoria"><b>02</b><span>Consultoria</span></a>
-                        <a href="#solucao-ia"><b>03</b><span>IA</span></a>
-                        <a href="#solucao-dados"><b>04</b><span>Dados</span></a>
-                    </nav>
-
-                    <div class="solutions-showcase">
-                        <article class="solution-lab" id="solucao-tecnologia">
-                            <div class="solution-copy">
-                                <div class="solution-kicker">
-                                    <span class="solution-index">01</span>
-                                    <span class="solution-type">SOLUÇÕES DIGITAIS</span>
-                                </div>
-                                <h3>Organize um processo digital</h3>
-                                <p>
-                                    Desenvolvemos sistemas e automações que tornam
-                                    atividades do dia a dia mais simples, rápidas e
-                                    confiáveis para o seu negócio.
-                                </p>
-                                <div class="solution-example">
-                                    <strong>Exemplo prático</strong>
-                                    <span>Um cadastro digital bem estruturado recebe a solicitação, confere os dados e confirma o envio sem perder informações.</span>
-                                </div>
-                                <a class="solution-cta" href="#contato">Conhecer uma solução para minha necessidade <span>→</span></a>
-                            </div>
-
-                            <div class="mini-game" data-game="workflow">
-                                <div class="mini-game__interactive">
-                                    <span class="mini-game__interactive-icon" aria-hidden="true">
-                                        <svg viewBox="0 0 24 24">
-                                            <path d="m6 4 11 10-5 .6L9.5 19 6 4Z" />
-                                            <path d="M15 3v3M20 8h-3M18 4.5l-2 2" />
-                                        </svg>
-                                    </span>
-                                    <p><strong>INTERATIVO</strong>Teste você mesmo — selecione uma opção abaixo.</p>
-                                </div>
-                                <div class="mini-game__top">
-                                    <div>
-                                        <span class="mini-game__label">DESAFIO DE LÓGICA</span>
-                                        <strong>Organize as etapas de um atendimento digital</strong>
-                                    </div>
-                                    <span class="mini-game__score" data-game-score>0/3</span>
-                                </div>
-                                <p class="game-instruction">
-                                    Selecione as ações na ordem em que devem acontecer.
-                                </p>
-                                <ol class="flow-order" aria-label="Ordem selecionada">
-                                    <li data-flow-slot="0"><b>1</b><span>Aguardando a primeira etapa</span></li>
-                                    <li data-flow-slot="1"><b>2</b><span>Aguardando a segunda etapa</span></li>
-                                    <li data-flow-slot="2"><b>3</b><span>Aguardando a terceira etapa</span></li>
-                                </ol>
-                                <div class="choice-game flow-options" role="group" aria-label="Etapas disponíveis">
-                                    <button type="button" data-flow-step="confirm">Confirmar o recebimento</button>
-                                    <button type="button" data-flow-step="receive">Receber a solicitação</button>
-                                    <button type="button" data-flow-step="validate">Conferir os dados</button>
-                                </div>
-                                <p class="mini-game__feedback" data-game-feedback aria-live="polite">
-                                    Comece pela primeira ação realizada pelo sistema.
-                                </p>
-                            </div>
-                        </article>
-
-                        <article class="solution-lab solution-lab--reverse" id="solucao-consultoria">
-                            <div class="solution-copy">
-                                <div class="solution-kicker">
-                                    <span class="solution-index">02</span>
-                                    <span class="solution-type">DIREÇÃO E ESTRATÉGIA</span>
-                                </div>
-                                <h3>Defina prioridades com segurança</h3>
-                                <p>
-                                    Analisamos o cenário, identificamos prioridades
-                                    e construímos um plano viável. Assim, pessoas e
-                                    empresas podem investir tempo e recursos com
-                                    mais confiança.
-                                </p>
-                                <div class="solution-example">
-                                    <strong>Exemplo prático</strong>
-                                    <span>Antes de adotar uma nova ferramenta, é importante descobrir onde os atrasos realmente acontecem e como medir a melhoria.</span>
-                                </div>
-                                <a class="solution-cta" href="#contato">Planejar uma solução <span>→</span></a>
-                            </div>
-
-                            <div class="mini-game" data-game="strategy">
-                                <div class="mini-game__interactive">
-                                    <span class="mini-game__interactive-icon" aria-hidden="true">
-                                        <svg viewBox="0 0 24 24">
-                                            <path d="m6 4 11 10-5 .6L9.5 19 6 4Z" />
-                                            <path d="M15 3v3M20 8h-3M18 4.5l-2 2" />
-                                        </svg>
-                                    </span>
-                                    <p><strong>INTERATIVO</strong>Teste você mesmo — selecione uma opção abaixo.</p>
-                                </div>
-                                <div class="mini-game__top">
-                                    <div>
-                                        <span class="mini-game__label">SIMULAÇÃO DE PLANEJAMENTO</span>
-                                        <strong>Uma atividade apresenta atrasos frequentes. Como agir?</strong>
-                                    </div>
-                                    <span class="mini-game__score" data-game-score>0/2</span>
-                                </div>
-                                <div class="game-stage" data-strategy-stage="diagnosis">
-                                    <span class="game-question">1. Qual deve ser a primeira providência?</span>
-                                    <div class="choice-game" role="group" aria-label="Opções de planejamento">
-                                        <button type="button" data-strategy-option="tool">Adquirir uma ferramenta imediatamente</button>
-                                        <button type="button" data-strategy-option="map">Entender o processo e localizar a causa</button>
-                                        <button type="button" data-strategy-option="automate">Automatizar todas as atividades</button>
-                                    </div>
-                                </div>
-                                <div class="strategy-route" aria-hidden="true">
-                                    <span>Diagnóstico</span><i></i><span>Prioridade</span><i></i><span>Resultado</span>
-                                </div>
-                                <div class="game-stage game-stage--followup" data-strategy-stage="metric" hidden>
-                                    <span class="game-question">2. Qual medida ajuda a confirmar a melhoria?</span>
-                                    <div class="choice-game" role="group" aria-label="Medidas de resultado">
-                                        <button type="button" data-strategy-metric="appearance">A aparência da ferramenta</button>
-                                        <button type="button" data-strategy-metric="time">O tempo médio de conclusão</button>
-                                        <button type="button" data-strategy-metric="meetings">A quantidade de reuniões</button>
-                                    </div>
-                                </div>
-                                <p class="mini-game__feedback" data-game-feedback aria-live="polite">
-                                    Conclua as duas decisões para formar um plano objetivo.
-                                </p>
-                            </div>
-                        </article>
-
-                        <article class="solution-lab" id="solucao-ia">
-                            <div class="solution-copy">
-                                <div class="solution-kicker">
-                                    <span class="solution-index">03</span>
-                                    <span class="solution-type">AUTOMAÇÃO INTELIGENTE</span>
-                                </div>
-                                <h3>Direcione solicitações com agilidade</h3>
-                                <p>
-                                    A inteligência artificial pode organizar
-                                    solicitações e encaminhá-las ao destino adequado.
-                                    Isso reduz o tempo de espera sem substituir a
-                                    atenção humana nas decisões importantes.
-                                </p>
-                                <div class="solution-example">
-                                    <strong>Exemplo prático</strong>
-                                    <span>Mensagens sobre pagamentos, dúvidas técnicas ou novos serviços podem ser separadas e encaminhadas em poucos segundos.</span>
-                                </div>
-                                <a class="solution-cta" href="#contato">Aplicar IA à minha rotina <span>→</span></a>
-                            </div>
-
-                            <div class="mini-game" data-game="ai-route">
-                                <div class="mini-game__interactive">
-                                    <span class="mini-game__interactive-icon" aria-hidden="true">
-                                        <svg viewBox="0 0 24 24">
-                                            <path d="m6 4 11 10-5 .6L9.5 19 6 4Z" />
-                                            <path d="M15 3v3M20 8h-3M18 4.5l-2 2" />
-                                        </svg>
-                                    </span>
-                                    <p><strong>INTERATIVO</strong>Teste você mesmo — selecione uma opção abaixo.</p>
-                                </div>
-                                <div class="mini-game__top">
-                                    <div>
-                                        <span class="mini-game__label">TRIAGEM INTELIGENTE</span>
-                                        <strong>Encaminhe três solicitações ao destino adequado</strong>
-                                    </div>
-                                    <span class="mini-game__score" data-game-score>0/3</span>
-                                </div>
-                                <blockquote class="ticket-card">
-                                    <p data-ticket-message>“Minha cobrança veio duplicada este mês. Preciso de ajuda.”</p>
-                                    <span data-ticket-meta>Solicitação 1 de 3</span>
-                                </blockquote>
-                                <div class="choice-game choice-game--inline" role="group" aria-label="Setores disponíveis">
-                                    <button type="button" data-ai-route="sales">Vendas</button>
-                                    <button type="button" data-ai-route="support">Suporte técnico</button>
-                                    <button type="button" data-ai-route="finance">Financeiro</button>
-                                </div>
-                                <p class="mini-game__feedback" data-game-feedback aria-live="polite">
-                                    Leia a necessidade apresentada e escolha uma área.
-                                </p>
-                            </div>
-                        </article>
-
-                        <article class="solution-lab solution-lab--reverse" id="solucao-dados">
-                            <div class="solution-copy">
-                                <div class="solution-kicker">
-                                    <span class="solution-index">04</span>
-                                    <span class="solution-type">DECISÕES ORIENTADAS</span>
-                                </div>
-                                <h3>Transforme informações em decisões</h3>
-                                <p>
-                                    Reunimos informações dispersas e as apresentamos
-                                    de forma clara. Com isso, uma pessoa ou organização
-                                    pode identificar tendências, acompanhar resultados
-                                    e decidir com mais segurança.
-                                </p>
-                                <div class="solution-example">
-                                    <strong>Exemplo prático</strong>
-                                    <span>Um histórico mensal pode revelar o melhor período e orientar a próxima ação, sem exigir conhecimento em análise de dados.</span>
-                                </div>
-                                <a class="solution-cta" href="#contato">Organizar minhas informações <span>→</span></a>
-                            </div>
-
-                            <div class="mini-game" data-game="data">
-                                <div class="mini-game__interactive">
-                                    <span class="mini-game__interactive-icon" aria-hidden="true">
-                                        <svg viewBox="0 0 24 24">
-                                            <path d="m6 4 11 10-5 .6L9.5 19 6 4Z" />
-                                            <path d="M15 3v3M20 8h-3M18 4.5l-2 2" />
-                                        </svg>
-                                    </span>
-                                    <p><strong>INTERATIVO</strong>Teste você mesmo — selecione uma opção abaixo.</p>
-                                </div>
-                                <div class="mini-game__top">
-                                    <div>
-                                        <span class="mini-game__label">LEITURA E DECISÃO</span>
-                                        <strong>Observe o gráfico e tome duas decisões</strong>
-                                    </div>
-                                    <span class="mini-game__score" data-game-score>0/2</span>
-                                </div>
-                                <span class="game-question">1. Qual mês apresentou o maior resultado?</span>
-                                <div class="bar-game" role="group" aria-label="Gráfico de vendas por mês">
-                                    <button type="button" style="--bar: 44%" data-data-option="false"><span class="bar-game__plot"><span>42</span><i></i></span><b>Jan</b></button>
-                                    <button type="button" style="--bar: 66%" data-data-option="false"><span class="bar-game__plot"><span>63</span><i></i></span><b>Fev</b></button>
-                                    <button type="button" style="--bar: 56%" data-data-option="false"><span class="bar-game__plot"><span>54</span><i></i></span><b>Mar</b></button>
-                                    <button type="button" style="--bar: 88%" data-data-option="true"><span class="bar-game__plot"><span>84</span><i></i></span><b>Abr</b></button>
-                                </div>
-                                <div class="game-stage game-stage--followup" data-data-stage="insight" hidden>
-                                    <span class="game-question">2. Qual é a decisão mais responsável?</span>
-                                    <div class="choice-game" role="group" aria-label="Decisões baseadas no gráfico">
-                                        <button type="button" data-data-insight="copy">Repetir tudo sem verificar o contexto</button>
-                                        <button type="button" data-data-insight="analyze">Analisar o que favoreceu abril e testar a estratégia</button>
-                                        <button type="button" data-data-insight="ignore">Ignorar o resultado e manter o plano atual</button>
-                                    </div>
-                                </div>
-                                <p class="mini-game__feedback" data-game-feedback aria-live="polite">
-                                    Comece identificando a maior barra do gráfico.
-                                </p>
-                            </div>
-                        </article>
-                    </div>
-
-                    <div class="solutions-finish">
-                        <span aria-hidden="true">✓</span>
-                        <p><strong>Tecnologia deve ser clara, útil e próxima.</strong> Apresente sua necessidade pessoal, profissional ou empresarial e construiremos o próximo passo.</p>
-                        <a class="btn" href="#contato">Apresentar minha necessidade →</a>
-                    </div>
                 </div>
             </section>
 
-            <!-- =================================================
-             PESSOAS E EMPRESAS
-        ================================================== -->
-            <section class="audience" id="solucoes-para-voce">
+            <section class="solutions section" id="solucoes" aria-labelledby="solutions-title">
                 <div class="container">
-                    <header class="audience-heading">
+                    <header class="section-heading section-heading--split">
                         <div>
-                            <span>SOLUÇÕES PARA CADA JORNADA</span>
-                            <h2>
-                                Tecnologia que entende<br /><em
-                                    >quem está do outro lado.</em
-                                >
-                            </h2>
+                            <span class="eyebrow">O que fazemos</span>
+                            <h2 id="solutions-title">Soluções diretas para desafios reais.</h2>
                         </div>
                         <p>
-                            Da rotina individual aos grandes desafios de
-                            negócio, criamos soluções que acompanham cada
-                            objetivo.
+                            Da ideia à operação, combinamos desenvolvimento e orientação
+                            para construir apenas o que faz sentido para o seu contexto.
                         </p>
                     </header>
-                    <div class="audience-grid">
-                        <!-- PESSOAS FÍSICAS -->
-                        <article class="audience-card">
-                            <div class="audience-text">
-                                <span class="audience-number">PESSOAS</span>
-                                <h2>Para Pessoas Físicas</h2>
-                                <p>
-                                    Soluções práticas para simplificar o seu dia
-                                    a dia e alcançar seus objetivos pessoais.
-                                </p>
-                                <!-- LISTA -->
-                                <ul>
-                                    <li>Sistemas para negócios</li>
-                                    <li>Automação de processos</li>
-                                    <li>Organização e gestão</li>
-                                    <li>Suporte tecnológico</li>
-                                </ul>
-                                <a href="#contato" class="btn">
-                                    Quero saber mais →
-                                </a>
+
+                    <div class="solutions-grid">
+                        <article class="solution-card">
+                            <div class="solution-card__top">
+                                <span class="solution-number">01</span>
+                                <svg viewBox="0 0 24 24" aria-hidden="true">
+                                    <path d="m8 9-4 3 4 3M16 9l4 3-4 3M14 5l-4 14" />
+                                </svg>
                             </div>
-                            <!-- ALTERAR: troque a imagem caso a empresa queira representar outro público. -->
-                            <div class="audience-img">
-                                <img
-                                    src="img/card-pessoas.jpg"
-                                    alt="Profissionais representando soluções para pessoas"
-                                    width="720"
-                                    height="1080"
-                                    loading="lazy"
-                                    decoding="async"
-                                />
-                                <span class="audience-img-label"
-                                    >FEITO PARA VOCÊ</span
-                                >
+                            <h3>Software sob medida</h3>
+                            <p>
+                                Sistemas web, mobile, plataformas, APIs e integrações
+                                desenvolvidas para o seu processo.
+                            </p>
+                            <span class="solution-detail">Construção e evolução</span>
+                        </article>
+
+                        <article class="solution-card">
+                            <div class="solution-card__top">
+                                <span class="solution-number">02</span>
+                                <svg viewBox="0 0 24 24" aria-hidden="true">
+                                    <rect x="5" y="5" width="14" height="14" rx="3" />
+                                    <path d="M9 9h6v6H9zM9 2v3M15 2v3M9 19v3M15 19v3M2 9h3M19 9h3M2 15h3M19 15h3" />
+                                </svg>
+                            </div>
+                            <h3>IA aplicada ao processo</h3>
+                            <p>
+                                Classificação, assistência e automação em pontos específicos
+                                onde a inteligência artificial gera valor prático.
+                            </p>
+                            <span class="solution-detail">Uso responsável e objetivo</span>
+                        </article>
+
+                        <article class="solution-card">
+                            <div class="solution-card__top">
+                                <span class="solution-number">03</span>
+                                <svg viewBox="0 0 24 24" aria-hidden="true">
+                                    <path d="M4 19V8M4 8l4-4 4 4M12 19v-6M12 13l4-4 4 4M4 19h16" />
+                                </svg>
+                            </div>
+                            <h3>Consultoria</h3>
+                            <p>
+                                Diagnóstico, definição de prioridades e um plano viável para
+                                investir tempo e recursos com segurança.
+                            </p>
+                            <span class="solution-detail">Direção antes da tecnologia</span>
+                        </article>
+
+                        <article class="solution-card">
+                            <div class="solution-card__top">
+                                <span class="solution-number">04</span>
+                                <svg viewBox="0 0 24 24" aria-hidden="true">
+                                    <path d="M4 19h16M6 16v-5M12 16V6M18 16V9" />
+                                </svg>
+                            </div>
+                            <h3>Dados para decidir</h3>
+                            <p>
+                                Organização de informações, dashboards, relatórios e
+                                indicadores claros para apoiar decisões do dia a dia.
+                            </p>
+                            <span class="solution-detail">Informação útil e acessível</span>
+                        </article>
+                    </div>
+
+                </div>
+            </section>
+
+            <section class="audience section" id="publicos" aria-labelledby="audience-title">
+                <div class="container">
+                    <header class="section-heading section-heading--split">
+                        <div>
+                            <span class="eyebrow">Para quem criamos</span>
+                            <h2 id="audience-title">Tecnologia próxima de quem usa.</h2>
+                        </div>
+                        <p>
+                            Escopo, linguagem e entrega adaptados ao tamanho do desafio —
+                            seja para uma necessidade individual ou uma operação empresarial.
+                        </p>
+                    </header>
+
+                    <div class="audience-grid">
+                        <article class="audience-card">
+                            <div class="audience-copy">
+                                <span class="card-label">Consumidor final</span>
+                                <h3>Uma solução para a sua necessidade.</h3>
+                                <p>
+                                    Projetos digitais, automações e orientação para quem
+                                    contrata tecnologia diretamente e quer avançar com segurança.
+                                </p>
+                                <ul>
+                                    <li>Atendimento próximo</li>
+                                    <li>Escopo explicado com clareza</li>
+                                    <li>Solução adequada ao objetivo</li>
+                                </ul>
+                            </div>
+                            <div class="audience-image">
+                                <picture>
+                                    <source srcset="img/card-pessoas.webp" type="image/webp" />
+                                    <img
+                                        src="img/card-pessoas.jpg"
+                                        alt="Profissionais colaborando em um projeto"
+                                        width="720"
+                                        height="1080"
+                                        loading="lazy"
+                                        decoding="async"
+                                    />
+                                </picture>
                             </div>
                         </article>
-                        <!-- EMPRESAS -->
+
                         <article class="audience-card">
-                            <div class="audience-text">
-                                <span class="audience-number">EMPRESAS</span>
-                                <h2>Para Empresas</h2>
+                            <div class="audience-copy">
+                                <span class="card-label">Empresas</span>
+                                <h3>Tecnologia integrada à operação.</h3>
                                 <p>
-                                    Soluções completas para impulsionar seu
-                                    negócio, reduzir custos e gerar mais
-                                    resultados.
+                                    Sistemas, integrações e consultoria para reduzir atritos,
+                                    organizar processos e sustentar o crescimento.
                                 </p>
                                 <ul>
-                                    <li>Sistemas para empresas</li>
-                                    <li>Consultoria estratégica</li>
-                                    <li>Segurança da informação</li>
-                                    <li>Análise de dados</li>
+                                    <li>Software para processos reais</li>
+                                    <li>Integrações e automações</li>
+                                    <li>Indicadores para gestão</li>
                                 </ul>
-                                <a href="#contato" class="btn">
-                                    Fale com um especialista →
-                                </a>
                             </div>
-                            <!-- ALTERAR: troque a imagem caso a empresa queira representar outro público. -->
-                            <div class="audience-img">
-                                <img
-                                    src="img/card-empresas.jpg"
-                                    alt="Edifícios representando soluções empresariais"
-                                    width="720"
-                                    height="1080"
-                                    loading="lazy"
-                                    decoding="async"
-                                />
-                                <span class="audience-img-label"
-                                    >FEITO PARA CRESCER</span
-                                >
+                            <div class="audience-image">
+                                <picture>
+                                    <source srcset="img/card-empresas.webp" type="image/webp" />
+                                    <img
+                                        src="img/card-empresas.jpg"
+                                        alt="Edifícios representando soluções empresariais"
+                                        width="720"
+                                        height="1080"
+                                        loading="lazy"
+                                        decoding="async"
+                                    />
+                                </picture>
                             </div>
                         </article>
                     </div>
                 </div>
             </section>
 
-            <!-- =================================================
-             SOBRE NÓS
-        ================================================== -->
-            <section class="about" id="sobre">
-                <div class="container about-container">
-                    <!-- ALTERAR: revise missão, visão e ano-meta conforme o planejamento da empresa. -->
-                    <header class="about-heading">
-                        <span class="about-eyebrow">NOSSA ESSÊNCIA</span>
-                        <h2>
-                            O que nos move.<br /><span
-                                >Onde queremos chegar.</span
-                            >
-                        </h2>
+            <section class="about section" id="sobre" aria-labelledby="about-title">
+                <div class="container">
+                    <header class="about-intro">
+                        <div>
+                            <span class="eyebrow">Sobre a SoluTech</span>
+                            <h2 id="about-title">Tecnologia com método e relações humanas.</h2>
+                        </div>
                         <p>
-                            Duas direções, um mesmo propósito: usar tecnologia
-                            para construir o futuro.
+                            Transformamos necessidades em software com excelência técnica,
+                            transparência e proximidade em cada etapa.
                         </p>
                     </header>
 
-                    <div
-                        class="about-compass"
-                        aria-label="Missão e visão da SoluTech"
-                    >
-                        <article class="purpose-card purpose-card--mission">
-                            <div class="purpose-card__top">
-                                <span class="purpose-card__number">01</span>
-                                <div
-                                    class="purpose-card__icon"
-                                    aria-hidden="true"
-                                >
-                                    <svg viewBox="0 0 24 24">
-                                        <circle cx="12" cy="12" r="8" />
-                                        <circle cx="12" cy="12" r="3" />
-                                        <path
-                                            d="M12 2v3M22 12h-3M12 22v-3M2 12h3"
-                                        />
-                                    </svg>
-                                </div>
-                            </div>
-
-                            <span class="purpose-card__label"
-                                >NOSSO PRESENTE</span
-                            >
-
+                    <div class="about-grid">
+                        <article class="about-card about-card--featured">
+                            <span class="about-card__number">01</span>
                             <h3>Missão</h3>
                             <p>
-                                Transformar necessidades em soluções de software
-                                inovadoras, utilizando a tecnologia para
-                                resolver qualquer desafio de nossos clientes.
-                                Buscamos a excelência técnica através de
-                                relacionamentos éticos, transparentes e
-                                humanizados com nossos parceiros, fornecedores e
-                                colaboradores.
+                                Criar soluções de software que resolvam desafios reais, com
+                                qualidade técnica e relações éticas, transparentes e humanas.
                             </p>
                         </article>
-
-                        <div class="purpose-route" aria-hidden="true">
-                            <span class="purpose-route__connector"></span>
-                        </div>
-
-                        <article class="purpose-card purpose-card--vision">
-                            <div
-                                class="purpose-card__glow"
-                                aria-hidden="true"
-                            ></div>
-                            <div class="purpose-card__top">
-                                <span class="purpose-card__number">02</span>
-                                <div
-                                    class="purpose-card__icon"
-                                    aria-hidden="true"
-                                >
-                                    <svg viewBox="0 0 24 24">
-                                        <path d="M3 17 9 11l4 4 8-9" />
-                                        <path d="M15 6h6v6" />
-                                    </svg>
-                                </div>
-                            </div>
-
-                            <span class="purpose-card__label"
-                                >NOSSO HORIZONTE</span
-                            >
-
+                        <article class="about-card">
+                            <span class="about-card__number">02</span>
+                            <h3>Como trabalhamos</h3>
+                            <p>
+                                Entendemos o contexto, definimos prioridades e construímos em
+                                ciclos claros, sempre próximos de quem vai usar a solução.
+                            </p>
+                        </article>
+                        <article class="about-card">
+                            <span class="about-card__number">03</span>
+                            <h3>Compromisso</h3>
+                            <p>
+                                Comunicar com clareza, entregar com responsabilidade e manter
+                                a tecnologia simples de operar e evoluir.
+                            </p>
+                        </article>
+                        <article class="about-card about-card--vision">
+                            <span class="about-card__number">04</span>
                             <h3>Visão</h3>
                             <p>
-                                Ser a empresa líder de mercado em
-                                desenvolvimento de software, reconhecida
-                                internacionalmente como referência absoluta em
-                                qualidade de entrega e excelência nas relações
-                                humanas até 2031.
+                                Ser referência em desenvolvimento de software, qualidade de
+                                entrega e excelência nas relações humanas até 2031.
                             </p>
-                            <div
-                                class="vision-year"
-                                aria-label="Horizonte: ano 2031"
-                            >
-                                <span>HORIZONTE</span><strong>2031</strong>
-                            </div>
+                            <strong class="vision-year">2031</strong>
                         </article>
                     </div>
                 </div>
             </section>
 
-            <!-- =================================================
-             CONTATO  (Formulario de contato)
-        ================================================== -->
-            <section class="contact" id="contato">
-                <div class="container contact-container">
-                    <div class="contact-content">
-                        <span class="contact-subtitle">ENTRE EM CONTATO</span>
-                        <h2>Vamos conversar sobre sua próxima ideia?</h2>
-                        <p class="contact-description">
-                            Tem alguma dúvida, projeto ou desafio? Entre em
-                            contato com a nossa equipe. Estamos prontos para
-                            encontrar a melhor solução para você.
+            <section class="cases section" id="cases" aria-labelledby="cases-title">
+                <div class="container">
+                    <header class="section-heading section-heading--split">
+                        <div>
+                            <span class="eyebrow">Nossos trabalhos</span>
+                            <h2 id="cases-title">Projetos que saem do papel.</h2>
+                        </div>
+                        <p>
+                            Uma visão do cuidado técnico por trás de cada entrega, da interface
+                            às regras que mantêm o produto funcionando.
                         </p>
-                        <!-- ALTERAR: endereço, telefone e e-mail oficiais da empresa. -->
-                        <div class="contact-info">
-                            <div class="contact-info-item">
-                                <div
-                                    class="contact-info-icon"
-                                    aria-hidden="true"
-                                >
-                                    <svg viewBox="0 0 24 24">
-                                        <path
-                                            d="M12 21s7-5.1 7-12a7 7 0 1 0-14 0c0 6.9 7 12 7 12Z"
-                                        />
-                                        <circle cx="12" cy="9" r="2.3" />
-                                    </svg>
-                                </div>
-                                <div>
-                                    <strong>Endereço</strong>
-                                    <p>AV ANTONIO TORRES GALVAO - RECIFE - PE</p>
-                                </div>
-                            </div>
-                            <div class="contact-info-item">
-                                <div
-                                    class="contact-info-icon"
-                                    aria-hidden="true"
-                                >
-                                    <svg viewBox="0 0 24 24">
-                                        <path
-                                            d="M8.2 3.8 5.9 5.1c-.7.4-1 1.2-.8 2 1.2 5 4.8 8.6 9.8 9.8.8.2 1.6-.1 2-.8l1.3-2.3-3.1-2.1-1.5 1.5a12.7 12.7 0 0 1-2.9-2.9l1.5-1.5-2.1-3.1Z"
-                                        />
-                                    </svg>
-                                </div>
-                                <div>
-                                    <strong>Telefone</strong>
-                                    <p>(+55) xxxx-xxxx</p>
-                                </div>
-                            </div>
-                            <div class="contact-info-item">
-                                <div
-                                    class="contact-info-icon"
-                                    aria-hidden="true"
-                                >
-                                    <svg viewBox="0 0 24 24">
-                                        <rect
-                                            x="3.5"
-                                            y="5.5"
-                                            width="17"
-                                            height="13"
-                                            rx="1.5"
-                                        />
-                                        <path d="m4.5 7 7.5 5.8L19.5 7" />
-                                    </svg>
-                                </div>
-                                <div>
-                                    <strong>E-mail</strong>
-                                    <p>comercial@solutechdigital.com.br</p>
-                                </div>
-                            </div>
+                    </header>
+
+                    <!-- CASE PLACEHOLDER: substitua nome, descrição, tecnologias e mockup por um projeto real aprovado para divulgação. -->
+                    <article class="case-card">
+                        <div class="case-copy">
+                            <span class="case-category">Case demonstrativo · Sistema web</span>
+                            <h3>Plataforma de Gestão</h3>
+                            <p>
+                                Estrutura visual reutilizável para apresentar um projeto real,
+                                seu contexto, a solução construída e as tecnologias utilizadas.
+                            </p>
+                            <ul class="tech-list" aria-label="Tecnologias de exemplo">
+                                <li>Interface web</li>
+                                <li>API</li>
+                                <li>Banco de dados</li>
+                            </ul>
+                            <small>Conteúdo demonstrativo — nenhum cliente ou resultado comercial foi atribuído.</small>
                         </div>
 
-                        <form
-                            class="contact-form"
-                            id="contact-form"
-                            action="https://api.web3forms.com/submit"
-                            method="post"
-                            accept-charset="UTF-8"
-                        >
-                            <!-- ALTERAR: chave pública do formulário Web3Forms da conta oficial. -->
-                            <input
-                                type="hidden"
-                                name="access_key"
-                                value="8c6ff5fa-a165-4b97-853d-3c1e10e2207f"
-                            />
-                            <input
-                                type="text"
-                                name="name"
-                                placeholder="Seu nome"
-                                autocomplete="name"
-                                maxlength="100"
-                                required
-                            />
-                            <input
-                                type="email"
-                                name="email"
-                                placeholder="Seu e-mail"
-                                autocomplete="email"
-                                maxlength="254"
-                                required
-                            />
-                            <input
-                                type="text"
-                                name="subject"
-                                placeholder="Assunto"
-                                maxlength="140"
-                                required
-                            />
-                            <input
-                                type="tel"
-                                name="phone"
-                                placeholder="Seu celular"
-                                autocomplete="tel"
-                                inputmode="tel"
-                                maxlength="20"
-                                required
-                            />
-                            <textarea
-                                name="message"
-                                placeholder="Digite sua mensagem..."
-                                rows="5"
-                                maxlength="2000"
-                                required
-                            ></textarea>
-                            <!--
-                                SEGURANÇA: hCaptcha validado pelo Web3Forms.
-                                No painel do Web3Forms, abra este formulário e
-                                ative hCaptcha como proteção obrigatória.
-                            -->
-                            <div class="captcha-field">
-                                <span class="captcha-field__label"
-                                    >Verificação de segurança</span
-                                >
-                                <div
-                                    class="h-captcha"
-                                    data-captcha="true"
-                                    data-lang="pt"
-                                ></div>
-                                <noscript>
-                                    <p class="captcha-warning">
-                                        Ative o JavaScript para realizar a
-                                        verificação de segurança.
-                                    </p>
-                                </noscript>
+                        <div class="case-showcase">
+                            <div class="product-preview" aria-label="Mockup demonstrativo de um painel de gestão">
+                                <div class="product-preview__top">
+                                    <span></span><span></span><span></span>
+                                    <b>visão geral</b>
+                                </div>
+                                <div class="product-preview__body">
+                                    <aside aria-hidden="true">
+                                        <i></i><i></i><i></i><i></i>
+                                    </aside>
+                                    <div class="dashboard">
+                                        <div class="dashboard__heading">
+                                            <div><span>PAINEL</span><strong>Visão geral</strong></div>
+                                            <button type="button" tabindex="-1">Exportar</button>
+                                        </div>
+                                        <div class="dashboard__stats">
+                                            <div><span>Processos</span><strong>128</strong><small>em acompanhamento</small></div>
+                                            <div><span>Concluídos</span><strong>84%</strong><small>período atual</small></div>
+                                            <div><span>Pendências</span><strong>12</strong><small>aguardando ação</small></div>
+                                        </div>
+                                        <div class="dashboard__chart" aria-hidden="true">
+                                            <span style="--value: 42%"></span>
+                                            <span style="--value: 58%"></span>
+                                            <span style="--value: 51%"></span>
+                                            <span style="--value: 76%"></span>
+                                            <span style="--value: 68%"></span>
+                                            <span style="--value: 88%"></span>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
-                            <button type="submit" class="btn">
-                                Enviar mensagem →
-                            </button>
-                            <p
-                                class="form-status"
-                                id="form-status"
-                                role="status"
-                                aria-live="polite"
-                            ></p>
-                        </form>
+
+                            <div class="code-window" aria-label="Exemplo visual de código do projeto">
+                                <div class="code-window__bar">
+                                    <span class="window-dot window-dot--red"></span>
+                                    <span class="window-dot window-dot--yellow"></span>
+                                    <span class="window-dot window-dot--green"></span>
+                                    <b>projeto.js</b>
+                                </div>
+                                <pre><code><span class="line"><i>01</i><span class="token-keyword">const</span> projeto = {</span>
+<span class="line"><i>02</i>  tipo: <span class="token-string">"plataforma web"</span>,</span>
+<span class="line"><i>03</i>  foco: <span class="token-string">"processo real"</span>,</span>
+<span class="line"><i>04</i>  entrega: <span class="token-string">"sob medida"</span>,</span>
+<span class="line"><i>05</i>  status: <span class="token-function">validarComCliente</span>()</span>
+<span class="line"><i>06</i>};</span></code></pre>
+                            </div>
+                        </div>
+                    </article>
+                </div>
+            </section>
+
+            <section class="contact section" id="contato" aria-labelledby="contact-title">
+                <div class="container contact-container">
+                    <div class="contact-copy">
+                        <span class="eyebrow">Entre em contato</span>
+                        <h2 id="contact-title">Vamos entender o seu próximo desafio?</h2>
+                        <p>
+                            Conte o que precisa resolver. Nossa equipe responde com uma visão
+                            clara sobre possibilidades e próximos passos.
+                        </p>
+
+                        <address class="contact-info">
+                            <div class="contact-info-item">
+                                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21s7-5.1 7-12a7 7 0 1 0-14 0c0 6.9 7 12 7 12Z" /><circle cx="12" cy="9" r="2.3" /></svg>
+                                <div><strong>Endereço</strong><span>Av. Antonio Torres Galvão — Recife, PE</span></div>
+                            </div>
+                            <div class="contact-info-item">
+                                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8.2 3.8 5.9 5.1c-.7.4-1 1.2-.8 2 1.2 5 4.8 8.6 9.8 9.8.8.2 1.6-.1 2-.8l1.3-2.3-3.1-2.1-1.5 1.5a12.7 12.7 0 0 1-2.9-2.9l1.5-1.5-2.1-3.1Z" /></svg>
+                                <div><strong>Telefone</strong><span>(+55) xxxx-xxxx</span></div>
+                            </div>
+                            <a class="contact-info-item" href="mailto:comercial@solutechdigital.com.br">
+                                <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3.5" y="5.5" width="17" height="13" rx="1.5" /><path d="m4.5 7 7.5 5.8L19.5 7" /></svg>
+                                <div><strong>E-mail</strong><span>comercial@solutechdigital.com.br</span></div>
+                            </a>
+                        </address>
                     </div>
+
+                    <form
+                        class="contact-form"
+                        id="contact-form"
+                        action="https://api.web3forms.com/submit"
+                        method="post"
+                        accept-charset="UTF-8"
+                    >
+                        <input type="hidden" name="access_key" value="8c6ff5fa-a165-4b97-853d-3c1e10e2207f" />
+                        <div class="form-field">
+                            <label for="contact-name">Nome</label>
+                            <input id="contact-name" type="text" name="name" placeholder="Como podemos chamar você?" autocomplete="name" maxlength="100" required />
+                        </div>
+                        <div class="form-field">
+                            <label for="contact-email">E-mail</label>
+                            <input id="contact-email" type="email" name="email" placeholder="voce@empresa.com" autocomplete="email" maxlength="254" required />
+                        </div>
+                        <div class="form-field">
+                            <label for="contact-subject">Assunto</label>
+                            <input id="contact-subject" type="text" name="subject" placeholder="Sobre o que vamos conversar?" maxlength="140" required />
+                        </div>
+                        <div class="form-field">
+                            <label for="contact-phone">Celular</label>
+                            <input id="contact-phone" type="tel" name="phone" placeholder="(00) 00000-0000" autocomplete="tel" inputmode="tel" maxlength="20" required />
+                        </div>
+                        <div class="form-field form-field--full">
+                            <label for="contact-message">Mensagem</label>
+                            <textarea id="contact-message" name="message" placeholder="Descreva sua necessidade em poucas palavras." rows="4" maxlength="2000" required></textarea>
+                        </div>
+                        <div class="captcha-field">
+                            <span class="captcha-field__label">Verificação de segurança</span>
+                            <div class="h-captcha" data-captcha="true" data-lang="pt"></div>
+                            <noscript><p class="captcha-warning">Ative o JavaScript para realizar a verificação de segurança.</p></noscript>
+                        </div>
+                        <button type="submit" class="btn form-submit">Enviar mensagem <span aria-hidden="true">→</span></button>
+                        <p class="form-status" id="form-status" role="status" aria-live="polite"></p>
+                    </form>
                 </div>
             </section>
         </main>
 
-        <!-- =================================================
-             SEÇÃO FUTURA (clientes)
-             Este ID existe porque o menu já possui o link Clientes.
-        ================================================== -->
-        <section id="clientes"></section>
-
-        <!-- =====================================================
-         FOOTER
-    ====================================================== -->
         <footer class="footer">
             <div class="container footer-grid">
-                <!-- COLUNA PRINCIPAL -->
                 <div class="footer-brand">
-                    <!-- ALTERAR: substitua a marca e o nome caso a identidade visual mude. -->
-                    <a href="#inicio" class="logo">
-                        <div class="logo-icon">
-                            <img
-                                src="img/logo.png"
-                                alt=""
-                                width="256"
-                                height="256"
-                                loading="lazy"
-                                decoding="async"
-                            />
-                        </div>
-                        <h2>SoluTech</h2>
+                    <a href="#inicio" class="logo" aria-label="SoluTech — início">
+                        <span class="logo-icon"><img src="img/logo.png" alt="" width="256" height="256" loading="lazy" decoding="async" /></span>
+                        <span class="logo-name">SoluTech</span>
                     </a>
-                    <p>
-                        Conectamos pessoas e empresas às melhores soluções para
-                        um futuro mais simples, inteligente e eficiente.
-                    </p>
+                    <p>Tecnologia clara, útil e construída para necessidades reais.</p>
                 </div>
-                <!-- SOLUÇÕES -->
                 <div>
                     <h3>Soluções</h3>
-                    <a href="#solucoes">Tecnologia</a>
+                    <a href="#solucoes">Software</a>
+                    <a href="#solucoes">Inteligência artificial</a>
                     <a href="#solucoes">Consultoria</a>
-                    <a href="#solucoes">IA</a>
                     <a href="#solucoes">Dados</a>
                 </div>
-                <!-- EMPRESA -->
                 <div>
                     <h3>Empresa</h3>
-                    <a href="#sobre">Sobre Nós</a>
-                    <a href="#clientes">Clientes</a>
-                    <a href="#servicos">Serviços</a>
+                    <a href="#sobre">Sobre nós</a>
+                    <a href="#cases">Cases</a>
+                    <a href="#publicos">Para quem criamos</a>
+                    <a href="#contato">Contato</a>
                 </div>
-                <!-- ALTERAR: telefone, e-mail, endereço e links das redes sociais oficiais. -->
                 <div>
-                    <h3>Contato</h3>
+                    <h3>Fale com a SoluTech</h3>
                     <p>(+55) xxxx-xxxx</p>
-                    <p>comercial@solutechdigital.com.br</p>
-                    <!-- ALTERAR: adicione aqui o endereço oficial se ele também aparecer no rodapé. -->
-                    <!-- ALTERAR: substitua cada # pelo link oficial correspondente. -->
+                    <a href="mailto:comercial@solutechdigital.com.br">comercial@solutechdigital.com.br</a>
+                    <!-- Substitua # pelos perfis oficiais quando estiverem disponíveis. -->
                     <nav class="footer-social" aria-label="Redes sociais">
-                        <a href="#" aria-label="LinkedIn"
-                            ><svg viewBox="0 0 24 24" aria-hidden="true">
-                                <path
-                                    d="M6 9v9M6 6v.1M10 18v-5a4 4 0 0 1 8 0v5M10 12V9"
-                                /></svg
-                        ></a>
-                        <a href="#" aria-label="Instagram"
-                            ><svg viewBox="0 0 24 24" aria-hidden="true">
-                                <rect x="3" y="3" width="18" height="18" rx="5" />
-                                <circle cx="12" cy="12" r="4" />
-                                <circle cx="17.5" cy="6.5" r="1" /></svg
-                        ></a>
-                        <a href="#" aria-label="E-mail"
-                            ><svg viewBox="0 0 24 24" aria-hidden="true">
-                                <rect
-                                    x="3"
-                                    y="5"
-                                    width="18"
-                                    height="14"
-                                    rx="2"
-                                />
-                                <path d="m4 7 8 6 8-6" /></svg
-                         ></a>
+                        <a href="#" aria-label="LinkedIn"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 9v9M6 6v.1M10 18v-5a4 4 0 0 1 8 0v5M10 12V9" /></svg></a>
+                        <a href="#" aria-label="Instagram"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5" /><circle cx="12" cy="12" r="4" /><circle cx="17.5" cy="6.5" r="1" /></svg></a>
+                        <a href="mailto:comercial@solutechdigital.com.br" aria-label="E-mail"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2" /><path d="m4 7 8 6 8-6" /></svg></a>
                     </nav>
                 </div>
             </div>
-            <!-- ALTERAR: razão social/nome da empresa e ano quando necessário. -->
-            <div class="copyright">
+            <div class="container copyright">
                 <p>© 2026 SoluTech. Todos os direitos reservados.</p>
+                <a href="#inicio">Voltar ao topo <span aria-hidden="true">↑</span></a>
             </div>
         </footer>
-        <!-- SEGURANÇA: carrega o hCaptcha integrado ao Web3Forms. -->
-        <script
-            src="https://web3forms.com/client/script.js"
-            async
-            defer
-            referrerpolicy="no-referrer"
-        ></script>
-        <!-- JavaScript do site -->
-        <script src="script.js?v=20260925-01"></script>
+
+        <script src="script.js?v=20260928-01"></script>
+        <script src="https://web3forms.com/client/script.js" async defer referrerpolicy="no-referrer"></script>
     </body>
 </html>
