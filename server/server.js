@@ -14,6 +14,7 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 const publicRoot = path.resolve(__dirname, "..");
 const imageRoot = path.join(publicRoot, "img");
+const videoRoot = path.join(publicRoot, "videos");
 
 /* =========================================================
    CABEÇALHOS DE SEGURANÇA
@@ -93,6 +94,15 @@ app.get("/script.js", sendPublicFile("script.js"));
 app.use(
     "/img",
     express.static(imageRoot, {
+        dotfiles: "deny",
+        fallthrough: false,
+        immutable: IS_PRODUCTION,
+        maxAge: IS_PRODUCTION ? "7d" : 0,
+    }),
+);
+app.use(
+    "/videos",
+    express.static(videoRoot, {
         dotfiles: "deny",
         fallthrough: false,
         immutable: IS_PRODUCTION,

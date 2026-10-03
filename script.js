@@ -131,6 +131,31 @@ if ("IntersectionObserver" in window) {
 }
 
 /* =========================================================
+   VÍDEOS DOS CASES
+========================================================= */
+selectAll(".case-video").forEach((caseVideo) => {
+    const video = select("video", caseVideo);
+    const playButton = select(".case-video__play", caseVideo);
+
+    if (!video || !playButton) return;
+
+    playButton.addEventListener("click", async () => {
+        playButton.disabled = true;
+        video.controls = true;
+        caseVideo.classList.add("is-playing");
+
+        try {
+            await video.play();
+            video.focus({ preventScroll: true });
+        } catch {
+            video.controls = false;
+            caseVideo.classList.remove("is-playing");
+            playButton.disabled = false;
+        }
+    });
+});
+
+/* =========================================================
    FORMULÁRIO DE CONTATO
 ========================================================= */
 const contactForm = select("#contact-form");

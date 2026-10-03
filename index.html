@@ -15,7 +15,7 @@
             rel="stylesheet"
         />
         <link rel="icon" href="img/logo.png" type="image/png" />
-        <link rel="stylesheet" href="style.css?v=20260928-01" />
+        <link rel="stylesheet" href="style.css?v=20261003-01" />
         <title>SoluTech | Tecnologia que resolve</title>
     </head>
     <body>
@@ -316,68 +316,55 @@
                         </p>
                     </header>
 
-                    <!-- CASE PLACEHOLDER: substitua nome, descrição, tecnologias e mockup por um projeto real aprovado para divulgação. -->
+                    <!-- CASE PLACEHOLDER: duplique este article para adicionar novos projetos. -->
                     <article class="case-card">
                         <div class="case-copy">
-                            <span class="case-category">Case demonstrativo · Sistema web</span>
-                            <h3>Plataforma de Gestão</h3>
+                            <!-- ALTERAR: categoria do projeto -->
+                            <span class="case-category">Projeto real · Sistema web</span>
+                            <!-- ALTERAR: nome do projeto -->
+                            <h3>Nome do projeto</h3>
+                            <!-- ALTERAR: descrição do problema e da solução -->
                             <p>
-                                Estrutura visual reutilizável para apresentar um projeto real,
-                                seu contexto, a solução construída e as tecnologias utilizadas.
+                                Breve descrição do problema que precisava ser resolvido e da
+                                solução desenvolvida pela SoluTech.
                             </p>
-                            <ul class="tech-list" aria-label="Tecnologias de exemplo">
-                                <li>Interface web</li>
-                                <li>API</li>
+                            <!-- ALTERAR: tecnologias utilizadas -->
+                            <ul class="tech-list" aria-label="Tecnologias utilizadas no projeto">
+                                <li>Sistema web</li>
+                                <li>Automação</li>
                                 <li>Banco de dados</li>
                             </ul>
-                            <small>Conteúdo demonstrativo — nenhum cliente ou resultado comercial foi atribuído.</small>
+                            <!-- ALTERAR: informação sobre cliente somente se houver autorização -->
+                            <small>Projeto desenvolvido para solucionar uma necessidade real de operação.</small>
                         </div>
 
-                        <div class="case-showcase">
-                            <div class="product-preview" aria-label="Mockup demonstrativo de um painel de gestão">
-                                <div class="product-preview__top">
-                                    <span></span><span></span><span></span>
-                                    <b>visão geral</b>
-                                </div>
-                                <div class="product-preview__body">
-                                    <aside aria-hidden="true">
-                                        <i></i><i></i><i></i><i></i>
-                                    </aside>
-                                    <div class="dashboard">
-                                        <div class="dashboard__heading">
-                                            <div><span>PAINEL</span><strong>Visão geral</strong></div>
-                                            <button type="button" tabindex="-1">Exportar</button>
-                                        </div>
-                                        <div class="dashboard__stats">
-                                            <div><span>Processos</span><strong>128</strong><small>em acompanhamento</small></div>
-                                            <div><span>Concluídos</span><strong>84%</strong><small>período atual</small></div>
-                                            <div><span>Pendências</span><strong>12</strong><small>aguardando ação</small></div>
-                                        </div>
-                                        <div class="dashboard__chart" aria-hidden="true">
-                                            <span style="--value: 42%"></span>
-                                            <span style="--value: 58%"></span>
-                                            <span style="--value: 51%"></span>
-                                            <span style="--value: 76%"></span>
-                                            <span style="--value: 68%"></span>
-                                            <span style="--value: 88%"></span>
-                                        </div>
+                        <div class="case-media">
+                            <div class="case-video">
+                                <!-- ALTERAR: substitua a thumbnail em img/cases/projeto-thumb.webp -->
+                                <!-- ALTERAR: substitua o vídeo em videos/projeto.mp4 -->
+                                <video
+                                    playsinline
+                                    preload="none"
+                                    poster="img/cases/projeto-thumb.webp"
+                                    aria-label="Demonstração em vídeo do projeto"
+                                >
+                                    <source src="videos/projeto.mp4" type="video/mp4" />
+                                    <!-- FUTURO: adicionar track de legendas se disponível -->
+                                    Seu navegador não oferece suporte à reprodução de vídeo.
+                                </video>
+
+                                <div class="case-video__overlay">
+                                    <button
+                                        class="case-video__play"
+                                        type="button"
+                                        aria-label="Reproduzir demonstração do projeto"
+                                    >
+                                        <span aria-hidden="true"></span>
+                                    </button>
+                                    <div class="case-video__caption">
+                                        <span>Demonstração do projeto</span>
                                     </div>
                                 </div>
-                            </div>
-
-                            <div class="code-window" aria-label="Exemplo visual de código do projeto">
-                                <div class="code-window__bar">
-                                    <span class="window-dot window-dot--red"></span>
-                                    <span class="window-dot window-dot--yellow"></span>
-                                    <span class="window-dot window-dot--green"></span>
-                                    <b>projeto.js</b>
-                                </div>
-                                <pre><code><span class="line"><i>01</i><span class="token-keyword">const</span> projeto = {</span>
-<span class="line"><i>02</i>  tipo: <span class="token-string">"plataforma web"</span>,</span>
-<span class="line"><i>03</i>  foco: <span class="token-string">"processo real"</span>,</span>
-<span class="line"><i>04</i>  entrega: <span class="token-string">"sob medida"</span>,</span>
-<span class="line"><i>05</i>  status: <span class="token-function">validarComCliente</span>()</span>
-<span class="line"><i>06</i>};</span></code></pre>
                             </div>
                         </div>
                     </article>
@@ -486,12 +473,12 @@
                 </div>
             </div>
             <div class="container copyright">
-                <p>© 2026 SoluTech. Todos os direitos reservados.</p>
+                <p>© 2026 SOLUTECHDIGITAL. Todos os direitos reservados.</p>
                 <a href="#inicio">Voltar ao topo <span aria-hidden="true">↑</span></a>
             </div>
         </footer>
 
-        <script src="script.js?v=20260928-01"></script>
+        <script src="script.js?v=20261003-01"></script>
         <script src="https://web3forms.com/client/script.js" async defer referrerpolicy="no-referrer"></script>
     </body>
 </html>
