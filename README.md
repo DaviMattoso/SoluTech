@@ -1,8 +1,6 @@
 # SoluTech
-
+Sete cabeças, muita vontade de aprender e criar, e um objetivo em comum: transformar ideias em soluções usando tecnologia
 Site institucional da [SoluTech](https://solutechdigital.com.br) — tecnologia que resolve.
-
-A página foi escrita a partir da empresa: missão, visão, o que fazemos, para quem fazemos e como trabalhamos. É HTML, CSS e JavaScript puro. Abrir o `index.html` já mostra o site.
 
 ## Stack Tecnológica
 Site Institucional
@@ -13,7 +11,7 @@ Site Institucional
   <img src="https://img.shields.io/badge/JavaScript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black" />
 </p>
 
-A SoluTech fica em Recife (PE). Desenvolve software sob medida, aplica inteligência artificial onde ela gera valor prático, orienta decisões de tecnologia e organiza dados para o dia a dia.
+![SolutechDigital](docs/site.png)
 
 ## Missão e visão
 
