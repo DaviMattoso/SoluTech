@@ -13,28 +13,6 @@ Site Institucional
 
 ![SolutechDigital](docs/site.png)
 
-## Missão e visão
-
-**Missão.** Criar soluções de software que resolvam desafios reais, com qualidade técnica e relações éticas, transparentes e humanas.
-
-**Visão.** Ser referência em desenvolvimento de software, qualidade de entrega e excelência nas relações humanas até 2031.
-
-**Como trabalhamos.** Entendemos o contexto, definimos prioridades e construímos em ciclos claros, sempre próximos de quem vai usar a solução.
-
-**Compromisso.** Comunicar com clareza, entregar com responsabilidade e manter a tecnologia simples de operar e evoluir.
-
-## O que fazemos
-
-- **Software sob medida.** Sistemas web, mobile, plataformas, APIs e integrações feitas para o processo de quem contrata.
-- **IA aplicada ao processo.** Classificação, assistência e automação nos pontos em que a inteligência artificial tem uso prático.
-- **Consultoria.** Diagnóstico, prioridades e um plano viável antes de investir tempo e recurso em tecnologia.
-- **Dados para decidir.** Informação organizada, dashboards, relatórios e indicadores claros para o dia a dia.
-
-## Para quem
-
-- **Pessoas** que contratam tecnologia diretamente e precisam de atendimento próximo, escopo explicado e uma solução no tamanho do objetivo.
-- **Empresas** que precisam de software integrado à operação: processos reais, automações e indicadores para sustentar o crescimento.
-
 ## Como o site foi feito
 
 Uma página só, dividida nas mesmas ideias da empresa: início, soluções, públicos, sobre, cases e contato.
